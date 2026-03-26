@@ -20,7 +20,7 @@
       la = "ls -A";
       l  = "ls -CF";
       sl = "ls";
-      update = "sudo nixos-rebuild switch --flake /etc/nixos/#TPS";
+      update = "sudo nixos-rebuild switch --flake ~/Documents/nix-config/#TPS";
     };
 
     oh-my-zsh = {
