@@ -10,7 +10,6 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     catppuccin.url = "github:catppuccin/nix";
 
  
@@ -20,7 +19,6 @@
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs;
-
       };
       modules = [
         ./configuration.nix
