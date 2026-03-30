@@ -80,16 +80,14 @@
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, V, togglefloating,"
-	"$mainMod, UP, fullscreen"
-	"bind = $mainMod SHIFT, LEFT, movewindow, l"
-        "bind = $mainMod SHIFT, RIGHT, movewindow, r"
-        "bind = $mainMod SHIFT, UP, movewindow, u"
-        "bind = $mainMod SHIFT, DOWN, movewindow, d"
+	    "$mainMod, UP, fullscreen"
+	    "$mainMod SHIFT, LEFT, movewindow, l"
+        "$mainMod SHIFT, RIGHT, movewindow, r"
+        "$mainMod SHIFT, UP, movewindow, u"
+        "$mainMod SHIFT, DOWN, movewindow, d"
 
         "$mainMod, R, exec, rofi -show drun"
-        "SUPER, W, exec, theme-menu"         # Open your new script menu
-        "SUPER SHIFT, W, exec, wall-picker"  # Direct wallpaper picker
-        "SUPER SHIFT, T, exec, theme-toggle" 
+        "$mainMod SHIFT, T, exec, theme-toggle"
         ", Print, exec, grim -g \"$(slurp)\" - | wl-copy"
         
         "$mainMod, 1, workspace, 1"
@@ -108,8 +106,8 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
-	"ALT, Tab, exec, rofi -show window"
-	"SUPER, L, exec, lock-screen"
+	    "ALT, Tab, exec, rofi -show window"
+	    "$mainMod, L, exec, lock-screen"
       ];
 
 
@@ -125,11 +123,15 @@
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ", XF86Bluetooth, exec, rfkill toggle bluetooth"
       ];
+
+      bindm = [
+        "$mainMod, mouse:272, movewindow"
+      ];
       exec-once = [
         "swww-daemon"
-	"waybar"
-	"lock-screen"
-	"nm-applet --indicator"
+	    "waybar"
+	    "lock-screen"
+	    "nm-applet --indicator"
       ];
       misc =  {
         disable_hyprland_logo = true;

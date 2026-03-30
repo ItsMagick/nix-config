@@ -10,34 +10,7 @@
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
   };
-  home.pointerCursor =
-  let
-    getFrom = url: hash: name: {
-      gtk.enable = true;
-      x11.enable = true;
-      name = name;
-      size = 24;
-      package =
-        pkgs.runCommand "moveUp" {} ''
-          mkdir -p $out/share/icons
-          ln -s ${pkgs.fetchzip {
-            url = url;
-            hash = hash;
-          }}/dist $out/share/icons/${name}
-        '';
-      };
-  in
-    getFrom
-      "https://github.com/yeyushengfan258/ArcMidnight-Cursors/archive/refs/heads/main.zip"
-      "sha256-VgOpt0rukW0+rSkLFoF9O0xO/qgwieAchAev1vjaqPE="
-      "ArcMidnight-Cursors";
-
-    dconf.settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-        gtk-theme = "adw-gtk3-dark";
-      };
-    };
+  home.pointerCursor = catppuccin-cursors.machiatoLavender;
 
   services.easyeffects.enable = true;
 
@@ -70,6 +43,7 @@
     networkmanagerapplet
     quickshell
     tree
+    matugen
   ];
     
   wayland.windowManager.hyprland = {
