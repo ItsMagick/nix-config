@@ -74,6 +74,8 @@
       pulse.enable = true;
       wireplumber.enable = true;
     };
+
+    flatpak.enable = true;
   };
 
 
@@ -110,7 +112,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    neovim
     wget
     git
     firefox
@@ -123,8 +124,6 @@
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  
- 
   fonts = {
     packages = with pkgs; [
       nerd-fonts.fira-code
@@ -135,4 +134,10 @@
   virtualisation.docker.enable = true;
   security.pam.services.swaylock = {};
 
+### Remove all builds older than 14 days on a daily basis
+  nix.gc = {
+      automatic = true;
+      dates = "daily";
+      options = "--delete-older-than 14d";
+  };
 }

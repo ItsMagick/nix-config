@@ -69,6 +69,7 @@
     networkmanager_dmenu
     networkmanagerapplet
     quickshell
+    tree
   ];
     
   wayland.windowManager.hyprland = {

@@ -1,4 +1,11 @@
 {pkgs, ...}:
+
+let
+  patchedAgnoster = pkgs.runCommand "agnoster-patched.zsh-theme" { } ''
+    cp ${pkgs.oh-my-zsh}/share/oh-my-zsh/themes/agnoster.zsh-theme temp.zsh-theme
+    ${pkgs.patch}/bin/patch temp.zsh-theme ${./modules/agnoster_venv_pathshortening.patch} -o $out
+  '';
+in
 {
   programs.zsh = {
     enable = true;
@@ -28,5 +35,9 @@
       theme = "agnoster";
       plugins = ["git"];
     };
+
+    initExtra = ''
+      source ${patchedAgnoster}
+    '';
   };
 }
