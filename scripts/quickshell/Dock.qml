@@ -162,7 +162,7 @@ PanelWindow {
 
                         Text {
                             text: "󰍉"
-                            font.family: "Iosevka Nerd Font"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.pixelSize: 16
                             color: searchInput.activeFocus ? mocha.mauve : mocha.text
                         }
@@ -173,7 +173,7 @@ PanelWindow {
                             placeholderText: "Search..."
                             placeholderTextColor: mocha.subtext0 
                             color: mocha.text
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.pixelSize: 13
                             background: Item {} 
                             onTextChanged: dockWindow.searchText = text
@@ -234,7 +234,7 @@ PanelWindow {
 
                             Text {
                                 text: modelData.name
-                                font.family: "JetBrains Mono"
+                                font.family: "FiraCode Nerd Font Mono"
                                 font.pixelSize: 13
                                 font.weight: Font.Medium
                                 color: mocha.text
@@ -262,7 +262,7 @@ PanelWindow {
                                 Text {
                                     anchors.centerIn: parent
                                     text: ""
-                                    font.family: "Iosevka Nerd Font"
+                                    font.family: "FiraCode Nerd Font Mono"
                                     font.pixelSize: 12
                                     color: mocha.base
                                     opacity: modelData.pinned ? 1 : 0
@@ -385,7 +385,7 @@ PanelWindow {
                                 id: tooltipText
                                 anchors.centerIn: parent
                                 text: modelData.name
-                                font.family: "JetBrains Mono"
+                                font.family: "FiraCode Nerd Font Mono"
                                 font.pixelSize: 11
                                 font.weight: Font.Bold
                                 color: mocha.text
@@ -427,8 +427,8 @@ PanelWindow {
                                     
                                     RowLayout {
                                         anchors.fill: parent; anchors.leftMargin: 10; anchors.rightMargin: 10; spacing: 10
-                                        Text { text: "󰝰"; font.family: "Iosevka Nerd Font"; font.pixelSize: 14; color: mocha.text }
-                                        Text { text: "Open"; font.family: "JetBrains Mono"; font.pixelSize: 12; color: mocha.text; Layout.fillWidth: true }
+                                        Text { text: "󰝰"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 14; color: mocha.text }
+                                        Text { text: "Open"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 12; color: mocha.text; Layout.fillWidth: true }
                                     }
                                     MouseArea {
                                         id: openCtxMouse; anchors.fill: parent; hoverEnabled: true
@@ -449,8 +449,8 @@ PanelWindow {
                                     
                                     RowLayout {
                                         anchors.fill: parent; anchors.leftMargin: 10; anchors.rightMargin: 10; spacing: 10
-                                        Text { text: "󰅖"; font.family: "Iosevka Nerd Font"; font.pixelSize: 14; color: mocha.red }
-                                        Text { text: "Unpin"; font.family: "JetBrains Mono"; font.pixelSize: 12; color: mocha.red; Layout.fillWidth: true }
+                                        Text { text: "󰅖"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 14; color: mocha.red }
+                                        Text { text: "Unpin"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 12; color: mocha.red; Layout.fillWidth: true }
                                     }
                                     MouseArea {
                                         id: unpinCtxMouse; anchors.fill: parent; hoverEnabled: true
@@ -511,7 +511,7 @@ PanelWindow {
                     Text {
                         anchors.centerIn: parent
                         text: ""
-                        font.family: "Iosevka Nerd Font"
+                        font.family: "FiraCode Nerd Font Mono"
                         font.pixelSize: 22
                         opacity: gearContainer.btnHovered || dockWindow.isSettingsOpen ? 1.0 : 0.6
                         color: mocha.text

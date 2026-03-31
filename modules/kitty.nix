@@ -1,13 +1,13 @@
-{pkgs, ...}:
+{pkgs, config, ...}:
 {
   programs.kitty = {
     enable = true;
     font = {
-      name = "FiraCode Nerd Font";
+      name = "FiraCode Nerd Font Mono";
       size = 12;
     };
     settings = {
-      bold_font = "FiraCode Nerd Font Bold";
+      bold_font = "FiraCode Nerd Font Mono Bold";
       italic_font = "auto";
       bold_italic_font = "auto";
 

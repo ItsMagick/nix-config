@@ -294,7 +294,7 @@ Item {
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: -100
                 text: window.weatherData && window.weatherData.forecast[window.weatherView] ? window.weatherData.forecast[window.weatherView].icon : ""
-                font.family: "Iosevka Nerd Font"
+                font.family: "FiraCode Nerd Font Mono"
                 font.pixelSize: 800
                 color: window.activeWeatherHex
                 opacity: 0.03 + (0.01 * Math.sin(window.globalOrbitAngle * 4))
@@ -363,7 +363,7 @@ Item {
                         spacing: 2
                         Text {
                             text: Qt.formatTime(window.currentTime, "HH:mm")
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.weight: Font.Black
                             font.pixelSize: 84
                             color: window.text
@@ -371,7 +371,7 @@ Item {
                         }
                         Text {
                             text: Qt.formatTime(window.currentTime, ":ss")
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.weight: Font.Bold
                             font.pixelSize: 32
                             color: window.activeWeatherHex
@@ -386,7 +386,7 @@ Item {
                     Text {
                         Layout.alignment: Qt.AlignHCenter
                         text: Qt.formatDateTime(window.currentTime, "dddd, MMMM dd")
-                        font.family: "JetBrains Mono"
+                        font.family: "FiraCode Nerd Font Mono"
                         font.weight: Font.Bold
                         font.pixelSize: 16
                         color: window.subtext0
@@ -441,14 +441,14 @@ Item {
                                 Text { 
                                     Layout.alignment: Qt.AlignHCenter
                                     text: modelData.time
-                                    font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: 12
+                                    font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold; font.pixelSize: 12
                                     color: isHighlighted ? window.mantle : (hrMa.containsMouse ? window.text : window.overlay1)
                                 }
                                 
                                 Text { 
                                     Layout.alignment: Qt.AlignHCenter
                                     text: modelData.icon || (window.weatherData && window.weatherData.forecast[window.weatherView] ? window.weatherData.forecast[window.weatherView].icon : "")
-                                    font.family: "Iosevka Nerd Font"; font.pixelSize: 18
+                                    font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18
                                     color: isHighlighted ? window.base : (modelData.hex || window.activeWeatherHex)
                                     
                                     transform: Translate { y: hrMa.containsMouse ? -3 : 0 }
@@ -457,7 +457,7 @@ Item {
                                 
                                 Text { 
                                     Layout.alignment: Qt.AlignHCenter; text: modelData.temp + "°"
-                                    font.family: "JetBrains Mono"; font.weight: Font.Black; font.pixelSize: 14
+                                    font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Black; font.pixelSize: 14
                                     color: isHighlighted ? window.base : window.text 
                                 }
                             }
@@ -499,14 +499,14 @@ Item {
                         Rectangle {
                             width: 32; height: 32; radius: 16
                             color: prevMa.containsMouse ? window.surface1 : "transparent"
-                            Text { anchors.centerIn: parent; text: ""; font.family: "Iosevka Nerd Font"; color: window.text; font.pixelSize: 16 }
+                            Text { anchors.centerIn: parent; text: ""; font.family: "FiraCode Nerd Font Mono"; color: window.text; font.pixelSize: 16 }
                             MouseArea { id: prevMa; anchors.fill: parent; hoverEnabled: true; onClicked: window.monthOffset-- }
                         }
                         
                         Text {
                             Layout.fillWidth: true
                             text: window.targetMonthName.toUpperCase()
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.weight: Font.Black
                             font.pixelSize: 16
                             color: window.text
@@ -516,7 +516,7 @@ Item {
                         Rectangle {
                             width: 32; height: 32; radius: 16
                             color: nextMa.containsMouse ? window.surface1 : "transparent"
-                            Text { anchors.centerIn: parent; text: ""; font.family: "Iosevka Nerd Font"; color: window.text; font.pixelSize: 16 }
+                            Text { anchors.centerIn: parent; text: ""; font.family: "FiraCode Nerd Font Mono"; color: window.text; font.pixelSize: 16 }
                             MouseArea { id: nextMa; anchors.fill: parent; hoverEnabled: true; onClicked: window.monthOffset++ }
                         }
 
@@ -524,7 +524,7 @@ Item {
                         Rectangle {
                             width: 32; height: 32; radius: 16
                             color: diaryMa.containsMouse ? window.surface1 : "transparent"
-                            Text { anchors.centerIn: parent; text: "+"; font.family: "Iosevka Nerd Font"; color: diaryMa.containsMouse ? window.mauve : window.text; font.pixelSize: 32 }
+                            Text { anchors.centerIn: parent; text: "+"; font.family: "FiraCode Nerd Font Mono"; color: diaryMa.containsMouse ? window.mauve : window.text; font.pixelSize: 32 }
                             MouseArea { 
                                 id: diaryMa; anchors.fill: parent; hoverEnabled: true; 
                                 onClicked: Quickshell.execDetached(["zsh", window.scriptsDir + "/diary_manager.sh"])
@@ -540,7 +540,7 @@ Item {
                             Text {
                                 Layout.fillWidth: true
                                 text: modelData
-                                font.family: "JetBrains Mono"
+                                font.family: "FiraCode Nerd Font Mono"
                                 font.weight: Font.Black
                                 font.pixelSize: 14
                                 color: window.overlay0
@@ -574,7 +574,7 @@ Item {
                                 Text {
                                     anchors.centerIn: parent
                                     text: dayNum
-                                    font.family: "JetBrains Mono"
+                                    font.family: "FiraCode Nerd Font Mono"
                                     font.weight: isToday ? Font.Black : Font.Bold
                                     font.pixelSize: 14
                                     color: isToday ? window.base : (isCurrentMonth ? window.text : window.surface0)
@@ -594,7 +594,7 @@ Item {
                         Text {
                             anchors.centerIn: parent
                             text: "Return to Today"
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.weight: Font.Bold
                             font.pixelSize: 14
                             color: resetMa.containsMouse ? window.text : window.overlay0
@@ -636,7 +636,7 @@ Item {
                             }
                             
                             Text { 
-                                anchors.centerIn: parent; text: ""; font.family: "Iosevka Nerd Font"; font.pixelSize: 18
+                                anchors.centerIn: parent; text: ""; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18
                                 color: parent.containsMouse ? window.activeWeatherHex : window.overlay1
                                 transform: Translate { x: parent.containsMouse ? -5 : wPrevMa.pulseOffset }
                                 Behavior on transform { NumberAnimation { duration: 250; easing.type: Easing.OutBack } }
@@ -645,7 +645,7 @@ Item {
                         
                         Text {
                             text: window.weatherData && window.weatherData.forecast[window.weatherView] ? window.weatherData.forecast[window.weatherView].day_full.toUpperCase() : "LOADING..."
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.weight: Font.Black
                             font.pixelSize: 16
                             color: window.text
@@ -663,7 +663,7 @@ Item {
                             }
                             
                             Text { 
-                                anchors.centerIn: parent; text: ""; font.family: "Iosevka Nerd Font"; font.pixelSize: 18
+                                anchors.centerIn: parent; text: ""; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18
                                 color: parent.containsMouse ? window.activeWeatherHex : window.overlay1
                                 transform: Translate { x: parent.containsMouse ? 5 : wNextMa.pulseOffset }
                                 Behavior on transform { NumberAnimation { duration: 250; easing.type: Easing.OutBack } }
@@ -678,7 +678,7 @@ Item {
                         Text {
                             Layout.alignment: Qt.AlignHCenter 
                             text: window.weatherData && window.weatherData.forecast[window.weatherView] ? window.weatherData.forecast[window.weatherView].max + "°" : ""
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.weight: Font.Black
                             font.pixelSize: 84
                             color: window.text
@@ -688,7 +688,7 @@ Item {
                         Text {
                             Layout.alignment: Qt.AlignHCenter
                             text: window.weatherData && window.weatherData.forecast[window.weatherView] ? window.weatherData.forecast[window.weatherView].desc : ""
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.weight: Font.Bold
                             font.pixelSize: 16
                             color: window.activeWeatherHex
@@ -776,7 +776,7 @@ Item {
                                     Text {
                                         anchors.centerIn: parent
                                         text: modelData.val
-                                        font.family: "JetBrains Mono"
+                                        font.family: "FiraCode Nerd Font Mono"
                                         font.weight: Font.Black
                                         font.pixelSize: 14
                                         color: window.text
@@ -790,14 +790,14 @@ Item {
                                     
                                     Text { 
                                         text: modelData.icon
-                                        font.family: "Iosevka Nerd Font"
+                                        font.family: "FiraCode Nerd Font Mono"
                                         font.pixelSize: 14
                                         color: gaugeMa.containsMouse ? window.activeWeatherHex : window.overlay0
                                         Behavior on color { ColorAnimation { duration: 200 } }
                                     }
                                     Text { 
                                         text: modelData.lbl
-                                        font.family: "JetBrains Mono"
+                                        font.family: "FiraCode Nerd Font Mono"
                                         font.weight: Font.Bold
                                         font.pixelSize: 12
                                         color: window.overlay0 
@@ -886,12 +886,12 @@ Item {
                         
                         Rectangle {
                             width: 40; height: 40; radius: 20; color: window.surface0
-                            Text { anchors.centerIn: parent; text: ""; font.family: "Iosevka Nerd Font"; font.pixelSize: 18; color: window.timeAccent }
+                            Text { anchors.centerIn: parent; text: ""; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18; color: window.timeAccent }
                         }
                         
                         Text { 
                             text: window.scheduleData ? window.scheduleData.header : "Loading Schedule..."
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.weight: Font.Bold
                             font.pixelSize: 16
                             color: window.overlay0
@@ -908,8 +908,8 @@ Item {
                             RowLayout {
                                 anchors.centerIn: parent
                                 spacing: 6
-                                Text { text: "Open Web"; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: 14; color: schLinkMa.containsMouse ? window.base : window.text }
-                                Text { text: ""; font.family: "Iosevka Nerd Font"; font.pixelSize: 14; color: schLinkMa.containsMouse ? window.base : window.text }
+                                Text { text: "Open Web"; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold; font.pixelSize: 14; color: schLinkMa.containsMouse ? window.base : window.text }
+                                Text { text: ""; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 14; color: schLinkMa.containsMouse ? window.base : window.text }
                             }
                             
                             MouseArea {
@@ -925,7 +925,7 @@ Item {
 
                         Text {
                             text: "Data stream offline. No scheduled events."
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.italic: true
                             font.pixelSize: 14
                             color: window.overlay0
@@ -1030,7 +1030,7 @@ Item {
 
                                                 Text {
                                                     text: modelData.subject || ""
-                                                    font.family: "JetBrains Mono"
+                                                    font.family: "FiraCode Nerd Font Mono"
                                                     font.weight: Font.Black
                                                     font.pixelSize: 16
                                                     color: classNode.isActive ? window.mauve : (classNode.isPast ? window.overlay0 : window.text)
@@ -1041,15 +1041,15 @@ Item {
                                                 RowLayout {
                                                     visible: !modelData.is_compact
                                                     spacing: 8
-                                                    Text { text: "󰅐"; font.family: "Iosevka Nerd Font"; font.pixelSize: 14; color: classNode.isActive ? window.mauve : window.overlay1 }
-                                                    Text { text: modelData.time || ""; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: 14; color: classNode.isActive ? window.text : window.overlay1 }
+                                                    Text { text: "󰅐"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 14; color: classNode.isActive ? window.mauve : window.overlay1 }
+                                                    Text { text: modelData.time || ""; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold; font.pixelSize: 14; color: classNode.isActive ? window.text : window.overlay1 }
                                                 }
 
                                                 RowLayout {
                                                     visible: !modelData.is_compact && (modelData.room || "") !== ""
                                                     spacing: 8
-                                                    Text { text: ""; font.family: "Iosevka Nerd Font"; font.pixelSize: 14; color: classNode.isPast ? window.surface2 : window.peach }
-                                                    Text { text: modelData.room || ""; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: 14; color: window.subtext1; elide: Text.ElideRight; Layout.fillWidth: true }
+                                                    Text { text: ""; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 14; color: classNode.isPast ? window.surface2 : window.peach }
+                                                    Text { text: modelData.room || ""; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold; font.pixelSize: 14; color: window.subtext1; elide: Text.ElideRight; Layout.fillWidth: true }
                                                 }
                                             }
 
@@ -1087,7 +1087,7 @@ Item {
                                                     id: breakText
                                                     anchors.centerIn: parent
                                                     text: modelData.desc || ""
-                                                    font.family: "JetBrains Mono"
+                                                    font.family: "FiraCode Nerd Font Mono"
                                                     font.weight: Font.Bold
                                                     font.pixelSize: 14
                                                     color: window.mauve

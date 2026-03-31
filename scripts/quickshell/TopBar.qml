@@ -249,7 +249,7 @@ PanelWindow {
                 Text {
                     anchors.centerIn: parent
                     text: "󰍉"
-                    font.family: "Iosevka Nerd Font"; font.pixelSize: 24
+                    font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 24
                     color: parent.isHovered ? mocha.blue : mocha.text
                     Behavior on color { ColorAnimation { duration: 200 } }
                 }
@@ -275,7 +275,7 @@ PanelWindow {
                 Text {
                     anchors.centerIn: parent
                     text: ""
-                    font.family: "Iosevka Nerd Font"; font.pixelSize: 18
+                    font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18
                     color: parent.isHovered ? mocha.yellow : mocha.text
                     Behavior on color { ColorAnimation { duration: 200 } }
                 }
@@ -362,7 +362,7 @@ PanelWindow {
                             Text {
                                 anchors.centerIn: parent
                                 text: modelData.id
-                                font.family: "JetBrains Mono"
+                                font.family: "FiraCode Nerd Font Mono"
                                 font.pixelSize: 14
                                 font.weight: modelData.state === "active" ? Font.Black : (modelData.state === "occupied" ? Font.Bold : Font.Medium)
                                 
@@ -451,7 +451,7 @@ PanelWindow {
                                     
                                     Text { 
                                         text: barWindow.musicData.title; 
-                                        font.family: "JetBrains Mono"; 
+                                        font.family: "FiraCode Nerd Font Mono"; 
                                         font.weight: Font.Black; 
                                         font.pixelSize: 13; 
                                         color: mocha.text; // Fixed contrast
@@ -460,7 +460,7 @@ PanelWindow {
                                     }
                                     Text { 
                                         text: barWindow.musicData.timeStr; 
-                                        font.family: "JetBrains Mono"; 
+                                        font.family: "FiraCode Nerd Font Mono"; 
                                         font.weight: Font.Black; 
                                         font.pixelSize: 10; 
                                         color: mocha.subtext0;
@@ -476,7 +476,7 @@ PanelWindow {
                             Item { 
                                 Layout.preferredWidth: 24; Layout.preferredHeight: 24; 
                                 Text { 
-                                    anchors.centerIn: parent; text: "󰒮"; font.family: "Iosevka Nerd Font"; font.pixelSize: 26; 
+                                    anchors.centerIn: parent; text: "󰒮"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 26; 
                                     color: prevMouse.containsMouse ? mocha.text : mocha.overlay2; 
                                     Behavior on color { ColorAnimation { duration: 150 } }
                                     scale: prevMouse.containsMouse ? 1.1 : 1.0
@@ -487,7 +487,7 @@ PanelWindow {
                             Item { 
                                 Layout.preferredWidth: 28; Layout.preferredHeight: 28; 
                                 Text { 
-                                    anchors.centerIn: parent; text: barWindow.musicData.status === "Playing" ? "󰏤" : "󰐊"; font.family: "Iosevka Nerd Font"; font.pixelSize: 30; 
+                                    anchors.centerIn: parent; text: barWindow.musicData.status === "Playing" ? "󰏤" : "󰐊"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 30; 
                                     color: playMouse.containsMouse ? mocha.green : mocha.text; 
                                     Behavior on color { ColorAnimation { duration: 150 } }
                                     scale: playMouse.containsMouse ? 1.15 : 1.0
@@ -498,7 +498,7 @@ PanelWindow {
                             Item { 
                                 Layout.preferredWidth: 24; Layout.preferredHeight: 24; 
                                 Text { 
-                                    anchors.centerIn: parent; text: "󰒭"; font.family: "Iosevka Nerd Font"; font.pixelSize: 26; 
+                                    anchors.centerIn: parent; text: "󰒭"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 26; 
                                     color: nextMouse.containsMouse ? mocha.text : mocha.overlay2; 
                                     Behavior on color { ColorAnimation { duration: 150 } }
                                     scale: nextMouse.containsMouse ? 1.1 : 1.0
@@ -560,8 +560,8 @@ PanelWindow {
                 // Clockbox
                 ColumnLayout {
                     spacing: -2
-                    Text { text: barWindow.timeStr; font.family: "JetBrains Mono"; font.pixelSize: 16; font.weight: Font.Black; color: mocha.blue }
-                    Text { text: barWindow.dateStr; font.family: "JetBrains Mono"; font.pixelSize: 11; font.weight: Font.Bold; color: mocha.subtext0 }
+                    Text { text: barWindow.timeStr; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 16; font.weight: Font.Black; color: mocha.blue }
+                    Text { text: barWindow.dateStr; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 11; font.weight: Font.Bold; color: mocha.subtext0 }
                 }
 
                 // Weatherbox
@@ -569,12 +569,12 @@ PanelWindow {
                     spacing: 8
                     Text { 
                         text: barWindow.weatherIcon; 
-                        font.family: "Iosevka Nerd Font"; 
+                        font.family: "FiraCode Nerd Font Mono"; 
                         font.pixelSize: 24; 
                         // Dimmed slightly by tinting the raw hex with the primary mauve accent
                         color: Qt.tint(barWindow.weatherHex, Qt.rgba(mocha.mauve.r, mocha.mauve.g, mocha.mauve.b, 0.4)) 
                     }
-                    Text { text: barWindow.weatherTemp; font.family: "JetBrains Mono"; font.pixelSize: 17; font.weight: Font.Black; color: mocha.peach }
+                    Text { text: barWindow.weatherTemp; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 17; font.weight: Font.Black; color: mocha.peach }
                 }
             }
         }
@@ -722,8 +722,8 @@ PanelWindow {
                         Behavior on color { ColorAnimation { duration: 200 } }
 
                         RowLayout { id: kbLayoutRow; anchors.centerIn: parent; spacing: 8
-                            Text { text: "󰌌"; font.family: "Iosevka Nerd Font"; font.pixelSize: 16; color: parent.parent.isHovered ? mocha.text : mocha.overlay2 }
-                            Text { text: barWindow.kbLayout; font.family: "JetBrains Mono"; font.pixelSize: 13; font.weight: Font.Black; color: mocha.text }
+                            Text { text: "󰌌"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 16; color: parent.parent.isHovered ? mocha.text : mocha.overlay2 }
+                            Text { text: barWindow.kbLayout; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 13; font.weight: Font.Black; color: mocha.text }
                         }
                         MouseArea { id: kbMouse; anchors.fill: parent; hoverEnabled: true }
                     }
@@ -757,8 +757,8 @@ PanelWindow {
                         Behavior on color { ColorAnimation { duration: 200 } }
 
                         RowLayout { id: wifiLayoutRow; anchors.centerIn: parent; spacing: 8
-                            Text { text: barWindow.wifiIcon; font.family: "Iosevka Nerd Font"; font.pixelSize: 16; color: barWindow.isWifiOn ? mocha.base : mocha.subtext0 }
-                            Text { text: barWindow.isWifiOn ? (barWindow.wifiSsid !== "" ? barWindow.wifiSsid : "On") : "Off"; font.family: "JetBrains Mono"; font.pixelSize: 13; font.weight: Font.Black; color: barWindow.isWifiOn ? mocha.base : mocha.text; Layout.maximumWidth: 100; elide: Text.ElideRight }
+                            Text { text: barWindow.wifiIcon; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 16; color: barWindow.isWifiOn ? mocha.base : mocha.subtext0 }
+                            Text { text: barWindow.isWifiOn ? (barWindow.wifiSsid !== "" ? barWindow.wifiSsid : "On") : "Off"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 13; font.weight: Font.Black; color: barWindow.isWifiOn ? mocha.base : mocha.text; Layout.maximumWidth: 100; elide: Text.ElideRight }
                         }
                         MouseArea { id: wifiMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle network wifi"]) }
                     }
@@ -793,8 +793,8 @@ PanelWindow {
                         Behavior on color { ColorAnimation { duration: 200 } }
 
                         RowLayout { id: btLayoutRow; anchors.verticalCenter: parent.verticalCenter; anchors.left: parent.left; anchors.leftMargin: 12; spacing: barWindow.btDevice !== "" ? 8 : 0
-                            Text { text: barWindow.btIcon; font.family: "Iosevka Nerd Font"; font.pixelSize: 16; color: barWindow.isBtOn ? mocha.base : mocha.subtext0 }
-                            Text { visible: barWindow.btDevice !== ""; text: barWindow.btDevice; font.family: "JetBrains Mono"; font.pixelSize: 13; font.weight: Font.Black; color: barWindow.isBtOn ? mocha.base : mocha.text; Layout.maximumWidth: 100; elide: Text.ElideRight }
+                            Text { text: barWindow.btIcon; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 16; color: barWindow.isBtOn ? mocha.base : mocha.subtext0 }
+                            Text { visible: barWindow.btDevice !== ""; text: barWindow.btDevice; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 13; font.weight: Font.Black; color: barWindow.isBtOn ? mocha.base : mocha.text; Layout.maximumWidth: 100; elide: Text.ElideRight }
                         }
                         MouseArea { id: btMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle network bt"]) }
                     }
@@ -814,10 +814,10 @@ PanelWindow {
                         Behavior on color { ColorAnimation { duration: 200 } }
 
                         RowLayout { id: volLayoutRow; anchors.centerIn: parent; spacing: 8
-                            Text { text: barWindow.volIcon; font.family: "Iosevka Nerd Font"; font.pixelSize: 16; color: barWindow.isMuted ? mocha.overlay0 : mocha.peach }
+                            Text { text: barWindow.volIcon; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 16; color: barWindow.isMuted ? mocha.overlay0 : mocha.peach }
                             Text { 
                                 text: barWindow.volPercent; 
-                                font.family: "JetBrains Mono"; 
+                                font.family: "FiraCode Nerd Font Mono"; 
                                 font.pixelSize: 13; 
                                 font.weight: Font.Black; 
                                 color: barWindow.isMuted ? mocha.overlay0 : mocha.text; 
@@ -842,8 +842,8 @@ PanelWindow {
                         Behavior on color { ColorAnimation { duration: 200 } }
 
                         RowLayout { id: batLayoutRow; anchors.centerIn: parent; spacing: 8
-                            Text { text: barWindow.batIcon; font.family: "Iosevka Nerd Font"; font.pixelSize: 16; color: parseInt(barWindow.batPercent) < 20 && barWindow.batIcon !== "󰂄" ? mocha.red : mocha.green }
-                            Text { text: barWindow.batPercent; font.family: "JetBrains Mono"; font.pixelSize: 13; font.weight: Font.Black; color: mocha.text }
+                            Text { text: barWindow.batIcon; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 16; color: parseInt(barWindow.batPercent) < 20 && barWindow.batIcon !== "󰂄" ? mocha.red : mocha.green }
+                            Text { text: barWindow.batPercent; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 13; font.weight: Font.Black; color: mocha.text }
                         }
                         MouseArea { id: batMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle battery"]) }
                     }

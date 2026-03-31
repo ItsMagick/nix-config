@@ -211,7 +211,7 @@ in
       @import url("${config.xdg.configHome}/waybar-matugen.css");
 
       * {
-          font-family: "FiraCode Nerd Font", "JetBrains Mono", sans-serif;
+          font-family: "FiraCode Nerd Font Mono";
           font-size: 13px;
           font-weight: 500;
           border: none;
@@ -432,7 +432,7 @@ in
           border-radius: 12px;
           padding: 10px 15px;
           font-size: 12px;
-          font-family: "JetBrains Mono", monospace;
+          font-family: "FiraCode Nerd Font Mono";
       }
 
       tooltip label {

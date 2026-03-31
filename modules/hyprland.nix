@@ -26,9 +26,6 @@
         layout = "dwindle";
       };
 
-      # Matugen updates this file on wallpaper/theme generation.
-      source = "${config.xdg.configHome}/hypr/matugen-colors.conf";
-
       decoration = {
         rounding = 10;
         active_opacity = 1.0;
@@ -150,5 +147,10 @@
         disable_splash_rendering = true;
       };
     };
+
+    # Keep Matugen border overrides without conflicting with Catppuccin's settings.source.
+    extraConfig = ''
+      source = ${config.xdg.configHome}/hypr/matugen-colors.conf
+    '';
   };
 }

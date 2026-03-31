@@ -226,13 +226,13 @@ Item {
                         anchors.centerIn: parent
                         Text { 
                             text: window.upHours.toString().padStart(2, '0')
-                            font.pixelSize: 18; font.family: "JetBrains Mono"; font.weight: Font.Black
+                            font.pixelSize: 18; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Black
                             color: window.ambientPrimary
                             Behavior on color { ColorAnimation { duration: 1000 } }
                             anchors.horizontalCenter: parent.horizontalCenter 
                         }
                         Text { 
-                            text: "HR"; font.pixelSize: 8; font.family: "JetBrains Mono"; font.weight: Font.Bold
+                            text: "HR"; font.pixelSize: 8; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold
                             color: window.subtext0; anchors.horizontalCenter: parent.horizontalCenter 
                         }
                     }
@@ -242,7 +242,7 @@ Item {
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
                     text: ":"
-                    font.pixelSize: 22; font.family: "JetBrains Mono"; font.weight: Font.Black
+                    font.pixelSize: 22; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Black
                     color: window.ambientPrimary
                     Behavior on color { ColorAnimation { duration: 1000 } }
                     
@@ -265,13 +265,13 @@ Item {
                         anchors.centerIn: parent
                         Text { 
                             text: window.upMins.toString().padStart(2, '0')
-                            font.pixelSize: 18; font.family: "JetBrains Mono"; font.weight: Font.Black
+                            font.pixelSize: 18; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Black
                             color: window.ambientSecondary
                             Behavior on color { ColorAnimation { duration: 1000 } }
                             anchors.horizontalCenter: parent.horizontalCenter 
                         }
                         Text { 
-                            text: "MIN"; font.pixelSize: 8; font.family: "JetBrains Mono"; font.weight: Font.Bold
+                            text: "MIN"; font.pixelSize: 8; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold
                             color: window.subtext0; anchors.horizontalCenter: parent.horizontalCenter 
                         }
                     }
@@ -289,7 +289,7 @@ Item {
                 
                 Text {
                     anchors.centerIn: parent
-                    font.family: "Iosevka Nerd Font"; font.pixelSize: 18
+                    font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18
                     color: logoutMa.containsMouse ? window.red : window.overlay0
                     text: "󰍃"
                     Behavior on color { ColorAnimation { duration: 150 } }
@@ -499,7 +499,7 @@ Item {
                             spacing: 8
                             
                             Text {
-                                font.family: "Iosevka Nerd Font"
+                                font.family: "FiraCode Nerd Font Mono"
                                 font.pixelSize: 32
                                 color: window.batColorStart
                                 text: window.isCharging ? "󰂄" : (window.batCapacity > 20 ? "󰁹" : "󰂃")
@@ -507,7 +507,7 @@ Item {
                             }
                             
                             Text {
-                                font.family: "JetBrains Mono"
+                                font.family: "FiraCode Nerd Font Mono"
                                 font.weight: Font.Black
                                 font.pixelSize: 54
                                 color: window.text
@@ -517,7 +517,7 @@ Item {
 
                         Text {
                             Layout.alignment: Qt.AlignHCenter
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.weight: Font.Bold
                             font.pixelSize: 13
                             
@@ -578,7 +578,7 @@ Item {
                                 Text {
                                     anchors.centerIn: parent
                                     text: window.sysBrightness > 66 ? "󰃠" : (window.sysBrightness > 33 ? "󰃟" : "󰃞")
-                                    font.family: "Iosevka Nerd Font"
+                                    font.family: "FiraCode Nerd Font Mono"
                                     font.pixelSize: 22
                                     color: window.ambientPrimary
                                     Behavior on color { ColorAnimation { duration: 200 } }
@@ -660,7 +660,7 @@ Item {
                                 Text {
                                     anchors.centerIn: parent
                                     text: window.sysMuted || window.sysVolume === 0 ? "󰖁" : (window.sysVolume > 50 ? "󰕾" : "󰖀")
-                                    font.family: "Iosevka Nerd Font"
+                                    font.family: "FiraCode Nerd Font Mono"
                                     font.pixelSize: 22
                                     color: window.sysMuted ? window.overlay0 : window.profileStart
                                     Behavior on color { ColorAnimation { duration: 200 } }
@@ -848,12 +848,12 @@ Item {
                                 anchors.centerIn: parent
                                 spacing: 4
                                 Text { 
-                                    Layout.alignment: Qt.AlignHCenter; font.family: "Iosevka Nerd Font"; font.pixelSize: 22
+                                    Layout.alignment: Qt.AlignHCenter; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 22
                                     color: actionMa.containsMouse ? window.text : window.subtext0; text: icon
                                     Behavior on color { ColorAnimation { duration: 150 } }
                                 }
                                 Text { 
-                                    Layout.alignment: Qt.AlignHCenter; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: 11
+                                    Layout.alignment: Qt.AlignHCenter; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold; font.pixelSize: 11
                                     color: actionMa.containsMouse ? window.text : window.subtext0; text: actionCapsule.fillLevel > 0.1 ? "Hold" : lbl
                                     Behavior on color { ColorAnimation { duration: 150 } }
                                 }
@@ -868,8 +868,8 @@ Item {
                                     x: baseTextCol.x; y: baseTextCol.y - (actionCapsule.height - parent.height)
                                     width: baseTextCol.width; height: baseTextCol.height
                                     spacing: 4
-                                    Text { Layout.alignment: Qt.AlignHCenter; font.family: "Iosevka Nerd Font"; font.pixelSize: 22; color: window.crust; text: icon }
-                                    Text { Layout.alignment: Qt.AlignHCenter; font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: 11; color: window.crust; text: actionCapsule.fillLevel > 0.1 ? "Hold" : lbl }
+                                    Text { Layout.alignment: Qt.AlignHCenter; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 22; color: window.crust; text: icon }
+                                    Text { Layout.alignment: Qt.AlignHCenter; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold; font.pixelSize: 11; color: window.crust; text: actionCapsule.fillLevel > 0.1 ? "Hold" : lbl }
                                 }
                             }
 
@@ -964,13 +964,13 @@ Item {
                                     anchors.centerIn: parent
                                     spacing: 8
                                     Text {
-                                        font.family: "Iosevka Nerd Font"; font.pixelSize: 18
+                                        font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18
                                         color: window.powerProfile === name ? window.crust : (profileMa.containsMouse ? window.text : window.subtext0)
                                         text: icon
                                         Behavior on color { ColorAnimation { duration: 200 } }
                                     }
                                     Text {
-                                        font.family: "JetBrains Mono"; font.weight: Font.Black; font.pixelSize: 13
+                                        font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Black; font.pixelSize: 13
                                         color: window.powerProfile === name ? window.crust : (profileMa.containsMouse ? window.text : window.subtext0)
                                         text: label
                                         Behavior on color { ColorAnimation { duration: 200 } }

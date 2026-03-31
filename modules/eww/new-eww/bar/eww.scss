@@ -29,7 +29,7 @@ $crust: #11111b;
 /* --- GLOBAL DEFAULTS --- */
 * {
   all: unset;
-  font-family: "JetBrains Mono", "Iosevka Nerd Font", monospace;
+  font-family: "FiraCode Nerd Font Mono";
 }
 
 /* --- ANIMATIONS --- */
@@ -123,7 +123,7 @@ $crust: #11111b;
 
 /* Workspace */
 .workspace-btn {
-    font-family: "JetBrains Mono ExtraBold";
+    font-family: "FiraCode Nerd Font Mono ExtraBold";
     font-size: 14px;
     min-width: 24px;
     min-height: 24px;
@@ -198,7 +198,7 @@ $crust: #11111b;
 }
 
 .sch-nav-btn {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     background-color: rgba(255,255,255,0.05);
     color: $overlay2;
     border-radius: 8px;
@@ -222,7 +222,7 @@ $crust: #11111b;
 
 
 .schedule-loading-spinner {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     color: $yellow;
     margin-left: 10px;
 }
@@ -250,14 +250,14 @@ $crust: #11111b;
 
 /* Teacher Icon */
 .sch-teacher-icon {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 12px;
     color: $teal; /* Different accent color */
 }
 
 /* Teacher Text */
 .sch-teacher-text {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 11px;
     font-weight: 700;
     color: $subtext1; /* Muted text so it doesn't fight with the Subject title */
@@ -289,7 +289,7 @@ $crust: #11111b;
 }
 
 .sch-subject {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 13px;
     font-weight: 700;
     color: $text;
@@ -317,7 +317,7 @@ $crust: #11111b;
 
 .weatherbox { margin-left: 0px; }
 .weathericon { 
-    font-family: "Iosevka Nerd Font"; 
+    font-family: "FiraCode Nerd Font Mono"; 
     font-size: 24px; 
     color: $yellow; 
     margin-right: 8px;
@@ -347,10 +347,10 @@ $crust: #11111b;
 }
 
 .song_title { font-weight: 800; font-size: 13px; color: $sapphire; }
-.song_time_bar { font-family: "JetBrains Mono"; font-weight: 800; font-size: 11px; color: $overlay1; }
+.song_time_bar { font-family: "FiraCode Nerd Font Mono"; font-weight: 800; font-size: 11px; color: $overlay1; }
 
 .media_btn, .media_btn_play {
-  font-family: "Iosevka Nerd Font";
+  font-family: "FiraCode Nerd Font Mono";
   font-size: 20px;
   color: $overlay2;
   padding: 0px 4px;
@@ -389,14 +389,14 @@ $crust: #11111b;
 }
 
 .sys-text {
-  font-family: "JetBrains Mono";
+  font-family: "FiraCode Nerd Font Mono";
   font-weight: 800;
   font-size: 13px;
   margin-top: 1px;
 }
 
 .sys-icon-kb, .sys-icon-wifi, .sys-icon-bt, .sys-icon-vol, .sys-icon-bat {
-  font-family: "Iosevka Nerd Font";
+  font-family: "FiraCode Nerd Font Mono";
   font-size: 18px;
 }
 
@@ -466,7 +466,7 @@ $crust: #11111b;
 /* --- Bluetooth Disconnect Button --- */
 /* --- Bluetooth Disconnect Button --- */
 .sys-bt-disconnect {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 14px;
     font-weight: 900;
     
@@ -570,8 +570,8 @@ $crust: #11111b;
     border-radius: 4px;
     padding: 4px 10px;
 }
-.meta-icon { font-family: "Iosevka Nerd Font"; color: $mauve; font-size: 14px; }
-.meta-text { font-family: "JetBrains Mono"; font-weight: 800; font-size: 12px; color: $overlay2; }
+.meta-icon { font-family: "FiraCode Nerd Font Mono"; color: $mauve; font-size: 14px; }
+.meta-text { font-family: "FiraCode Nerd Font Mono"; font-weight: 800; font-size: 12px; color: $overlay2; }
 .music-source { font-size: 12px; color: $yellow; font-weight: bold; font-style: italic; margin-top: 2px; }
 
 .music-progress-area { margin-top: 10px; margin-bottom: 5px; }
@@ -627,9 +627,9 @@ scale highlight {
 .music-progress-bar highlight { animation-play-state: paused; }
 .music-progress-bar.playing highlight { animation-play-state: running; }
 
-.ctrl-btn { font-family: "Iosevka Nerd Font"; font-size: 24px; color: $overlay2; }
+.ctrl-btn { font-family: "FiraCode Nerd Font Mono"; font-size: 24px; color: $overlay2; }
 .ctrl-btn:hover { color: $text; }
-.play-btn-big { font-family: "Iosevka Nerd Font"; font-size: 42px; color: $mauve; }
+.play-btn-big { font-family: "FiraCode Nerd Font Mono"; font-size: 42px; color: $mauve; }
 .play-btn-big:hover { color: $pink; }
 
 .music-sep-h {
@@ -767,7 +767,7 @@ scale highlight {
 }
 
 .net-card-title {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     font-weight: 900;
     font-size: 18px;
     opacity: 0.9;
@@ -775,7 +775,7 @@ scale highlight {
 
 .net-card-toggle {
     background: transparent;
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 28px;
     color: rgba(0,0,0,0.4);
     transition: all 0.3s ease;
@@ -791,14 +791,14 @@ scale highlight {
 
 /* Main Status Info */
 .net-hero-icon {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 72px;
     margin-bottom: 5px;
     opacity: 0.9;
 }
 
 .net-hero-ssid {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     font-weight: 900;
     font-size: 16px;
     margin-bottom: 2px;
@@ -871,7 +871,7 @@ scale highlight {
 }
 
 .net-item-icon {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 24px;
     margin-right: 12px;
 }
@@ -955,7 +955,7 @@ scale highlight {
 }
 
 .cal-hero-time {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     font-weight: 900;
     font-size: 56px;
     color: $mauve;
@@ -964,7 +964,7 @@ scale highlight {
 }
 
 .cal-hero-date {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     font-weight: 700;
     font-size: 14px;
     color: $subtext0;
@@ -980,7 +980,7 @@ scale highlight {
 }
 
 .cal-widget {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     color: $text;
     padding: 5px;
 }
@@ -1013,13 +1013,13 @@ scale highlight {
 /* Header & Nav */
 .weather-header { margin-bottom: 20px; }
 .weather-day-big {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     font-weight: 900;
     font-size: 24px;
     color: $text;
 }
 .weather-nav-btn {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     background-color: rgba(255,255,255,0.05);
     color: $overlay2;
     border-radius: 8px;
@@ -1034,13 +1034,13 @@ scale highlight {
 
 /* Main Info */
 .weather-icon-huge {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 80px;
     text-shadow: 0 5px 20px rgba(0,0,0,0.3);
 }
 
 .weather-temp-huge {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     font-weight: 900;
     font-size: 42px;
     color: $text;
@@ -1072,7 +1072,7 @@ scale highlight {
     border: 1px solid rgba(255,255,255,0.02);
 }
 .wp-icon {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 18px;
     color: $blue;
     margin-bottom: 2px;
@@ -1115,12 +1115,12 @@ scale highlight {
     color: $overlay1;
 }
 .h-icon {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 18px;
     margin: 4px 0;
 }
 .h-temp {
-    font-family: "JetBrains Mono";
+    font-family: "FiraCode Nerd Font Mono";
     font-weight: 800;
     font-size: 12px;
     color: $text;
@@ -1179,7 +1179,7 @@ scale highlight {
 
 /* Icon & Text inside Circle */
 .bat-left-icon {
-  font-family: "Iosevka Nerd Font";
+  font-family: "FiraCode Nerd Font Mono";
   font-size: 56px;
   color: $crust;
   text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
@@ -1187,7 +1187,7 @@ scale highlight {
 }
 
 .bat-left-text {
-  font-family: "JetBrains Mono";
+  font-family: "FiraCode Nerd Font Mono";
   font-weight: 900;
   font-size: 32px;
   color: $crust;
@@ -1230,7 +1230,7 @@ scale highlight {
 }
 
 .bat-info-title {
-  font-family: "JetBrains Mono";
+  font-family: "FiraCode Nerd Font Mono";
   font-weight: 900;
   font-size: 20px;
   color: $mauve;
@@ -1239,7 +1239,7 @@ scale highlight {
 }
 
 .bat-info-sub {
-  font-family: "JetBrains Mono";
+  font-family: "FiraCode Nerd Font Mono";
   font-weight: 700;
   font-size: 12px;
   color: $overlay1;
@@ -1262,7 +1262,7 @@ scale highlight {
 }
 
 .profile-btn {
-  font-family: "Iosevka Nerd Font";
+  font-family: "FiraCode Nerd Font Mono";
   font-size: 28px;
   padding: 12px 0px;
   background-color: rgba(255, 255, 255, 0.03);
@@ -1328,7 +1328,7 @@ scale highlight {
 
 /* Session Buttons (Small Icons) */
 .pow-btn.session {
-  font-family: "Iosevka Nerd Font";
+  font-family: "FiraCode Nerd Font Mono";
   font-size: 22px;
   padding: 14px 0px;
 }
@@ -1360,12 +1360,12 @@ scale highlight {
 }
 
 .pow-btn.system .pow-icon {
-  font-family: "Iosevka Nerd Font";
+  font-family: "FiraCode Nerd Font Mono";
   font-size: 20px;
 }
 
 .pow-btn.system .pow-lbl {
-  font-family: "JetBrains Mono";
+  font-family: "FiraCode Nerd Font Mono";
   font-weight: 800;
   font-size: 13px;
 }
@@ -1442,7 +1442,7 @@ separator {
 
 /* --- Notification Button (Left) --- */
 .notif-icon {
-    font-family: "Iosevka Nerd Font";
+    font-family: "FiraCode Nerd Font Mono";
     font-size: 18px;
     color: $sapphire; /* Matches your search/media theme */
     min-height: 24px;

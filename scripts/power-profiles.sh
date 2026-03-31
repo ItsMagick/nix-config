@@ -13,7 +13,7 @@ CURRENT=$(powerprofilesctl get)
 ROFI_OVERRIDE="
     /* 1. Global Reset */
     * {
-        font: \"JetBrainsMono Nerd Font Bold 13\";
+        font: \"FiraCode Nerd Font Mono Bold 13\";
         background-color: transparent;
         text-color: #cdd6f4;
         margin: 0;
@@ -51,7 +51,7 @@ ROFI_OVERRIDE="
         text-color: #1e1e2e;
         padding: 12px;
         border-radius: 12px;
-        font: \"JetBrainsMono Nerd Font ExtraBold 14\";
+        font: \"FiraCode Nerd Font Mono ExtraBold 14\";
         horizontal-align: 0.5;
         width: 100%;
         margin-bottom: 5px;

@@ -992,14 +992,14 @@ Item {
 
                                     Text {
                                         Layout.alignment: Qt.AlignHCenter
-                                        font.family: "Iosevka Nerd Font"
+                                        font.family: "FiraCode Nerd Font Mono"
                                         font.pixelSize: 48 - (16 * coreContainer.multiShift)
                                         color: window.currentPower ? window.overlay0 : window.surface2
                                         text: window.activeMode === "wifi" ? "󰤮" : "󰂲"
                                     }
                                     Text {
                                         Layout.alignment: Qt.AlignHCenter
-                                        font.family: "JetBrains Mono"; font.weight: Font.Bold
+                                        font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold
                                         font.pixelSize: 14 - (3 * coreContainer.multiShift)
                                         color: window.overlay0
                                         text: window.currentPowerPending 
@@ -1017,7 +1017,7 @@ Item {
 
                                     Text {
                                         Layout.alignment: Qt.AlignHCenter
-                                        font.family: "Iosevka Nerd Font"
+                                        font.family: "FiraCode Nerd Font Mono"
                                         font.pixelSize: 48 - (16 * coreContainer.multiShift)
                                         color: isMyDisconnecting ? window.overlay1 : window.crust
                                         text: isMyDisconnecting ? "" : (coreMa.containsMouse ? (window.activeMode === "wifi" ? "󰖪" : "󰂲") : (coreContainer.myDevice ? coreContainer.myDevice.icon : ""))
@@ -1030,7 +1030,7 @@ Item {
                                         Layout.alignment: Qt.AlignHCenter
                                         Layout.maximumWidth: 150 - (50 * coreContainer.multiShift)
                                         horizontalAlignment: Text.AlignHCenter
-                                        font.family: "JetBrains Mono"; font.weight: Font.Black
+                                        font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Black
                                         font.pixelSize: 16 - (4 * coreContainer.multiShift)
                                         color: isMyDisconnecting ? window.overlay1 : window.crust
                                         text: coreContainer.myDevice ? (window.activeMode === "wifi" ? coreContainer.myDevice.ssid : coreContainer.myDevice.name) : ""
@@ -1040,7 +1040,7 @@ Item {
                                     
                                     Text {
                                         Layout.alignment: Qt.AlignHCenter
-                                        font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: 11
+                                        font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold; font.pixelSize: 11
                                         color: isMyDisconnecting ? window.overlay1 : (centralCore.disconnectFill > 0.1 ? window.crust : (coreMa.containsMouse ? window.crust : "#99000000"))
                                         text: isMyDisconnecting ? "Disconnecting..." : (centralCore.disconnectFill > 0.1 ? "Hold..." : "Connected")
                                         Behavior on color { ColorAnimation { duration: 200 } }
@@ -1447,7 +1447,7 @@ Item {
                                     spacing: 10
                                     
                                     Text {
-                                        font.family: "Iosevka Nerd Font"
+                                        font.family: "FiraCode Nerd Font Mono"
                                         font.pixelSize: 20
                                         color: floatCard.isMyBusy ? window.text : window.activeColor
                                         text: icon
@@ -1470,7 +1470,7 @@ Item {
                                                 anchors.leftMargin: floatCard.textOffset
                                                 anchors.verticalCenter: parent.verticalCenter
                                                 text: floatCard.itemName
-                                                font.family: "JetBrains Mono"
+                                                font.family: "FiraCode Nerd Font Mono"
                                                 font.weight: Font.Bold
                                                 font.pixelSize: 13
                                                 color: floatCard.isHighlighted ? window.activeColor : window.text
@@ -1481,7 +1481,7 @@ Item {
                                                 anchors.verticalCenter: parent.verticalCenter
                                                 visible: floatCard.doMarquee
                                                 text: floatCard.itemName
-                                                font.family: "JetBrains Mono"
+                                                font.family: "FiraCode Nerd Font Mono"
                                                 font.weight: Font.Bold
                                                 font.pixelSize: 13
                                                 color: floatCard.isHighlighted ? window.activeColor : window.text
@@ -1489,7 +1489,7 @@ Item {
                                         }
                                         
                                         Text {
-                                            font.family: "JetBrains Mono"
+                                            font.family: "FiraCode Nerd Font Mono"
                                             font.pixelSize: 10
                                             color: floatCard.isMyBusy ? window.activeColor : window.overlay0
                                             text: floatCard.isMyBusy ? "Connecting..." : (floatCard.renderFill > 0.1 && floatCard.renderFill < 1.0 ? "Hold..." : action)
@@ -1510,7 +1510,7 @@ Item {
                                         width: baseTextRow.width; height: baseTextRow.height
                                         spacing: 10
                                         
-                                        Text { font.family: "Iosevka Nerd Font"; font.pixelSize: 20; color: window.crust; text: icon }
+                                        Text { font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 20; color: window.crust; text: icon }
                                         
                                         ColumnLayout {
                                             Layout.fillWidth: true
@@ -1527,7 +1527,7 @@ Item {
                                                     anchors.leftMargin: floatCard.textOffset
                                                     anchors.verticalCenter: parent.verticalCenter
                                                     text: floatCard.itemName
-                                                    font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: 13; color: window.crust 
+                                                    font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold; font.pixelSize: 13; color: window.crust 
                                                 }
                                                 Text { 
                                                     anchors.left: filledNameText.right
@@ -1535,11 +1535,11 @@ Item {
                                                     anchors.verticalCenter: parent.verticalCenter
                                                     visible: floatCard.doMarquee
                                                     text: floatCard.itemName
-                                                    font.family: "JetBrains Mono"; font.weight: Font.Bold; font.pixelSize: 13; color: window.crust 
+                                                    font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Bold; font.pixelSize: 13; color: window.crust 
                                                 }
                                             }
                                             Text {
-                                                font.family: "JetBrains Mono"; font.pixelSize: 10; color: window.crust
+                                                font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 10; color: window.crust
                                                 text: floatCard.isMyBusy ? "Connecting..." : (floatCard.renderFill > 0.1 && floatCard.renderFill < 1.0 ? "Hold..." : action)
                                             }
                                         }
@@ -1663,8 +1663,8 @@ Item {
                         RowLayout {
                             anchors.centerIn: parent
                             spacing: 8
-                            Text { font.family: "Iosevka Nerd Font"; font.pixelSize: 18; color: window.activeMode === "wifi" ? window.crust : window.text; text: "󰤨"; Behavior on color { ColorAnimation{duration:200} } }
-                            Text { font.family: "JetBrains Mono"; font.weight: Font.Black; font.pixelSize: 13; color: window.activeMode === "wifi" ? window.crust : window.text; text: "Wi-Fi"; Behavior on color { ColorAnimation{duration:200} } }
+                            Text { font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18; color: window.activeMode === "wifi" ? window.crust : window.text; text: "󰤨"; Behavior on color { ColorAnimation{duration:200} } }
+                            Text { font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Black; font.pixelSize: 13; color: window.activeMode === "wifi" ? window.crust : window.text; text: "Wi-Fi"; Behavior on color { ColorAnimation{duration:200} } }
                         }
                         MouseArea {
                             id: wifiTabMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
@@ -1700,8 +1700,8 @@ Item {
                         RowLayout {
                             anchors.centerIn: parent
                             spacing: 8
-                            Text { font.family: "Iosevka Nerd Font"; font.pixelSize: 18; color: window.activeMode === "bt" ? window.crust : window.text; text: "󰂯"; Behavior on color { ColorAnimation{duration:200} } }
-                            Text { font.family: "JetBrains Mono"; font.weight: Font.Black; font.pixelSize: 13; color: window.activeMode === "bt" ? window.crust : window.text; text: "Bluetooth"; Behavior on color { ColorAnimation{duration:200} } }
+                            Text { font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18; color: window.activeMode === "bt" ? window.crust : window.text; text: "󰂯"; Behavior on color { ColorAnimation{duration:200} } }
+                            Text { font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Black; font.pixelSize: 13; color: window.activeMode === "bt" ? window.crust : window.text; text: "Bluetooth"; Behavior on color { ColorAnimation{duration:200} } }
                         }
                         MouseArea {
                             id: btTabMa; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
@@ -1744,7 +1744,7 @@ Item {
                 Text {
                     id: pwrIcon
                     anchors.centerIn: parent
-                    font.family: "Iosevka Nerd Font"
+                    font.family: "FiraCode Nerd Font Mono"
                     font.pixelSize: 22
                     color: window.currentPower ? window.crust : window.text
                     text: window.currentPowerPending ? "󰑮" : "" 

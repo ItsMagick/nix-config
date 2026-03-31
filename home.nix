@@ -58,7 +58,6 @@
       enable = true;
       iconTheme = {
         name = "Papirus-Dark";
-        package = pkgs.papirus-icon-theme;
       };
       # Global `theme` block has been entirely removed to protect GTK4 apps.
       # Target GTK3 specifically
@@ -75,6 +74,7 @@
     qt = {
         enable = true;
         platformTheme.name = "qt6ct";
+        style.name = "kvantum";
       };
       xdg.portal = {
         enable = true;

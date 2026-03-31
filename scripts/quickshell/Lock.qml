@@ -223,7 +223,7 @@ ShellRoot {
                         Text {
                             id: clockText
                             Layout.alignment: Qt.AlignHCenter
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.pixelSize: 140
                             font.weight: Font.Black
                             color: root.text
@@ -233,7 +233,7 @@ ShellRoot {
                         Text {
                             id: dateText
                             Layout.alignment: Qt.AlignHCenter
-                            font.family: "JetBrains Mono"
+                            font.family: "FiraCode Nerd Font Mono"
                             font.pixelSize: 22
                             font.weight: Font.Bold
                             color: root.mauve
@@ -279,7 +279,7 @@ ShellRoot {
                                 Text {
                                     anchors.centerIn: parent
                                     text: lockUI.failed ? "󰌾" : (lockUI.authenticating ? "󰌿" : "")
-                                    font.family: "Iosevka Nerd Font"
+                                    font.family: "FiraCode Nerd Font Mono"
                                     font.pixelSize: 18
                                     color: lockUI.failed ? root.red : (lockUI.authenticating ? root.peach : root.subtext0)
                                     Behavior on color { ColorAnimation { duration: 300 } }
@@ -287,7 +287,7 @@ ShellRoot {
                             }
 
                             Text {
-                                font.family: "JetBrains Mono"
+                                font.family: "FiraCode Nerd Font Mono"
                                 font.pixelSize: 16
                                 font.weight: Font.Bold
                                 color: lockUI.failed ? root.red : (lockUI.authenticating ? root.peach : root.subtext0)
@@ -436,7 +436,7 @@ ShellRoot {
                                                 id: charText
                                                 anchors.centerIn: parent
                                                 text: model.isDot ? "•" : model.charStr
-                                                font.family: "JetBrains Mono"
+                                                font.family: "FiraCode Nerd Font Mono"
                                                 font.pixelSize: model.isDot ? 32 : 24
                                                 font.weight: Font.Bold
                                                 color: lockUI.failed ? root.red : (lockUI.authenticating ? root.peach : root.text)
@@ -481,8 +481,8 @@ ShellRoot {
 
                         RowLayout { 
                             id: kbLayoutRow; anchors.centerIn: parent; spacing: 8
-                            Text { text: "󰌌"; font.family: "Iosevka Nerd Font"; font.pixelSize: 18; color: parent.parent.isHovered ? root.mauve : root.overlay2; Behavior on color { ColorAnimation { duration: 200 } } }
-                            Text { text: screenRoot.kbLayout; font.family: "JetBrains Mono"; font.pixelSize: 14; font.weight: Font.Black; color: root.text }
+                            Text { text: "󰌌"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18; color: parent.parent.isHovered ? root.mauve : root.overlay2; Behavior on color { ColorAnimation { duration: 200 } } }
+                            Text { text: screenRoot.kbLayout; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 14; font.weight: Font.Black; color: root.text }
                         }
                         MouseArea { id: kbMouse; anchors.fill: parent; hoverEnabled: true }
                     }
@@ -517,14 +517,14 @@ ShellRoot {
 
                             Text { 
                                 text: screenRoot.batStatus === "Charging" ? "󰂄" : (parseInt(screenRoot.batPct) < 20 ? "󰂃" : "󰁹")
-                                font.family: "Iosevka Nerd Font"
+                                font.family: "FiraCode Nerd Font Mono"
                                 font.pixelSize: 20
                                 color: batLayoutRow.dynamicBatColor
                                 Behavior on color { ColorAnimation { duration: 200 } }
                             }
                             Text { 
                                 text: screenRoot.batPct + "%"
-                                font.family: "JetBrains Mono"
+                                font.family: "FiraCode Nerd Font Mono"
                                 font.pixelSize: 14
                                 font.weight: Font.Black
                                 color: batLayoutRow.dynamicBatColor
@@ -567,14 +567,14 @@ ShellRoot {
 
                         // --- SETTINGS SECTION ---
                         Text { 
-                            text: "SETTINGS"; font.family: "JetBrains Mono"; font.weight: Font.Black; font.pixelSize: 12; 
+                            text: "SETTINGS"; font.family: "FiraCode Nerd Font Mono"; font.weight: Font.Black; font.pixelSize: 12; 
                             color: root.subtext0; Layout.leftMargin: 18; Layout.topMargin: 4; Layout.bottomMargin: 4 
                         }
 
                         // Hide Password Toggle
                         RowLayout {
                             Layout.fillWidth: true; Layout.leftMargin: 18; Layout.rightMargin: 18; Layout.topMargin: 4
-                            Text { text: "Hide password"; font.family: "JetBrains Mono"; font.pixelSize: 14; font.weight: Font.Medium; color: root.text; Layout.fillWidth: true }
+                            Text { text: "Hide password"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 14; font.weight: Font.Medium; color: root.text; Layout.fillWidth: true }
                             
                             Rectangle {
                                 width: 40; height: 22; radius: 11
@@ -608,10 +608,10 @@ ShellRoot {
                             
                             RowLayout {
                                 Layout.fillWidth: true
-                                Text { text: "Reveal delay"; font.family: "JetBrains Mono"; font.pixelSize: 14; font.weight: Font.Medium; color: root.text; Layout.fillWidth: true }
+                                Text { text: "Reveal delay"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 14; font.weight: Font.Medium; color: root.text; Layout.fillWidth: true }
                                 Text { 
                                     text: lockSettings.revealDuration >= 1000 ? (lockSettings.revealDuration / 1000).toFixed(1) + " s" : lockSettings.revealDuration + " ms"
-                                    font.family: "JetBrains Mono"
+                                    font.family: "FiraCode Nerd Font Mono"
                                     font.pixelSize: 13
                                     font.weight: Font.Bold
                                     color: root.peach
@@ -684,9 +684,9 @@ ShellRoot {
                             
                             RowLayout {
                                 anchors.fill: parent; anchors.leftMargin: 16; anchors.rightMargin: 16; spacing: 0
-                                Text { text: "󰜉"; font.family: "Iosevka Nerd Font"; font.pixelSize: 18; color: ma1.containsMouse ? root.blue : Qt.rgba(root.blue.r, root.blue.g, root.blue.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
+                                Text { text: "󰜉"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18; color: ma1.containsMouse ? root.blue : Qt.rgba(root.blue.r, root.blue.g, root.blue.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
                                 Item { Layout.fillWidth: true } // Spacer
-                                Text { text: "Reload"; font.family: "JetBrains Mono"; font.pixelSize: 15; font.weight: Font.Medium; color: ma1.containsMouse ? root.blue : Qt.rgba(root.blue.r, root.blue.g, root.blue.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
+                                Text { text: "Reload"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 15; font.weight: Font.Medium; color: ma1.containsMouse ? root.blue : Qt.rgba(root.blue.r, root.blue.g, root.blue.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
                             }
                             MouseArea { 
                                 id: ma1; anchors.fill: parent; hoverEnabled: true; 
@@ -707,9 +707,9 @@ ShellRoot {
                             
                             RowLayout {
                                 anchors.fill: parent; anchors.leftMargin: 16; anchors.rightMargin: 16; spacing: 0
-                                Text { text: "󰒲"; font.family: "Iosevka Nerd Font"; font.pixelSize: 18; color: ma2.containsMouse ? root.mauve : Qt.rgba(root.mauve.r, root.mauve.g, root.mauve.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
+                                Text { text: "󰒲"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18; color: ma2.containsMouse ? root.mauve : Qt.rgba(root.mauve.r, root.mauve.g, root.mauve.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
                                 Item { Layout.fillWidth: true } // Spacer
-                                Text { text: "Suspend"; font.family: "JetBrains Mono"; font.pixelSize: 15; font.weight: Font.Medium; color: ma2.containsMouse ? root.mauve : Qt.rgba(root.mauve.r, root.mauve.g, root.mauve.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
+                                Text { text: "Suspend"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 15; font.weight: Font.Medium; color: ma2.containsMouse ? root.mauve : Qt.rgba(root.mauve.r, root.mauve.g, root.mauve.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
                             }
                             MouseArea { 
                                 id: ma2; anchors.fill: parent; hoverEnabled: true; 
@@ -730,9 +730,9 @@ ShellRoot {
                             
                             RowLayout {
                                 anchors.fill: parent; anchors.leftMargin: 16; anchors.rightMargin: 16; spacing: 0
-                                Text { text: ""; font.family: "Iosevka Nerd Font"; font.pixelSize: 18; color: ma3.containsMouse ? root.red : Qt.rgba(root.red.r, root.red.g, root.red.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
+                                Text { text: ""; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 18; color: ma3.containsMouse ? root.red : Qt.rgba(root.red.r, root.red.g, root.red.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
                                 Item { Layout.fillWidth: true } // Spacer
-                                Text { text: "Power Off"; font.family: "JetBrains Mono"; font.pixelSize: 15; font.weight: Font.Medium; color: ma3.containsMouse ? root.red : Qt.rgba(root.red.r, root.red.g, root.red.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
+                                Text { text: "Power Off"; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 15; font.weight: Font.Medium; color: ma3.containsMouse ? root.red : Qt.rgba(root.red.r, root.red.g, root.red.b, 0.6); Behavior on color { ColorAnimation { duration: 200 } } }
                             }
                             MouseArea { 
                                 id: ma3; anchors.fill: parent; hoverEnabled: true; 
@@ -771,7 +771,7 @@ ShellRoot {
                     Text {
                         anchors.centerIn: parent
                         text: ""
-                        font.family: "Iosevka Nerd Font"
+                        font.family: "FiraCode Nerd Font Mono"
                         font.pixelSize: 22
                         color: screenRoot.powerMenuOpen ? root.red : (powerBtnMa.containsMouse ? root.text : root.subtext0)
                         Behavior on color { ColorAnimation { duration: 200 } }
