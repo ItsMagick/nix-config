@@ -91,6 +91,15 @@
 
         "$mainMod, R, exec, rofi -show drun"
         "$mainMod SHIFT, T, exec, theme-toggle"
+        "$mainMod, W, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle wallpaper"
+        "$mainMod SHIFT, W, exec, wall-picker"
+        "$mainMod, N, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle network wifi"
+        "$mainMod SHIFT, N, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle network bt"
+        "$mainMod SHIFT, B, exec, zsh ~/.config/hypr/scripts/quickshell/network/bluetooth_panel_logic.sh --toggle"
+        "$mainMod, D, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle calendar"
+        "$mainMod, Y, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle music"
+        "$mainMod, P, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle battery"
+        "$mainMod, Escape, exec, zsh ~/.config/hypr/scripts/qs_manager.sh close"
         ", Print, exec, grim -g \"$(slurp)\" - | wl-copy"
         
         "$mainMod, 1, workspace, 1"
