@@ -60,6 +60,6 @@
       confirm_os_window_close = 0;
       enable_audio_bell = "no";
     };
-    extraConfig = "include ~/.cache/wal/colors.kitty.conf";
+    extraConfig = ''include ${config.home.homeDirectory}/.cache/wal/colors.kitty.conf'';
   };
 }

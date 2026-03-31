@@ -1,52 +1,52 @@
 ;; Workspace & Time
-(deflisten WORKSPACES :initial "[]" "bash ./scripts/workspaces.sh")
+(deflisten WORKSPACES :initial "[]" "zsh ./scripts/workspaces.sh")
 
 (defpoll TIME :interval "1s" `date +\"%I:%M:%S %p\"`)
 (defpoll DATE :interval "1m" `date +\"%A, %B %d\"`)
 
-(defpoll ICON :interval "5m" `bash ./scripts/weather.sh --icon`)
-(defpoll TEMP :interval "5m" `bash ./scripts/weather.sh --temp`)
-(defpoll HEX :interval "5m" `bash ./scripts/weather.sh --hex`)
-(defpoll WEATHER_JSON :interval "5m" `bash ./scripts/weather.sh --json`)
+(defpoll ICON :interval "5m" `zsh ./scripts/weather.sh --icon`)
+(defpoll TEMP :interval "5m" `zsh ./scripts/weather.sh --temp`)
+(defpoll HEX :interval "5m" `zsh ./scripts/weather.sh --hex`)
+(defpoll WEATHER_JSON :interval "5m" `zsh ./scripts/weather.sh --json`)
 (defvar forecast_days '["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]')
 (defvar weather_view 0)
 
 ;; Media
-(defpoll MEDIA :interval "0.2s" `bash ./scripts/media.sh`)
-(defpoll MUSIC_FULL :interval "0.2s" `bash ./scripts/music_info.sh`)
-(defpoll EQ_DATA :interval "0.2s" `bash ./scripts/equalizer.sh get`)
+(defpoll MEDIA :interval "0.2s" `zsh ./scripts/media.sh`)
+(defpoll MUSIC_FULL :interval "0.2s" `zsh ./scripts/music_info.sh`)
+(defpoll EQ_DATA :interval "0.2s" `zsh ./scripts/equalizer.sh get`)
 
 ;; System Info - Redesigned
-(defpoll WIFI_STATUS :interval "2s" `bash ./scripts/sys_info.sh --wifi-status`)
-(defpoll WIFI_ICON :interval "2s" `bash ./scripts/sys_info.sh --wifi-icon`)
-(defpoll WIFI_SSID :interval "2s" `bash ./scripts/sys_info.sh --wifi-ssid`)
+(defpoll WIFI_STATUS :interval "2s" `zsh ./scripts/sys_info.sh --wifi-status`)
+(defpoll WIFI_ICON :interval "2s" `zsh ./scripts/sys_info.sh --wifi-icon`)
+(defpoll WIFI_SSID :interval "2s" `zsh ./scripts/sys_info.sh --wifi-ssid`)
 
-(defpoll BT_STATUS :interval "2s" `bash ./scripts/sys_info.sh --bt-status`)
-(defpoll BT_ICON :interval "2s" `bash ./scripts/sys_info.sh --bt-icon`)
-(defpoll BT_DEVICE :interval "2s" `bash ./scripts/sys_info.sh --bt-connected`)
+(defpoll BT_STATUS :interval "2s" `zsh ./scripts/sys_info.sh --bt-status`)
+(defpoll BT_ICON :interval "2s" `zsh ./scripts/sys_info.sh --bt-icon`)
+(defpoll BT_DEVICE :interval "2s" `zsh ./scripts/sys_info.sh --bt-connected`)
 (defvar bt_optimistic_hide false)
 
 ;; DATA VARIABLES FOR NETWORK WIDGET
-(defpoll BLUETOOTH_DATA :interval "1s" `bash ./scripts/bluetooth_panel_logic.sh --status`)
+(defpoll BLUETOOTH_DATA :interval "1s" `zsh ./scripts/bluetooth_panel_logic.sh --status`)
 (defvar connecting_mac "")
 
-(defpoll WIFI_DATA :interval "3s" :initial "{ \"power\": \"on\", \"connected\": \"null\", \"networks\": [] }" `bash ./scripts/wifi_panel_logic.sh`)
+(defpoll WIFI_DATA :interval "3s" :initial "{ \"power\": \"on\", \"connected\": \"null\", \"networks\": [] }" `zsh ./scripts/wifi_panel_logic.sh`)
 (defvar net_mode "wifi")
 
 (defpoll SCHEDULE :interval "10m" 
-  "bash ~/.config/eww/bar/scripts/schedule/schedule_manager.sh")
+  "zsh ~/.config/eww/bar/scripts/schedule/schedule_manager.sh")
 
-(defpoll CURRENT_VOL :interval "0.1s" `bash ./scripts/sys_info.sh --volume`)
-(defpoll VOL_ICON :interval "0.1s" `bash ./scripts/sys_info.sh --volume-icon`)
-(defpoll IS_MUTED :interval "0.2s" `bash ./scripts/sys_info.sh --is-muted`)
+(defpoll CURRENT_VOL :interval "0.1s" `zsh ./scripts/sys_info.sh --volume`)
+(defpoll VOL_ICON :interval "0.1s" `zsh ./scripts/sys_info.sh --volume-icon`)
+(defpoll IS_MUTED :interval "0.2s" `zsh ./scripts/sys_info.sh --is-muted`)
 
-(defpoll BATTERY_PERCENT :interval "10s" `bash ./scripts/sys_info.sh --battery-percent`)
-(defpoll BATTERY_ICON :interval "10s" `bash ./scripts/sys_info.sh --battery-icon`)
-(defpoll BATTERY_STATUS :interval "10s" `bash ./scripts/sys_info.sh --battery-status`)
+(defpoll BATTERY_PERCENT :interval "10s" `zsh ./scripts/sys_info.sh --battery-percent`)
+(defpoll BATTERY_ICON :interval "10s" `zsh ./scripts/sys_info.sh --battery-icon`)
+(defpoll BATTERY_STATUS :interval "10s" `zsh ./scripts/sys_info.sh --battery-status`)
 ;; NEW: Power Profile Variable
 (defpoll POWER_PROFILE :interval "2s" `powerprofilesctl get`)
 
-(defpoll KB_LAYOUT :interval "0.5s" `bash ./scripts/sys_info.sh --kb-layout`)
+(defpoll KB_LAYOUT :interval "0.5s" `zsh ./scripts/sys_info.sh --kb-layout`)
 
 ;; WIDGETS
 
@@ -56,7 +56,7 @@
              :space-evenly "false" :vexpand "false" :hexpand "false"
             (button :style "background-image: url('images/icons/search.svg')" 
                     :class "genicon" 
-                    :onclick "bash ../../../../sessions/hyprland/scripts/rofi_show.sh")
+                    :onclick "zsh ~/.config/hypr/scripts/rofi_show.sh")
         )
     )
 )
@@ -67,7 +67,7 @@
              :space-evenly "false" :vexpand "false" :hexpand "false"
             
             (for ws in WORKSPACES
-                (button :onclick "bash ~/.config/hypr/scripts/qs_manager.sh ${ws.id}"
+                (button :onclick "zsh ~/.config/hypr/scripts/qs_manager.sh ${ws.id}"
                         ;; Class is now dynamic: workspace-btn active/occupied/empty
                         :class "workspace-btn ${ws.state}"
                         ;; Tooltip shows the window name!
@@ -90,7 +90,7 @@
             
             ;; Center/Right: Apply Button (Only highlighted if pending)
             (button :class "eq-apply-btn ${EQ_DATA.pending == 'true' ? 'highlight' : ''}" 
-                    :onclick "bash ./scripts/equalizer.sh apply"
+                    :onclick "zsh ./scripts/equalizer.sh apply"
                     :visible true
                     ;; Change text based on state for extra clarity (Optional)
                     {EQ_DATA.pending == "true" ? "Apply" : "Saved"}
@@ -139,7 +139,7 @@
                :min -12 
                :max 12
                :value val
-               :onchange "bash ./scripts/equalizer.sh set_band ${idx} {}")
+               :onchange "zsh ./scripts/equalizer.sh set_band ${idx} {}")
         (label :class "eq-band-label" :text lbl)
     )
 )
@@ -147,7 +147,7 @@
 ;; Helper widget for preset buttons
 (defwidget preset_btn [name]
     (button :class "eq-preset-btn ${EQ_DATA.preset == name ? 'active' : ''}" 
-            :onclick "bash ./scripts/equalizer.sh preset ${name}" 
+            :onclick "zsh ./scripts/equalizer.sh preset ${name}"
             name)
 )
 
@@ -179,7 +179,7 @@
          )
 
          ;; 2. WiFi
-         (eventbox :onclick "bash ~/.config/hypr/scripts/qs_manager.sh toggle network"
+         (eventbox :onclick "zsh ~/.config/hypr/scripts/qs_manager.sh toggle network"
                    :onrightclick "nm-connection-editor &"
                    :cursor "pointer"
                    :tooltip {WIFI_STATUS == "enabled" ? (WIFI_SSID != "" ? "Connected to ${WIFI_SSID}" : "WiFi enabled") : "WiFi disabled"}
@@ -199,7 +199,7 @@
               :space-evenly false
               
               ;; PART A: The Icon (Always Visible)
-              (eventbox :onclick "bash ~/.config/hypr/scripts/qs_manager.sh toggle network"
+              (eventbox :onclick "zsh ~/.config/hypr/scripts/qs_manager.sh toggle network"
                         :onrightclick "blueman-manager &"
                         :cursor "pointer"
                         :tooltip {BLUETOOTH_DATA.power == "on" ? "Bluetooth On" : "Bluetooth Off"}
@@ -219,7 +219,7 @@
                       (box :width 10)
 
                       ;; Device Name
-                      (eventbox :onclick "bash ~/.config/hypr/scripts/qs_manager.sh toggle network"
+                      (eventbox :onclick "zsh ~/.config/hypr/scripts/qs_manager.sh toggle network"
                                 :onrightclick "blueman-manager &"
                                 :cursor "pointer"
                           (label :class "sys-text" 
@@ -231,7 +231,7 @@
                       ;; Disconnect Button
                       (button :class "sys-bt-disconnect"
                               ;; FIX: Simplified logic now that structure is consistent
-                              :onclick "eww --config ~/.config/eww/bar update bt_optimistic_hide=true; bash ./scripts/bluetooth_panel_logic.sh --disconnect '${BLUETOOTH_DATA.connected.mac}'"
+                              :onclick "eww --config ~/.config/eww/bar update bt_optimistic_hide=true; zsh ./scripts/bluetooth_panel_logic.sh --disconnect '${BLUETOOTH_DATA.connected.mac}'"
                               :tooltip "Disconnect"
                               "")
                   )
@@ -239,7 +239,7 @@
          )    
 
     ;; 4. Volume
-         (eventbox :onrightclick "bash ./scripts/sys_info.sh --toggle-mute"
+         (eventbox :onrightclick "zsh ./scripts/sys_info.sh --toggle-mute"
                    :onclick "pavucontrol &"
                    :cursor "pointer"
                    :tooltip "Volume: ${CURRENT_VOL}%"
@@ -251,7 +251,7 @@
          )
 
         ;; 5. Battery 
-         (eventbox :onclick "bash ~/.config/hypr/scripts/qs_manager.sh toggle battery"
+         (eventbox :onclick "zsh ~/.config/hypr/scripts/qs_manager.sh toggle battery"
                    :cursor "pointer"
              (box :class "sys-pill sys-bat" :orientation "h" :spacing 10 :space-evenly false
                   :tooltip "${BATTERY_STATUS}: ${BATTERY_PERCENT}%"
@@ -346,7 +346,7 @@
           (box :orientation "h" :space-evenly false :class "net-card-header"
             (label :class "net-card-title dark-text" :text "Bluetooth" :hexpand true :halign "start")
             (button :class "net-card-toggle ${BLUETOOTH_DATA.power == 'on' ? 'active' : ''}" 
-                    :onclick "bash ./scripts/bluetooth_panel_logic.sh --toggle" 
+                    :onclick "zsh ./scripts/bluetooth_panel_logic.sh --toggle"
                     {BLUETOOTH_DATA.power == 'on' ? "" : ""})
           )
           
@@ -361,7 +361,7 @@
                        :visible {BLUETOOTH_DATA.connected.battery != "0"} 
                        :text "Battery: ${BLUETOOTH_DATA.connected.battery}%")
                 (button :class "net-hero-btn dark-btn" 
-                        :onclick "bash ./scripts/bluetooth_panel_logic.sh --disconnect ${BLUETOOTH_DATA.connected.mac}" 
+                        :onclick "zsh ./scripts/bluetooth_panel_logic.sh --disconnect ${BLUETOOTH_DATA.connected.mac}"
                         "Disconnect")
              )
              ;; Disconnected State
@@ -395,7 +395,7 @@
                     (label :class "net-item-sec" :text {dev.mac} :halign "start")
                   )
                   (button :class "net-item-btn ${connecting_mac == dev.mac ? 'pulsing' : ''}" 
-                          :onclick "eww --config ~/.config/eww/bar update bt_optimistic_hide=false; bash ./scripts/bluetooth_panel_logic.sh --connect ${dev.mac} &" 
+                          :onclick "eww --config ~/.config/eww/bar update bt_optimistic_hide=false; zsh ./scripts/bluetooth_panel_logic.sh --connect ${dev.mac} &"
                           {connecting_mac == dev.mac ? "..." : dev.action})
                 )
               )
@@ -418,7 +418,7 @@
          :halign "center" 
          :space-evenly "false"
 
-        (eventbox :onclick "bash ~/.config/hypr/scripts/qs_manager.sh toggle music"
+        (eventbox :onclick "zsh ~/.config/hypr/scripts/qs_manager.sh toggle music"
             (box :orientation "h" :spacing 10 :space-evenly "false"
                 ;; Art
                 (box :class "album_art" 
@@ -458,7 +458,7 @@
     )
 )
 (defwidget weather [] 
-    (eventbox :onclick "bash ~/.config/hypr/scripts/qs_manager.sh toggle calendar"
+    (eventbox :onclick "zsh ~/.config/hypr/scripts/qs_manager.sh toggle calendar"
         (box :class "dockbox"
             (box :class "clockbox" :orientation "v" :spacing 0 :valign "center" 
                  :halign "start" :space-evenly "false" :vexpand "false" :hexpand "false"
@@ -755,7 +755,7 @@
                               (box :class "music-progress-area" :orientation "v" :space-evenly false
                                    (scale :class "music-progress-bar ${MUSIC_FULL.status == 'Playing' ? 'playing' : ''}" 
                                           :min 0 :max 100 :value {MUSIC_FULL.percent}
-                                          :onchange "bash ./scripts/player_control.sh seek {} ${MUSIC_FULL.length} ${MUSIC_FULL.playerName}")
+                                          :onchange "zsh ./scripts/player_control.sh seek {} ${MUSIC_FULL.length} ${MUSIC_FULL.playerName}")
                                    (box :orientation "h" :halign "fill"
                                      (label :class "music-time" :text {MUSIC_FULL.positionStr} :halign "start")
                                      (label :class "music-time" :text {MUSIC_FULL.lengthStr} :halign "end")
@@ -851,8 +851,8 @@
            
            (box :class "bat-power-actions" :orientation "v" :spacing 10 :space-evenly false
               (box :orientation "h" :spacing 10 :space-evenly true
-                  (button :class "pow-btn session lock" :onclick "hyprlock &" :tooltip "Lock Screen" "")
-                  (button :class "pow-btn session suspend" :onclick "hyprlock & systemctl suspend" :tooltip "Suspend" "ᶻ 𝗓 𐰁")
+                  (button :class "pow-btn session lock" :onclick "lock-screen" :tooltip "Lock Screen" "")
+                  (button :class "pow-btn session suspend" :onclick "lock-screen && systemctl suspend" :tooltip "Suspend" "ᶻ 𝗓 𐰁")
                   (button :class "pow-btn session logout" :onclick "loginctl terminate-user $USER" :tooltip "Logout" "󰗽")
               )
               (box :orientation "h" :spacing 10 :space-evenly true

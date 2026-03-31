@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 ## Files and cmd
 FILE="$HOME/.cache/eww_launch.dashboard"

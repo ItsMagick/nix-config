@@ -35,7 +35,7 @@ Item {
     property bool ignoreNextModeFileUpdate: false
     Process {
         id: modeReader
-        command: ["bash", "-c", "cat /tmp/qs_network_mode 2>/dev/null"]
+        command: ["zsh", "-c", "cat /tmp/qs_network_mode 2>/dev/null"]
         stdout: StdioCollector {
             onStreamFinished: {
                 let mode = this.text.trim();
@@ -55,7 +55,7 @@ Item {
     }
 
     Component.onCompleted: {
-        Quickshell.execDetached(["bash", "-c", "if [ ! -f /tmp/qs_network_mode ]; then echo '" + activeMode + "' > /tmp/qs_network_mode; fi"]);
+        Quickshell.execDetached(["zsh", "-c", "if [ ! -f /tmp/qs_network_mode ]; then echo '" + activeMode + "' > /tmp/qs_network_mode; fi"]);
 
         // Process cached JSON FIRST so the arrays populate before animations trigger
         if (cache.lastWifiJson !== "") processWifiJson(cache.lastWifiJson);
@@ -190,7 +190,7 @@ Item {
 
     onActiveModeChanged: {
         if (!window.ignoreNextModeFileUpdate) {
-            Quickshell.execDetached(["bash", "-c", "echo '" + window.activeMode + "' > /tmp/qs_network_mode"]);
+            Quickshell.execDetached(["zsh", "-c", "echo '" + window.activeMode + "' > /tmp/qs_network_mode"]);
         }
         window.ignoreNextModeFileUpdate = false;
 
@@ -511,7 +511,7 @@ Item {
 
     Process {
         id: wifiPoller
-        command: ["bash", window.scriptsDir + "/wifi_panel_logic.sh"]
+        command: ["zsh", window.scriptsDir + "/wifi_panel_logic.sh"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
@@ -523,7 +523,7 @@ Item {
 
     Process {
         id: btPoller
-        command: ["bash", window.scriptsDir + "/bluetooth_panel_logic.sh", "--status"]
+        command: ["zsh", window.scriptsDir + "/bluetooth_panel_logic.sh", "--status"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
@@ -1089,7 +1089,7 @@ Item {
                                         
                                         let cmd = window.activeMode === "wifi" 
                                             ? "nmcli device disconnect $(nmcli -t -f DEVICE,TYPE d | grep wifi | cut -d: -f1 | head -n1)"
-                                            : "bash " + window.scriptsDir + "/bluetooth_panel_logic.sh --disconnect '" + coreContainer.myDevice.mac + "'"
+                                            : "zsh " + window.scriptsDir + "/bluetooth_panel_logic.sh --disconnect '" + coreContainer.myDevice.mac + "'"
                                         Quickshell.execDetached(["sh", "-c", cmd])
                                         
                                         centralCore.disconnectFill = 0.0;
@@ -1598,8 +1598,8 @@ Item {
                                             
                                             let cmd = window.activeMode === "wifi"
                                                 ? "nmcli device wifi connect '" + ssid + "'"
-                                                : "bash " + window.scriptsDir + "/bluetooth_panel_logic.sh --connect " + mac
-                                            
+                                                : "zsh " + window.scriptsDir + "/bluetooth_panel_logic.sh --connect " + mac
+
                                             Quickshell.execDetached(["sh", "-c", cmd]);
                                             if (window.activeMode === "wifi") wifiPoller.running = true; else btPoller.running = true;
                                         }
@@ -1789,7 +1789,7 @@ Item {
                             
                             btPendingReset.restart();
                             window.btPower = window.expectedBtPower; // Optimistic
-                            Quickshell.execDetached(["bash", window.scriptsDir + "/bluetooth_panel_logic.sh", "--toggle"]);
+                            Quickshell.execDetached(["zsh", window.scriptsDir + "/bluetooth_panel_logic.sh", "--toggle"]);
                             btPoller.running = true;
                         }
                     }

@@ -10,7 +10,13 @@
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
   };
-  home.pointerCursor = catppuccin-cursors.machiatoLavender;
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.catppuccin-cursors.macchiatoLavender;
+    name = "catppuccin-macchiato-lavender-cursors";
+    size = 24;
+  };
 
   services.easyeffects.enable = true;
 
@@ -44,24 +50,16 @@
     quickshell
     tree
     matugen
+    papirus-icon-theme
+    catppuccin-papirus-folders
   ];
-    
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    settings = {
-      monitor = [
-        "eDP-1, 1920x1080@59.98, 0x0, 1"
-        "HDMI-A-1, preferred, auto, 1" 
-      ];
-      input = {
-        kb_layout = "de";
-      };
-    };
-  };
 
     gtk = {
       enable = true;
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
       # Global `theme` block has been entirely removed to protect GTK4 apps.
       # Target GTK3 specifically
       gtk3.extraConfig = {

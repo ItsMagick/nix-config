@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 TMP_DIR="/tmp/eww_covers"
 mkdir -p "$TMP_DIR"

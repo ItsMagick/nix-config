@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 STATE_FILE="$HOME/.cache/quickshell_dock_pinned.txt"
 touch "$STATE_FILE"

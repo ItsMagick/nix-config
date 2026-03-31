@@ -200,7 +200,7 @@ def get_active_window_hyprctl():
 
 def is_locked():
     try:
-        subprocess.check_output(['pgrep', '-x', 'hyprlock'])
+        subprocess.check_output(['pgrep', '-x', 'swaylock'])
         return True
     except subprocess.CalledProcessError:
         return False
@@ -227,7 +227,7 @@ def listen_hyprland_ipc():
                     line, buffer = buffer.split('\n', 1)
                     if line.startswith('activewindow>>'):
                         cls, clean_title = get_active_window_hyprctl()
-                        if is_locked() or cls == "hyprlock":
+                        if is_locked() or cls == "swaylock":
                             current_app_class, current_app_title = "Locked", "Locked"
                         else:
                             current_app_class, current_app_title = cls, clean_title

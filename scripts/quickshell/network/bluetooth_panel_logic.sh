@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 SCAN_LOG="$HOME/.cache/bt_scan.log"
 PID_FILE="$HOME/.cache/bt_scan_pid"

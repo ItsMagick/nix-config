@@ -109,7 +109,7 @@ ShellRoot {
                 // Fast Poller for Keyboard (150ms)
                 Process {
                     id: kbPoller
-                    command: ["bash", "-c", "hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap' | head -n1 | cut -c1-2 | tr '[:lower:]' '[:upper:]'"]
+                    command: ["zsh", "-c", "hyprctl devices -j | jq -r '.keyboards[] | select(.main == true) | .active_keymap' | head -n1 | cut -c1-2 | tr '[:lower:]' '[:upper:]'"]
                     stdout: StdioCollector {
                         onStreamFinished: {
                             let layout = this.text.trim();
@@ -124,7 +124,7 @@ ShellRoot {
                 // Slow Poller for Battery (5000ms)
                 Process {
                     id: batPoller
-                    command: ["bash", "-c", "cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -n1 || echo '100'; cat /sys/class/power_supply/BAT*/status 2>/dev/null | head -n1 || echo 'AC'"]
+                    command: ["zsh", "-c", "cat /sys/class/power_supply/BAT*/capacity 2>/dev/null | head -n1 || echo '100'; cat /sys/class/power_supply/BAT*/status 2>/dev/null | head -n1 || echo 'AC'"]
                     stdout: StdioCollector {
                         onStreamFinished: {
                             let lines = this.text.trim().split("\n");
@@ -692,8 +692,8 @@ ShellRoot {
                                 id: ma1; anchors.fill: parent; hoverEnabled: true; 
                                 onClicked: { 
                                     screenRoot.powerMenuOpen = false; 
-                                    Qt.createQmlObject('import Quickshell; Process { command: ["bash", "-c", "hyprctl reload"]; running: true }', screenRoot); 
-                                } 
+                                    Qt.createQmlObject('import Quickshell; Process { command: ["zsh", "-c", "hyprctl reload"]; running: true }', screenRoot);
+                                }
                             }
                         }
 
@@ -715,8 +715,8 @@ ShellRoot {
                                 id: ma2; anchors.fill: parent; hoverEnabled: true; 
                                 onClicked: { 
                                     screenRoot.powerMenuOpen = false; 
-                                    Qt.createQmlObject('import Quickshell; Process { command: ["bash", "-c", "systemctl suspend"]; running: true }', screenRoot); 
-                                } 
+                                    Qt.createQmlObject('import Quickshell; Process { command: ["zsh", "-c", "systemctl suspend"]; running: true }', screenRoot);
+                                }
                             }
                         }
 
@@ -738,8 +738,8 @@ ShellRoot {
                                 id: ma3; anchors.fill: parent; hoverEnabled: true; 
                                 onClicked: { 
                                     screenRoot.powerMenuOpen = false; 
-                                    Qt.createQmlObject('import Quickshell; Process { command: ["bash", "-c", "systemctl poweroff"]; running: true }', screenRoot); 
-                                } 
+                                    Qt.createQmlObject('import Quickshell; Process { command: ["zsh", "-c", "systemctl poweroff"]; running: true }', screenRoot);
+                                }
                             }
                         }
                     }

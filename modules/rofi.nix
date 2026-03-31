@@ -3,9 +3,10 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi;
+    theme = "${config.xdg.configHome}/rofi/matugen.rasi";
     extraConfig = {
       modi = "run,drun,window";
-      icon-theme = "Oranchelo";
+      icon-theme = "Papirus-Dark";
       show-icons = true;
       terminal = "kitty";
       drun-display-format = "{icon} {name}";

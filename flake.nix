@@ -23,25 +23,24 @@
       modules = [
         ./configuration.nix
         catppuccin.nixosModules.catppuccin
-	home-manager.nixosModules.home-manager
-	{
-	  home-manager = {
-	    useGlobalPkgs = true;
-	    useUserPackages = true;
-	    
+	    home-manager.nixosModules.home-manager
+	    {
+	      home-manager = {
+	        useGlobalPkgs = true;
+	        useUserPackages = true;
             backupFileExtension = "backup";
-	    
-	    extraSpecialArgs = {
-	      inherit inputs;
-	    };
-	    users.charon = {
-	      imports = [
-	        ./home.nix
-		catppuccin.homeModules.catppuccin
-	      ];
+
+	        extraSpecialArgs = {
+	          inherit inputs;
+	        };
+	        users.charon = {
+	          imports = [
+	            ./home.nix
+		        catppuccin.homeModules.catppuccin
+	          ];
             };
-	  };
-	}  
+	      };
+	    }
       ];
     };
   };

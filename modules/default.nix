@@ -13,6 +13,6 @@
     ./nvim.nix
     ./eww/default.nix
     ./matugen/default.nix
-
+    ./quickshell-symlinks.nix
   ];
 }

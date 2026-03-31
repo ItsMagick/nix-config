@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, config, ...}:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -18,13 +18,16 @@
       general = {
         gaps_in = 5;
         gaps_out = 20;
-        border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        border_size = 3;
+        "col.active_border" = "rgba(cba6f7ff) rgba(89b4faff) 45deg";
+        "col.inactive_border" = "rgba(6c7086cc)";
         resize_on_border = false;
         allow_tearing = false;
         layout = "dwindle";
       };
+
+      # Matugen updates this file on wallpaper/theme generation.
+      source = "${config.xdg.configHome}/hypr/matugen-colors.conf";
 
       decoration = {
         rounding = 10;

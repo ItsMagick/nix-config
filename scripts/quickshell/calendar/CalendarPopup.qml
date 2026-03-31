@@ -149,7 +149,7 @@ Item {
 
     Process {
         id: weatherPoller
-        command: ["bash", window.scriptsDir + "/weather.sh", "--json"]
+        command: ["zsh", window.scriptsDir + "/weather.sh", "--json"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
@@ -174,7 +174,7 @@ Item {
 
     Process {
         id: schedulePoller
-        command: ["bash", window.scriptsDir + "/schedule/schedule_manager.sh"]
+        command: ["zsh", window.scriptsDir + "/schedule/schedule_manager.sh"]
         running: true
         stdout: StdioCollector {
             onStreamFinished: {
@@ -527,7 +527,7 @@ Item {
                             Text { anchors.centerIn: parent; text: "+"; font.family: "Iosevka Nerd Font"; color: diaryMa.containsMouse ? window.mauve : window.text; font.pixelSize: 32 }
                             MouseArea { 
                                 id: diaryMa; anchors.fill: parent; hoverEnabled: true; 
-                                onClicked: Quickshell.execDetached(["bash", window.scriptsDir + "/diary_manager.sh"]) 
+                                onClicked: Quickshell.execDetached(["zsh", window.scriptsDir + "/diary_manager.sh"])
                             }
                             Behavior on color { ColorAnimation { duration: 150 } }
                         }

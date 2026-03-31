@@ -92,7 +92,7 @@ Item {
 
     Process {
         id: sysPoller
-        command: ["bash", "-c", 
+        command: ["zsh", "-c",
             "cat /sys/class/power_supply/BAT0/capacity 2>/dev/null || echo '0'; " +
             "cat /sys/class/power_supply/BAT0/status 2>/dev/null || echo 'Unknown'; " +
             "powerprofilesctl get 2>/dev/null || echo 'balanced'; " +
@@ -752,8 +752,8 @@ Item {
                     
                     Repeater {
                         model: ListModel {
-                            ListElement { lbl: "Lock"; cmd: "quickshell -p ~/.config/hypr/scripts/quickshell/Lock.qml"; icon: ""; c1: "#cba6f7"; c2: "#f5c2e7"; weight: 1.0 }
-                            ListElement { lbl: "Sleep"; cmd: "quickshell -p ~/.config/hypr/scripts/quickshell/Lock.qml & systemctl suspend"; icon: "ᶻ 𝗓 𐰁"; c1: "#89b4fa"; c2: "#74c7ec"; weight: 1.0 }
+                            ListElement { lbl: "Lock"; cmd: "lock-screen"; icon: ""; c1: "#cba6f7"; c2: "#f5c2e7"; weight: 1.0 }
+                            ListElement { lbl: "Sleep"; cmd: "lock-screen && systemctl suspend"; icon: "ᶻ 𝗓 𐰁"; c1: "#89b4fa"; c2: "#74c7ec"; weight: 1.0 }
                             ListElement { lbl: "Reboot"; cmd: "systemctl reboot"; icon: "󰑓"; c1: "#f9e2af"; c2: "#fab387"; weight: 2.5 }
                             ListElement { lbl: "Power"; cmd: "systemctl poweroff"; icon: ""; c1: "#f38ba8"; c2: "#eba0ac"; weight: 3.5 }
                         }

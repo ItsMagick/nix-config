@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 STATUS=$(playerctl status 2>/dev/null)
 

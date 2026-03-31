@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Settings based on your layout
 VAULT_DIR="$HOME/Life/Obsidian"

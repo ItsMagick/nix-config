@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # 1. Safely close Eww windows only if eww is actually installed
 if command -v eww >/dev/null 2>&1; then

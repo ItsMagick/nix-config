@@ -14,7 +14,7 @@ FloatingWindow {
 
     // Push it off-screen the moment the component loads using Hyprland's dispatcher
     Component.onCompleted: {
-        Quickshell.execDetached(["bash", "-c", `hyprctl dispatch resizewindowpixel "exact 1 1,title:^(qs-master)$" && hyprctl dispatch movewindowpixel "exact -5000 -5000,title:^(qs-master)$"`]);
+        Quickshell.execDetached(["zsh", "-c", `hyprctl dispatch resizewindowpixel "exact 1 1,title:^(qs-master)$" && hyprctl dispatch movewindowpixel "exact -5000 -5000,title:^(qs-master)$"`]);
     }
 
     property int screenW: 1920
@@ -22,7 +22,7 @@ FloatingWindow {
 
     property string currentActive: "hidden" 
     onCurrentActiveChanged: {
-        Quickshell.execDetached(["bash", "-c", "echo '" + currentActive + "' > /tmp/qs_active_widget"]);
+        Quickshell.execDetached(["zsh", "-c", "echo '" + currentActive + "' > /tmp/qs_active_widget"]);
     }
 
     property bool isVisible: false
@@ -87,7 +87,7 @@ FloatingWindow {
                 
                 // NEW: Key bubbling catch-all. This triggers ONLY if the child widget doesn't accept the escape event.
                 Keys.onEscapePressed: {
-                    Quickshell.execDetached(["bash", Quickshell.env("HOME") + "/.config/hypr/scripts/qs_manager.sh", "close"])
+                    Quickshell.execDetached(["zsh", Quickshell.env("HOME") + "/.config/hypr/scripts/qs_manager.sh", "close"])
                     event.accepted = true
                 }
 
@@ -129,7 +129,7 @@ FloatingWindow {
                 masterWindow.animH = 1;
                 masterWindow.isVisible = false;
                 
-                Quickshell.execDetached(["bash", "-c", `hyprctl dispatch resizewindowpixel "exact 1 1,title:^(qs-master)$" && hyprctl dispatch movewindowpixel "exact ${cx} ${cy},title:^(qs-master)$"`]);
+                Quickshell.execDetached(["zsh", "-c", `hyprctl dispatch resizewindowpixel "exact 1 1,title:^(qs-master)$" && hyprctl dispatch movewindowpixel "exact ${cx} ${cy},title:^(qs-master)$"`]);
                 delayedClear.start();
             }
         } else {
@@ -145,7 +145,7 @@ FloatingWindow {
                 masterWindow.width = 1;
                 masterWindow.height = 1;
 
-                Quickshell.execDetached(["bash", "-c", `hyprctl dispatch movewindowpixel "exact ${cx} ${cy},title:^(qs-master)$"`]);
+                Quickshell.execDetached(["zsh", "-c", `hyprctl dispatch movewindowpixel "exact ${cx} ${cy},title:^(qs-master)$"`]);
 
                 prepTimer.newWidget = newWidget;
                 prepTimer.newArg = arg;
@@ -193,7 +193,7 @@ FloatingWindow {
             masterWindow.currentX = t.x;
             masterWindow.currentY = t.y;
 
-            Quickshell.execDetached(["bash", "-c", `hyprctl dispatch resizewindowpixel "exact ${t.w} ${t.h},title:^(qs-master)$" && hyprctl dispatch movewindowpixel "exact ${t.x} ${t.y},title:^(qs-master)$"`]);
+            Quickshell.execDetached(["zsh", "-c", `hyprctl dispatch resizewindowpixel "exact ${t.w} ${t.h},title:^(qs-master)$" && hyprctl dispatch movewindowpixel "exact ${t.x} ${t.y},title:^(qs-master)$"`]);
 
             let props = newWidget === "wallpaper" ? { "widgetArg": newArg } : {};
             widgetStack.replace(t.comp, props, StackView.Immediate);
@@ -233,8 +233,8 @@ FloatingWindow {
         masterWindow.currentX = t.x;
         masterWindow.currentY = t.y;
         
-        Quickshell.execDetached(["bash", "-c", `hyprctl dispatch resizewindowpixel "exact ${t.w} ${t.h},title:^(qs-master)$" && hyprctl dispatch movewindowpixel "exact ${t.x} ${t.y},title:^(qs-master)$"`]);
-        
+        Quickshell.execDetached(["zsh", "-c", `hyprctl dispatch resizewindowpixel "exact ${t.w} ${t.h},title:^(qs-master)$" && hyprctl dispatch movewindowpixel "exact ${t.x} ${t.y},title:^(qs-master)$"`]);
+
         masterWindow.isVisible = true;
         
         let props = newWidget === "wallpaper" ? { "widgetArg": arg } : {};
@@ -253,7 +253,7 @@ FloatingWindow {
 
     Process {
         id: ipcPoller
-        command: ["bash", "-c", "if [ -f /tmp/qs_widget_state ]; then cat /tmp/qs_widget_state; rm /tmp/qs_widget_state; fi"]
+        command: ["zsh", "-c", "if [ -f /tmp/qs_widget_state ]; then cat /tmp/qs_widget_state; rm /tmp/qs_widget_state; fi"]
         stdout: StdioCollector {
             onStreamFinished: {
                 let rawCmd = this.text.trim();
@@ -287,7 +287,7 @@ FloatingWindow {
             
             // Banished safely back to the shadow realm off-screen
             let cmd = `hyprctl dispatch resizewindowpixel "exact 1 1,title:^(qs-master)$" && hyprctl dispatch movewindowpixel "exact -5000 -5000,title:^(qs-master)$"`;
-            Quickshell.execDetached(["bash", "-c", cmd]);
+            Quickshell.execDetached(["zsh", "-c", cmd]);
         }
     }
 }

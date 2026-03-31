@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Paths
 cache_dir="$HOME/.cache/eww/weather"

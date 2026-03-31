@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # 1. Battery Info
 # Gracefully fall back to BAT1 if BAT0 doesn't exist, or default to 100% AC if on a desktop

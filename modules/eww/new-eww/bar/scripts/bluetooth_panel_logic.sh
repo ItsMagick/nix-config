@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Log file for RSSI scraping
 SCAN_LOG="$HOME/.cache/bt_scan.log"

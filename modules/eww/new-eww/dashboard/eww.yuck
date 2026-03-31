@@ -6,7 +6,7 @@
 
 ;; ** Variables ***********************************************************************
 
-(defpoll MUSIC_FULL :interval "0.25s" `bash ./scripts/music_info.sh`)
+(defpoll MUSIC_FULL :interval "0.25s" `zsh ./scripts/music_info.sh`)
 
 ;; Profile vars
 (defvar IMAGE "images/profile.jpg")
@@ -145,7 +145,7 @@
                         :min 0 
                         :max 100 
                         :value {MUSIC_FULL.percent}
-                        :onchange "bash ./scripts/player_control.sh seek {} ${MUSIC_FULL.length} ${MUSIC_FULL.playerName}")
+						:onchange "zsh ./scripts/player_control.sh seek {} ${MUSIC_FULL.length} ${MUSIC_FULL.playerName}")
 		(box :orientation "h" :halign "fill"
                      (label :class "dashboard-time" :text {MUSIC_FULL.positionStr} :halign "start")
                      (label :class "dashboard-time" :text {MUSIC_FULL.lengthStr} :halign "end")
@@ -227,11 +227,11 @@
 ;; power buttons
 (defwidget logout [] 
 	(box :class "genwin" :vexpand "false" :hexpand "false" 
-		(button :class "btn_logout" :onclick "loginctl terminate-user ilyamiro" "")))
-(defwidget sleep [] 
+		(button :class "btn_logout" :onclick "loginctl terminate-user $USER" ""))))
+(defwidget sleep []
 	(box :class "genwin" :vexpand "false" :hexpand "false" 
-		(button :class "btn_sleep" :onclick "hyprlock & systemctl suspend" "")))
-(defwidget reboot [] 
+		(button :class "btn_sleep" :onclick "lock-screen && systemctl suspend" "")))
+(defwidget reboot []
 	(box :class "genwin" :vexpand "false" :hexpand "false" 
 		(button :class "btn_reboot" :onclick "systemctl reboot" "")))
 (defwidget poweroff [] 

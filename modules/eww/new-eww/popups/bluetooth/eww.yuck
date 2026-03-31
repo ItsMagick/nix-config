@@ -48,11 +48,11 @@
          (box :orientation "h" :spacing 10 
               ;; Connect Button
               (button :class "bt-btn connect" 
-        :onclick "bash /etc/nixos/config/sessions/hyprland/scripts/bluetooth_mgr.sh --connect '${bt_found_mac}'"
+        :onclick "zsh ~/.config/hypr/scripts/bluetooth_mgr.sh --connect '${bt_found_mac}'"
         "Connect")
               
 		(button :class "bt-btn ignore" 
-        :onclick "bash /etc/nixos/config/sessions/hyprland/scripts/bluetooth_mgr.sh --ignore '${bt_found_mac}'"
+        :onclick "zsh ~/.config/hypr/scripts/bluetooth_mgr.sh --ignore '${bt_found_mac}'"
         "Ignore")         )
     )
   )

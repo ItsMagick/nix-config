@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 # Keeping the cache in the same place so we don't break anything else
 CACHE_DIR="$HOME/.cache/eww/schedule"

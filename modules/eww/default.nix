@@ -22,5 +22,5 @@
     imagemagick
   ];
 
-  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink "/home/Documents/nix-config/modules/eww";
-  }
+  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink (toString ../..);
+}

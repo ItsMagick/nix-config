@@ -1,5 +1,5 @@
 
-(defpoll WALLPAPERS :interval "1h" "bash ./get_wallpapers.sh")
+(defpoll WALLPAPERS :interval "1h" "zsh ./get_wallpapers.sh")
 
 
 (defvar current_wall_path "")

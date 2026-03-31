@@ -67,7 +67,7 @@ PanelWindow {
     // ==========================================
     Process {
         id: appPoller
-        command: ["bash", "-c", "~/.config/hypr/scripts/quickshell/dock_backend.sh get"]
+        command: ["zsh", "-c", "~/.config/hypr/scripts/quickshell/dock_backend.sh get"]
         stdout: StdioCollector {
             onStreamFinished: {
                 let txt = this.text.trim();
@@ -92,7 +92,7 @@ PanelWindow {
         dockWindow.appsData = newArray; 
 
         let safeName = appName.replace(/'/g, "'\\''");
-        Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/quickshell/dock_backend.sh toggle '" + safeName + "'"]);
+        Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/quickshell/dock_backend.sh toggle '" + safeName + "'"]);
     }
 
     // ==========================================
@@ -435,7 +435,7 @@ PanelWindow {
                                         onClicked: { 
                                             contextMenu.close(); 
                                             if (dockWindow.isSettingsOpen) dockWindow.isSettingsOpen = false;
-                                            Quickshell.execDetached(["bash", "-c", modelData.exec]); 
+                                            Quickshell.execDetached(["zsh", "-c", modelData.exec]);
                                         }
                                     }
                                 }
@@ -473,7 +473,7 @@ PanelWindow {
                             onClicked: (mouse) => {
                                 if (mouse.button === Qt.LeftButton) {
                                     if (dockWindow.isSettingsOpen) dockWindow.isSettingsOpen = false;
-                                    Quickshell.execDetached(["bash", "-c", modelData.exec]);
+                                    Quickshell.execDetached(["zsh", "-c", modelData.exec]);
                                 } else if (mouse.button === Qt.RightButton) {
                                     contextMenu.open();
                                 }

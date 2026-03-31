@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 CACHE_DIR="$HOME/.cache/eww/schedule"
 CACHE_FILE="${CACHE_DIR}/schedule.json"

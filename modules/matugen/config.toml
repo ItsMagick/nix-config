@@ -9,8 +9,17 @@ output_path = "/tmp/qs_colors.json"
 
 [templates.firefox]
 input_path = "~/.config/matugen/templates/firefox.css"
-output_path = "~/.mozilla/firefox/zawmoi9h.default/chrome/matugen.css"
+output_path = "~/.config/firefox-matugen.css"
 
-[templates.hyprlock]
-input_path = "~/.config/hypr/hyprlock/colors.conf.template"
-output_path = "~/.config/hypr/hyprlock/colors.conf"
+[templates.waybar]
+input_path = "~/.config/matugen/templates/waybar.css"
+output_path = "~/.config/waybar-matugen.css"
+
+[templates.rofi]
+input_path = "~/.config/matugen/templates/rofi.rasi"
+output_path = "~/.config/rofi/matugen.rasi"
+
+[templates.hyprland]
+input_path = "~/.config/matugen/templates/hyprland-colors.conf"
+output_path = "~/.config/hypr/matugen-colors.conf"
+

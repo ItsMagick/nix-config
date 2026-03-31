@@ -164,7 +164,7 @@ Item {
         var p = Qt.createQmlObject(`
             import Quickshell.Io
             Process {
-                command: ["bash", "-c", \`${safeCmd}\`]
+                command: ["zsh", "-c", \`${safeCmd}\`]
                 running: true
                 onExited: (exitCode) => destroy()
             }
@@ -226,7 +226,7 @@ Item {
     Process {
         id: musicProc
         running: true
-        command: ["bash", "-c", "$HOME/.config/hypr/scripts/quickshell/music/music_info.sh"]
+        command: ["zsh", "-c", "$HOME/.config/hypr/scripts/quickshell/music/music_info.sh"]
         stdout: StdioCollector {
             onStreamFinished: {
                 if (this.text) {
@@ -248,7 +248,7 @@ Item {
     Process {
         id: eqProc
         running: true
-        command: ["bash", "-c", "$HOME/.config/hypr/scripts/quickshell/music/equalizer.sh get"]
+        command: ["zsh", "-c", "$HOME/.config/hypr/scripts/quickshell/music/equalizer.sh get"]
         stdout: StdioCollector {
             onStreamFinished: {
                 if (this.text) {

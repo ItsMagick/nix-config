@@ -1,8 +1,8 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # --- CONFIGURATION ---
-# CHANGE THIS TO YOUR WALLPAPER PATH
-WALL_DIR="/home/charon/Pictures/wallpapers"
+# Uses HOME env var for user-agnostic path
+WALL_DIR="$HOME/Pictures/wallpapers"
 CACHE_DIR="$HOME/.cache/eww/wall_thumbs"
 THUMB_SIZE="320x180" # 16:9 Aspect Ratio for previews
 

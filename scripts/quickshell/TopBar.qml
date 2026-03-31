@@ -76,13 +76,13 @@ PanelWindow {
 
     Process {
         id: wsDaemon
-        command: ["bash", "-c", "~/.config/hypr/scripts/quickshell/workspaces.sh > /tmp/qs_workspaces.json"]
+        command: ["zsh", "-c", "~/.config/hypr/scripts/quickshell/workspaces.sh > /tmp/qs_workspaces.json"]
         running: true
     }
 
     Process {
         id: wsPoller
-        command: ["bash", "-c", "tail -n 1 /tmp/qs_workspaces.json 2>/dev/null"]
+        command: ["zsh", "-c", "tail -n 1 /tmp/qs_workspaces.json 2>/dev/null"]
         stdout: StdioCollector {
             onStreamFinished: {
                 let txt = this.text.trim();
@@ -96,7 +96,7 @@ PanelWindow {
 
     Process {
         id: musicPoller
-        command: ["bash", "-c", "cat /tmp/music_info.json 2>/dev/null || bash ~/.config/hypr/scripts/quickshell/music/music_info.sh"]
+        command: ["zsh", "-c", "cat /tmp/music_info.json 2>/dev/null || zsh ~/.config/hypr/scripts/quickshell/music/music_info.sh"]
         stdout: StdioCollector {
             onStreamFinished: {
                 let txt = this.text.trim();
@@ -111,7 +111,7 @@ PanelWindow {
     // SLOW POLLER: Battery, WiFi, Bluetooth (Updates every 5 seconds)
     Process {
         id: slowSysPoller
-        command: ["bash", "-c", `
+        command: ["zsh", "-c", `
             echo "$(~/.config/hypr/scripts/quickshell/sys_info.sh --wifi-status)"
             echo "$(~/.config/hypr/scripts/quickshell/sys_info.sh --wifi-icon)"
             echo "$(~/.config/hypr/scripts/quickshell/sys_info.sh --wifi-ssid)"
@@ -142,7 +142,7 @@ PanelWindow {
     // FAST POLLER: Volume and Layout (Updates every 150ms for instant feedback)
     Process {
         id: fastSysPoller
-        command: ["bash", "-c", `
+        command: ["zsh", "-c", `
             echo "$(~/.config/hypr/scripts/quickshell/sys_info.sh --volume)"
             echo "$(~/.config/hypr/scripts/quickshell/sys_info.sh --volume-icon)"
             echo "$(~/.config/hypr/scripts/quickshell/sys_info.sh --kb-layout)"
@@ -164,7 +164,7 @@ PanelWindow {
 
     Process {
         id: weatherPoller
-        command: ["bash", "-c", `
+        command: ["zsh", "-c", `
             echo "$(~/.config/hypr/scripts/quickshell/calendar/weather.sh --current-icon)"
             echo "$(~/.config/hypr/scripts/quickshell/calendar/weather.sh --current-temp)"
             echo "$(~/.config/hypr/scripts/quickshell/calendar/weather.sh --current-hex)"
@@ -257,7 +257,7 @@ PanelWindow {
                     id: searchMouse
                     anchors.fill: parent
                     hoverEnabled: true
-                    onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/rofi_show.sh drun"])
+                    onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/rofi_show.sh drun"])
                 }
             }
 
@@ -379,7 +379,7 @@ PanelWindow {
                                 id: wsPillMouse
                                 hoverEnabled: true
                                 anchors.fill: parent
-                                onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh " + modelData.id])
+                                onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/qs_manager.sh " + modelData.id])
                             }
                         }
                     }
@@ -418,8 +418,8 @@ PanelWindow {
                             Layout.preferredWidth: infoLayout.implicitWidth
                             Layout.fillHeight: true
                             hoverEnabled: true
-                            onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle music"])
-                            
+                            onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle music"])
+
                             RowLayout {
                                 id: infoLayout
                                 anchors.verticalCenter: parent.verticalCenter
@@ -549,7 +549,7 @@ PanelWindow {
                 id: centerMouse
                 anchors.fill: parent
                 hoverEnabled: true
-                onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle calendar"])
+                onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle calendar"])
             }
 
             RowLayout {
@@ -760,7 +760,7 @@ PanelWindow {
                             Text { text: barWindow.wifiIcon; font.family: "Iosevka Nerd Font"; font.pixelSize: 16; color: barWindow.isWifiOn ? mocha.base : mocha.subtext0 }
                             Text { text: barWindow.isWifiOn ? (barWindow.wifiSsid !== "" ? barWindow.wifiSsid : "On") : "Off"; font.family: "JetBrains Mono"; font.pixelSize: 13; font.weight: Font.Black; color: barWindow.isWifiOn ? mocha.base : mocha.text; Layout.maximumWidth: 100; elide: Text.ElideRight }
                         }
-                        MouseArea { id: wifiMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle network wifi"]) }
+                        MouseArea { id: wifiMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle network wifi"]) }
                     }
 
                     // Bluetooth 
@@ -796,7 +796,7 @@ PanelWindow {
                             Text { text: barWindow.btIcon; font.family: "Iosevka Nerd Font"; font.pixelSize: 16; color: barWindow.isBtOn ? mocha.base : mocha.subtext0 }
                             Text { visible: barWindow.btDevice !== ""; text: barWindow.btDevice; font.family: "JetBrains Mono"; font.pixelSize: 13; font.weight: Font.Black; color: barWindow.isBtOn ? mocha.base : mocha.text; Layout.maximumWidth: 100; elide: Text.ElideRight }
                         }
-                        MouseArea { id: btMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle network bt"]) }
+                        MouseArea { id: btMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle network bt"]) }
                     }
 
                     // Volume
@@ -845,7 +845,7 @@ PanelWindow {
                             Text { text: barWindow.batIcon; font.family: "Iosevka Nerd Font"; font.pixelSize: 16; color: parseInt(barWindow.batPercent) < 20 && barWindow.batIcon !== "󰂄" ? mocha.red : mocha.green }
                             Text { text: barWindow.batPercent; font.family: "JetBrains Mono"; font.pixelSize: 13; font.weight: Font.Black; color: mocha.text }
                         }
-                        MouseArea { id: batMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["bash", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle battery"]) }
+                        MouseArea { id: batMouse; hoverEnabled: true; anchors.fill: parent; onClicked: Quickshell.execDetached(["zsh", "-c", "~/.config/hypr/scripts/qs_manager.sh toggle battery"]) }
                     }
                 }
             }

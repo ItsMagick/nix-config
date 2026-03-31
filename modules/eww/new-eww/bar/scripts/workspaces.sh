@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 EWW_BIN=$(which eww)
 EWW_CFG="$HOME/.config/eww/bar"

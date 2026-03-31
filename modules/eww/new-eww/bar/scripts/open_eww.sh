@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Usage: ./toggle_eww.sh <window_name>
 # Example: ./toggle_eww.sh network_win
@@ -8,7 +8,7 @@ EWW_BIN=$(which eww)
 CFG="$HOME/.config/eww/bar"
 
 # --- Configuration: Define all your windows and their lockfiles here ---
-declare -A LOCKFILES
+typeset -A LOCKFILES
 LOCKFILES=(
     ["battery_win"]="$HOME/.cache/eww_launch.battery"
     ["music_win"]="$HOME/.cache/eww_launch.musicbar"
