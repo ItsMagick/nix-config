@@ -6,3 +6,6 @@ result-*
 .direnv
 .idea
 *.lock
+
+AGENTS.md
+waybar.nix.bak
