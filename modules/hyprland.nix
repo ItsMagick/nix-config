@@ -44,11 +44,6 @@
         };
       };
 
-      misc = {
-        focus_follows_mouse = true;
-        disable_hyprland_logo = true;
-      };
-
       animations = {
         enabled = "yes";
         bezier = [
