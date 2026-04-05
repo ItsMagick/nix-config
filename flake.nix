@@ -10,11 +10,15 @@
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    matugen = {
+      url = "github:/InioX/Matugen";
+    };
+
     catppuccin.url = "github:catppuccin/nix";
 
  
   };
-  outputs = { nixpkgs, home-manager, zen-browser, catppuccin, ... } @ inputs: {
+  outputs = { nixpkgs, home-manager, zen-browser, catppuccin, matugen, ... } @ inputs: {
     nixosConfigurations.TPS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
@@ -24,6 +28,7 @@
         ./configuration.nix
         catppuccin.nixosModules.catppuccin
 	    home-manager.nixosModules.home-manager
+	    matugen.nixosModules.default
 	    {
 	      home-manager = {
 	        useGlobalPkgs = true;

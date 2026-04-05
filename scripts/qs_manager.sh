@@ -1,10 +1,11 @@
 #!/usr/bin/env zsh
+set -ex
 
 SCRIPT_DIR="${0:A:h}"
 QS_DIR="$SCRIPT_DIR/quickshell"
 BT_PID_FILE="$HOME/.cache/bt_scan_pid"
 BT_SCAN_LOG="$HOME/.cache/bt_scan.log"
-SRC_DIR="$HOME/Pictures/Wallpapers"
+SRC_DIR="$HOME/Pictures/wallpapers"
 THUMB_DIR="$HOME/.cache/wallpaper_picker/thumbs"
 
 IPC_FILE="/tmp/qs_widget_state"

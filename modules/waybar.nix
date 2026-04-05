@@ -20,7 +20,7 @@ in
         margin-right = 6;
         spacing = 0;
 
-        modules-left = [ "hyprland/workspaces" "custom/separator" "custom/playerctl" ];
+        modules-left = [ "hyprland/workspaces" "custom/separator" ];
         modules-center = [];
         modules-right = [ "tray" "group/network" "group/status" "group/system" "battery" "clock" ];
 
@@ -74,17 +74,6 @@ in
         "custom/separator" = {
           format = "|";
           tooltip = false;
-        };
-
-        # Player control from migration
-        "custom/playerctl" = {
-          format = "<span>{}</span>";
-          return-type = "json";
-          max-length = 35;
-          exec = "playerctl -a metadata --format '{\"text\": \"{{artist}} ~ {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
-          on-click-middle = "playerctl play-pause";
-          on-click = "playerctl previous";
-          on-click-right = "playerctl next";
         };
 
         # Battery from migration
@@ -157,18 +146,6 @@ in
           format = " {temperatureC}°C";
           interval = 5;
           tooltip = true;
-        };
-
-        "mpris" = {
-          format = "{player_icon} {thumbnail} {artist} — {title}";
-          format-paused = "{player_icon} {thumbnail} {artist} — {title}  󰏤";
-          player-icons = {
-            default = "󰎆";
-            zen-browser = "󰈹";
-            spotify = "";
-          };
-          thumbnail-size = 24;
-          max-length = 60;
         };
 
         "pulseaudio" = {
@@ -288,16 +265,6 @@ in
           margin: 8px 2px;
           border-radius: 25px;
           font-weight: bold;
-      }
-
-      /* Player island */
-      #custom-playerctl {
-          background-color: var(--waybar-player-bg, rgba(30, 30, 46, 0.9));
-          color: var(--waybar-player-text, #f0a0d0);
-          padding: 0 12px;
-          margin: 8px 4px;
-          border-radius: 25px;
-          transition: background-color 0.3s ease, color 0.3s ease;
       }
 
       /* Group containers - islands with proper semicircle ends */

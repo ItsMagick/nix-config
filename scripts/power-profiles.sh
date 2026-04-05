@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-
+set -ex
 # --- 1. Toggle Logic ---
 if pgrep -x "rofi" > /dev/null; then
     pkill rofi

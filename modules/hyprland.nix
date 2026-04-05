@@ -44,6 +44,11 @@
         };
       };
 
+      misc = {
+        focus_follows_mouse = true;
+        disable_hyprland_logo = true;
+      };
+
       animations = {
         enabled = "yes";
         bezier = [
@@ -86,10 +91,8 @@
         "$mainMod SHIFT, UP, movewindow, u"
         "$mainMod SHIFT, DOWN, movewindow, d"
 
-        "$mainMod, R, exec, rofi -show drun"
-        "$mainMod SHIFT, T, exec, theme-toggle"
+        "$mainMod, R, exec, ~/.config/hypr/scripts/rofi_show.sh drun"
         "$mainMod, W, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle wallpaper"
-        "$mainMod SHIFT, W, exec, wall-picker"
         "$mainMod, N, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle network wifi"
         "$mainMod SHIFT, N, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle network bt"
         "$mainMod SHIFT, B, exec, zsh ~/.config/hypr/scripts/quickshell/network/bluetooth_panel_logic.sh --toggle"
@@ -115,7 +118,7 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
-	    "ALT, Tab, exec, rofi -show window"
+	    "ALT, TAB, exec, bash ~/.config/hypr/scripts/rofi_show.sh window"
 	    "$mainMod, L, exec, lock-screen"
       ];
 

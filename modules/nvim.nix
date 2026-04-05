@@ -19,5 +19,5 @@
     ];
   };
 
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink (toString ./nvim);
+  xdg.configFile."nvim".source = ./nvim;
 }

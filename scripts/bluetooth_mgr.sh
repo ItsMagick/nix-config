@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-
+set -ex
 # --- CONFIGURATION ---
 EWW_CFG="$HOME/.config/eww/popups/usb"
 EWW_BIN=$(which eww)

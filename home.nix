@@ -11,7 +11,6 @@
     LC_ALL = "en_US.UTF-8";
   };
   home.pointerCursor = {
-    gtk.enable = true;
     x11.enable = true;
     package = pkgs.catppuccin-cursors.macchiatoLavender;
     name = "catppuccin-macchiato-lavender-cursors";
@@ -37,7 +36,7 @@
     brightnessctl
     jetbrains-toolbox
     pywal
-    swww
+    awww
     imagemagick
     swaynotificationcenter
     playerctl
@@ -50,8 +49,6 @@
     quickshell
     tree
     matugen
-    papirus-icon-theme
-    catppuccin-papirus-folders
   ];
 
     gtk = {

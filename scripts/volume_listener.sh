@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-
+set -ex
 # Helper functions to get current state
 get_sink() { pactl get-default-sink; }
 get_vol() { pamixer --get-volume; }

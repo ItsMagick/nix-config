@@ -1,11 +1,27 @@
 #!/usr/bin/env zsh
-
+set -ex
 # --- 1. Settings ---
 SCRIPT_DIR="${0:A:h}"
 CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-ROFI_CONFIG="$CONFIG_HOME/rofi/config.rasi"
+ROFI_THEME="$CONFIG_HOME/rofi/matugen.rasi"
 CONFIG_FILE="${QUICKLINKS_CONFIG:-$SCRIPT_DIR/quicklink.yaml}"
 ICON_DIR="${QUICKLINKS_ICON_DIR:-$SCRIPT_DIR/quick-icons}"
+
+if [[ ! -f "$ROFI_THEME" ]] && command -v matugen >/dev/null 2>&1; then
+    WALLPAPER=""
+
+    if command -v awww >/dev/null 2>&1; then
+        WALLPAPER=$(awww query 2>/dev/null | grep -o "$HOME/[^ ]*\(jpg\|jpeg\|png\|webp\|gif\|mp4\|mkv\|mov\|webm\)" | head -n1)
+    fi
+
+    if [[ -z "$WALLPAPER" ]] && command -v pgrep >/dev/null 2>&1; then
+        WALLPAPER=$(pgrep -a mpvpaper 2>/dev/null | sed -n "s/.* '\([^']*\)'.*/\1/p" | head -n1)
+    fi
+
+    if [[ -n "$WALLPAPER" && -f "$WALLPAPER" ]]; then
+        matugen image "$WALLPAPER" >/dev/null 2>&1
+    fi
+fi
 
 # --- 2. Toggle Logic ---
 if pgrep -x "rofi" > /dev/null; then
@@ -22,8 +38,7 @@ generate_menu() {
 
     # Loop through yaml entries
     # We pipe directly to rofi later, so null bytes (\0) are preserved
-    yq -r '.[] | .name + "|" + .icon + "|" + .command' "$CONFIG_FILE" | while IFS='|' read -r name icon cmd; do
-        
+    yq -r '.[] | .name + "|" + .icon + "|" + .command' "$CONFIG_FILE" | while IFS='|' read -r name icon _cmd; do
         # Resolve Icon Path
         if [[ -f "$ICON_DIR/$icon" ]]; then
             icon_path="$ICON_DIR/$icon"
@@ -43,7 +58,7 @@ SELECTED=$(generate_menu | rofi -dmenu \
     -p "Quick Links" \
     -show-icons \
     -i \
-    -config "$ROFI_CONFIG" \
+    -theme "$ROFI_THEME" \
     -theme-str 'window { width: 800px; }' \
     -theme-str 'listview { columns: 4; lines: 3; }')
 

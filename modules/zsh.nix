@@ -28,18 +28,5 @@
       theme = "agnoster";
       plugins = ["git"];
     };
-
-
-
-    initContent = ''
-        prompt_dir() {
-              if [[ -n "$AGNOSTER_GIT_INLINE" ]] && [[ -n "$(git_toplevel)" ]]; then
-                prompt_segment "$AGNOSTER_DIR_BG" "$AGNOSTER_DIR_FG" "$(git_toplevel | sed "s:^$HOME:~:")"
-              else
-                prompt_segment "$AGNOSTER_DIR_BG" "$AGNOSTER_DIR_FG" '%~'
-              fi
-        }
-    '';
-
   };
 }
