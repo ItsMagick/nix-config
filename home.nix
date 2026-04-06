@@ -3,7 +3,7 @@
 {
   home.username = "charon";
   home.homeDirectory = "/home/charon";
-  home.stateVersion = "26.05";
+  home.stateVersion = "25.11";
   home.sessionVariables = {
     GTK_THEME = "catppuccin-macchiato-lavender-standard";
     COLORTERM = "truecolor";

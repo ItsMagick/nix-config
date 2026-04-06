@@ -54,8 +54,8 @@ handle_wallpaper_prep() {
         CURRENT_SRC=$(basename "$CURRENT_SRC")
     fi
 
-    if [ -z "$CURRENT_SRC" ] && command -v swww >/dev/null; then
-        CURRENT_SRC=$(swww query 2>/dev/null | grep -o "$SRC_DIR/[^ ]*" | head -n1)
+    if [ -z "$CURRENT_SRC" ] && command -v awww >/dev/null; then
+        CURRENT_SRC=$(awww query 2>/dev/null | grep -o "$SRC_DIR/[^ ]*" | head -n1)
         CURRENT_SRC=$(basename "$CURRENT_SRC")
     fi
 
@@ -81,10 +81,10 @@ handle_network_prep() {
 # -----------------------------------------------------------------------------
 # ENSURE MASTER WINDOW & TOP BAR ARE ALIVE (ZOMBIE WATCHDOG)
 # -----------------------------------------------------------------------------
-QS_PID=$(pgrep -f "quickshell.*Main\.qml")
-WIN_EXISTS=$(hyprctl clients -j | grep "qs-master")
+ QS_PID=$(pgrep -f "quickshell.*Main\.qml" || true)
+WIN_EXISTS=$(hyprctl clients -j | grep "qs-master" || true)
 
-BAR_PID=$(pgrep -f "quickshell.*TopBar\.qml")
+BAR_PID=$(pgrep -f "quickshell.*TopBar\.qml" || true)
 
 # 1. Manage the Master morphing window
 if [[ -z "$QS_PID" ]] || [[ -z "$WIN_EXISTS" ]]; then

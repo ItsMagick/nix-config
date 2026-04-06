@@ -113,7 +113,7 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
-	    "ALT, TAB, exec, bash ~/.config/hypr/scripts/rofi_show.sh window"
+        "ALT, TAB, exec, zsh ~/.config/hypr/scripts/rofi_show.sh window"
 	    "$mainMod, L, exec, lock-screen"
       ];
 
@@ -135,9 +135,7 @@
         "$mainMod, mouse:272, movewindow"
       ];
       exec-once = [
-        "swww-daemon"
-	    "waybar"
-	    "lock-screen"
+      "zsh ~/.config/hypr/scripts/session_start.sh"
 	    "nm-applet --indicator"
       ];
       misc =  {

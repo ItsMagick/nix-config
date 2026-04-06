@@ -185,7 +185,7 @@ in
     };
 
     style = ''
-      @import url("${config.xdg.configHome}/waybar-matugen.css");
+      @import url("${config.xdg.configHome}/waybar/matugen.css");
 
       * {
           font-family: "FiraCode Nerd Font Mono";
@@ -198,15 +198,15 @@ in
 
       window#waybar {
           background: transparent;
-          color: var(--waybar-text, #cdd6f4);
+          color: @waybar_text;
       }
 
       /* === ISLAND STYLING === */
       /* All islands are completely rounded with semicircle ends */
 
       #workspaces {
-          background-color: var(--waybar-bg-island, rgba(30, 30, 46, 0.9));
-          color: var(--waybar-text, #cdd6f4);
+          background-color: @waybar_bg_island;
+          color: @waybar_text;
           padding: 0 20px;
           margin: 8px 4px;
           border-radius: 25px;
@@ -239,28 +239,28 @@ in
       }
 
       #workspaces > button.active {
-          background-color: var(--waybar-active, #cba6f7);
-          color: var(--waybar-active-text, #1e1e2e);
+          background-color: @waybar_active;
+          color: @waybar_active_text;
           font-weight: bold;
       }
 
       #workspaces > button.empty {
-          color: var(--waybar-empty, #6c7086);
+          color: @waybar_empty;
       }
 
       #workspaces > button.visible {
-          color: var(--waybar-visible, #a6adc8);
+          color: @waybar_visible;
       }
 
       #workspaces > button:hover {
-          background-color: var(--waybar-hover, rgba(203, 166, 247, 0.2));
-          color: var(--waybar-hover-text, #cba6f7);
+          background-color: @waybar_hover;
+          color: @waybar_hover_text;
       }
 
       /* Separator island */
       #custom-separator {
           background-color: transparent;
-          color: var(--waybar-separator, #6c7086);
+          color: @waybar_separator;
           padding: 0 8px;
           margin: 8px 2px;
           border-radius: 25px;
@@ -276,7 +276,7 @@ in
       }
 
       group-box {
-          background-color: var(--waybar-bg-island, rgba(30, 30, 46, 0.9));
+          background-color: @waybar_bg_island;
           margin: 8px 4px;
           border-radius: 25px;
           transition: background-color 0.3s ease;
@@ -310,8 +310,8 @@ in
 
       /* Individual island modules */
       #battery {
-          background-color: var(--waybar-battery-bg, rgba(30, 30, 46, 0.9));
-          color: var(--waybar-battery-text, #a6e3a1);
+          background-color: @waybar_battery_bg;
+          color: @waybar_battery_text;
           padding: 0 12px;
           margin: 8px 4px;
           border-radius: 25px;
@@ -320,7 +320,7 @@ in
 
       #battery.charging,
       #battery.plugged {
-          color: var(--waybar-battery-charging, #06D001);
+          color: @waybar_battery_charging;
       }
 
       #battery.critical:not(.charging) {
@@ -330,8 +330,8 @@ in
       }
 
       #clock {
-          background-color: var(--waybar-clock-bg, rgba(30, 30, 46, 0.9));
-          color: var(--waybar-clock-text, #f0a0d0);
+          background-color: @waybar_clock_bg;
+          color: @waybar_clock_text;
           padding: 0 12px;
           margin: 8px 4px;
           border-radius: 25px;
@@ -340,7 +340,7 @@ in
       }
 
       #tray {
-          background-color: var(--waybar-tray-bg, rgba(30, 30, 46, 0.9));
+          background-color: @waybar_tray_bg;
           padding: 0 12px;
           margin: 8px 4px;
           border-radius: 25px;
@@ -351,7 +351,7 @@ in
       group-box#group-network,
       group-box#group-status,
       group-box#group-system {
-          background-color: var(--waybar-bg-island, rgba(30, 30, 46, 0.9));
+          background-color: @waybar_bg_island;
       }
 
       /* CPU, Memory, Temperature in system group */
@@ -393,9 +393,9 @@ in
 
       /* Tooltip styling */
       tooltip {
-          background-color: var(--waybar-tooltip-bg, #1e1e2e);
-          color: var(--waybar-tooltip-text, #cdd6f4);
-          border: 1px solid var(--waybar-tooltip-border, #45475a);
+          background-color: @waybar_tooltip_bg;
+          color: @waybar_tooltip_text;
+          border: 1px solid @waybar_tooltip_border;
           border-radius: 12px;
           padding: 10px 15px;
           font-size: 12px;
@@ -403,7 +403,7 @@ in
       }
 
       tooltip label {
-          color: var(--waybar-tooltip-text, #cdd6f4);
+          color: @waybar_tooltip_text;
       }
     '';
   };

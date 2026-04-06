@@ -57,9 +57,8 @@ Item {
     readonly property string thumbDir: homeDir + "/.cache/wallpaper_picker/thumbs"
     readonly property string srcDir: Quickshell.env("HOME") + "/Images/Wallpapers"
 
-    readonly property string swwwCommand: "swww img '%1' --transition-type %2 --transition-pos 0.5,0.5 --transition-fps 144 --transition-duration 1"
-    readonly property string mpvCommand: "pkill mpvpaper; mpvpaper -o 'loop --no-audio --hwdec=auto --profile=high-quality --video-sync=display-resample --interpolation --tscale=oversample' '*' '%1'"    
-    readonly property var transitions: ["grow", "outer", "any", "wipe", "wave", "pixel", "center"]
+    readonly property string awwwCommand: "awww img '%1'"
+    readonly property string mpvCommand: "pkill mpvpaper; mpvpaper -o 'loop --no-audio --hwdec=auto --profile=high-quality --video-sync=display-resample --interpolation --tscale=oversample' '*' '%1'"
 
     readonly property int itemWidth: 300
     readonly property int itemHeight: 420
@@ -132,8 +131,7 @@ Item {
                      const finalCmd = window.mpvCommand.arg(originalFile)
                      Quickshell.execDetached(["zsh", "-c", finalCmd + " & matugen image '" + thumbFile + "' &"])
                 } else {
-                     const randomTransition = window.transitions[Math.floor(Math.random() * window.transitions.length)]
-                     const finalCmd = window.swwwCommand.arg(originalFile).arg(randomTransition)
+                     const finalCmd = window.awwwCommand.arg(originalFile)
                      Quickshell.execDetached(["zsh", "-c", "pkill mpvpaper; " + finalCmd + " & matugen image '" + thumbFile + "' &"])
                 }
                 
