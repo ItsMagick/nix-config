@@ -20,9 +20,14 @@ in
         margin-right = 6;
         spacing = 0;
 
-        modules-left = [ "hyprland/workspaces" "custom/separator" ];
+        modules-left = [ "group/left" ];
         modules-center = [];
         modules-right = [ "tray" "group/network" "group/status" "group/system" "battery" "clock" ];
+
+        "group/left" = {
+          orientation = "horizontal";
+          modules = [ "hyprland/workspaces" "custom/separator" ];
+        };
 
         "group/network" = {
           orientation = "horizontal";
@@ -205,11 +210,12 @@ in
       /* All islands are completely rounded with semicircle ends */
 
       #workspaces {
-          background-color: @waybar_bg_island;
+          /* Left island background is owned by group-box#group-left */
+          background-color: transparent;
           color: @waybar_text;
-          padding: 0 20px;
-          margin: 8px 4px;
-          border-radius: 25px;
+          padding: 0 12px;
+          margin: 0;
+          border-radius: 0;
           transition: background-color 0.3s ease, color 0.3s ease;
       }
 
@@ -262,8 +268,8 @@ in
           background-color: transparent;
           color: @waybar_separator;
           padding: 0 8px;
-          margin: 8px 2px;
-          border-radius: 25px;
+          margin: 0;
+          border-radius: 0;
           font-weight: bold;
       }
 
@@ -306,6 +312,24 @@ in
           border-radius: 0;
           margin: 0 -2px;
           padding: 0 12px;
+      }
+
+      /* Ensure left/center groups are true capsules with rounded ends */
+      group-box#group-left,
+      group-box#group-center,
+      group-box#group-network,
+      group-box#group-status,
+      group-box#group-system {
+          background-color: @waybar_bg_island;
+          border-radius: 25px;
+      }
+
+      group-box#group-left #workspaces,
+      group-box#group-left #custom-separator,
+      group-box#group-center * {
+          background: transparent;
+          margin-top: 0;
+          margin-bottom: 0;
       }
 
       /* Individual island modules */

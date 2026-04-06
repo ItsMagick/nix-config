@@ -5,46 +5,52 @@ SCRIPT_DIR="${0:A:h}"
 QS_DIR="$SCRIPT_DIR/quickshell"
 BT_PID_FILE="$HOME/.cache/bt_scan_pid"
 BT_SCAN_LOG="$HOME/.cache/bt_scan.log"
-SRC_DIR="$HOME/Pictures/wallpapers"
+SRC_DIR="${QS_WALLPAPER_DIR:-$HOME/Pictures/wallpapers}"
 THUMB_DIR="$HOME/.cache/wallpaper_picker/thumbs"
 
 IPC_FILE="/tmp/qs_widget_state"
 NETWORK_MODE_FILE="/tmp/qs_network_mode"
-ACTION="$1"
-TARGET="$2"
-SUBTARGET="$3"
+ACTION="${1:-}"
+TARGET="${2:-}"
+SUBTARGET="${3:-}"
+
+generate_wallpaper_thumbs() {
+    mkdir -p "$THUMB_DIR"
+
+    # Remove thumbnails whose source file no longer exists.
+    find "$THUMB_DIR" -maxdepth 1 -type f | while IFS= read -r thumb; do
+        filename=$(basename "$thumb")
+        clean_name="${filename#000_}"
+        if [ ! -f "$SRC_DIR/$clean_name" ]; then
+            rm -f "$thumb"
+        fi
+    done
+
+    # Generate thumbnails for images/videos from source directory.
+    find "$SRC_DIR" -maxdepth 1 -type f \( \
+        -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' -o -iname '*.gif' -o \
+        -iname '*.mp4' -o -iname '*.mkv' -o -iname '*.mov' -o -iname '*.webm' \
+    \) | while IFS= read -r img; do
+        filename=$(basename "$img")
+        extension="${filename##*.}"
+
+        if [[ "${extension:l}" =~ ^(mp4|mkv|mov|webm)$ ]]; then
+            thumb="$THUMB_DIR/000_$filename"
+            [ -f "$THUMB_DIR/$filename" ] && rm -f "$THUMB_DIR/$filename"
+            if [ ! -f "$thumb" ]; then
+                ffmpeg -y -ss 00:00:05 -i "$img" -vframes 1 -f image2 -q:v 2 "$thumb" > /dev/null 2>&1 || true
+            fi
+        else
+            thumb="$THUMB_DIR/$filename"
+            if [ ! -f "$thumb" ]; then
+                magick "$img" -resize x420 -quality 70 "$thumb" || true
+            fi
+        fi
+    done
+}
 
 handle_wallpaper_prep() {
-    mkdir -p "$THUMB_DIR"
-    (
-        for thumb in "$THUMB_DIR"/*; do
-            [ -e "$thumb" ] || continue
-            filename=$(basename "$thumb")
-            clean_name="${filename#000_}"
-            if [ ! -f "$SRC_DIR/$clean_name" ]; then
-                rm -f "$thumb"
-            fi
-        done
-
-        for img in "$SRC_DIR"/*.{jpg,jpeg,png,webp,gif,mp4,mkv,mov,webm}; do
-            [ -e "$img" ] || continue
-            filename=$(basename "$img")
-            extension="${filename##*.}"
-
-            if [[ "${extension:l}" =~ ^(mp4|mkv|mov|webm)$ ]]; then
-                thumb="$THUMB_DIR/000_$filename"
-                [ -f "$THUMB_DIR/$filename" ] && rm -f "$THUMB_DIR/$filename"
-                if [ ! -f "$thumb" ]; then
-                     ffmpeg -y -ss 00:00:05 -i "$img" -vframes 1 -f image2 -q:v 2 "$thumb" > /dev/null 2>&1
-                fi
-            else
-                thumb="$THUMB_DIR/$filename"
-                if [ ! -f "$thumb" ]; then
-                    magick "$img" -resize x420 -quality 70 "$thumb"
-                fi
-            fi
-        done
-    ) &
+    (generate_wallpaper_thumbs) &
 
     TARGET_THUMB=""
     CURRENT_SRC=""
@@ -70,6 +76,11 @@ handle_wallpaper_prep() {
     
     export WALLPAPER_THUMB="$TARGET_THUMB"
 }
+
+if [[ "$ACTION" == "generate-thumbs" ]]; then
+    generate_wallpaper_thumbs
+    exit 0
+fi
 
 handle_network_prep() {
     echo "" > "$BT_SCAN_LOG"

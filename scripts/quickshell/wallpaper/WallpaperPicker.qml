@@ -55,7 +55,7 @@ Item {
 
     readonly property string homeDir: "file://" + Quickshell.env("HOME")
     readonly property string thumbDir: homeDir + "/.cache/wallpaper_picker/thumbs"
-    readonly property string srcDir: Quickshell.env("HOME") + "/Images/Wallpapers"
+    readonly property string srcDir: Quickshell.env("QS_WALLPAPER_DIR") || (Quickshell.env("HOME") + "/Pictures/wallpapers")
 
     readonly property string awwwCommand: "awww img '%1'"
     readonly property string mpvCommand: "pkill mpvpaper; mpvpaper -o 'loop --no-audio --hwdec=auto --profile=high-quality --video-sync=display-resample --interpolation --tscale=oversample' '*' '%1'"

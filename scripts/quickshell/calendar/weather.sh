@@ -10,10 +10,9 @@ next_day_cache_file="${cache_dir}/next_day_precache.json"
 # API Settings
 # Load environment variables
 if [ -f "$(dirname "$0")/.env" ]; then
-    export $(grep -v '^#' "$(dirname "$0")/.env" | xargs)
-else
-    echo ".env file not found!"
-    exit 1
+    set -a
+    . "$(dirname "$0")/.env"
+    set +a
 fi
 
 # API Settings from .env
@@ -51,6 +50,11 @@ get_hex() {
 }
 
 get_data() {
+    # No credentials configured yet: keep existing cache and avoid noisy output.
+    if [ -z "$KEY" ] || [ -z "$ID" ] || [ -z "$UNIT" ]; then
+        return
+    fi
+
     forecast_url="http://api.openweathermap.org/data/2.5/forecast?APPID=${KEY}&id=${ID}&units=${UNIT}"
     raw_api=$(curl -sf "$forecast_url")
 
@@ -232,19 +236,34 @@ elif [[ "$1" == "--nav" ]]; then
             echo "$new" > "$view_file"
         fi
     fi
-elif [[ "$1" == "--icon" ]]; then cat "$json_file" | jq -r '.forecast[0].icon'
-elif [[ "$1" == "--temp" ]]; then t=$(cat "$json_file" | jq -r '.forecast[0].max'); echo "${t}°C"
-elif [[ "$1" == "--hex" ]]; then cat "$json_file" | jq -r '.forecast[0].hex'
+elif [[ "$1" == "--icon" ]]; then
+    if [ -f "$json_file" ]; then cat "$json_file" | jq -r '.forecast[0].icon'; else echo ""; fi
+elif [[ "$1" == "--temp" ]]; then
+    if [ -f "$json_file" ]; then t=$(cat "$json_file" | jq -r '.forecast[0].max'); echo "${t}°C"; else echo "--°C"; fi
+elif [[ "$1" == "--hex" ]]; then
+    if [ -f "$json_file" ]; then cat "$json_file" | jq -r '.forecast[0].hex'; else echo "#cdd6f4"; fi
 
 # --- NEW HOURLY MODES FOR TOPBAR ---
 elif [[ "$1" == "--current-icon" ]]; then 
     curr_time=$(date +%H:%M)
-    cat "$json_file" | jq -r --arg ct "$curr_time" '(.forecast[0].hourly | map(select(.time <= $ct)) | last) // .forecast[0].hourly[0] | .icon'
-elif [[ "$1" == "--current-temp" ]]; then 
+    if [ -f "$json_file" ]; then
+        cat "$json_file" | jq -r --arg ct "$curr_time" '(.forecast[0].hourly | map(select(.time <= $ct)) | last) // .forecast[0].hourly[0] | .icon'
+    else
+        echo ""
+    fi
+elif [[ "$1" == "--current-temp" ]]; then
     curr_time=$(date +%H:%M)
-    t=$(cat "$json_file" | jq -r --arg ct "$curr_time" '(.forecast[0].hourly | map(select(.time <= $ct)) | last) // .forecast[0].hourly[0] | .temp')
-    echo "${t}°C"
-elif [[ "$1" == "--current-hex" ]]; then 
+    if [ -f "$json_file" ]; then
+        t=$(cat "$json_file" | jq -r --arg ct "$curr_time" '(.forecast[0].hourly | map(select(.time <= $ct)) | last) // .forecast[0].hourly[0] | .temp')
+        echo "${t}°C"
+    else
+        echo "--°C"
+    fi
+elif [[ "$1" == "--current-hex" ]]; then
     curr_time=$(date +%H:%M)
-    cat "$json_file" | jq -r --arg ct "$curr_time" '(.forecast[0].hourly | map(select(.time <= $ct)) | last) // .forecast[0].hourly[0] | .hex'
+    if [ -f "$json_file" ]; then
+        cat "$json_file" | jq -r --arg ct "$curr_time" '(.forecast[0].hourly | map(select(.time <= $ct)) | last) // .forecast[0].hourly[0] | .hex'
+    else
+        echo "#cdd6f4"
+    fi
 fi
