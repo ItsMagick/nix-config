@@ -237,9 +237,9 @@ PanelWindow {
 
             // Search 
             Rectangle {
-                property b  ool isHovered: searchMouse.containsMouse
+                property bool isHovered: searchMouse.containsMouse
                 color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.95) : Qt.rgba(mocha.base.r, mocha.base.g, mocha.base.b, 0.75)
-                radius: 17; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
+                radius: 24; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
                 Layout.preferredHeight: parent.moduleHeight; Layout.preferredWidth: 40
                 
                 scale: isHovered ? 1.05 : 1.0
@@ -265,7 +265,7 @@ PanelWindow {
             Rectangle {
                 property bool isHovered: notifMouse.containsMouse
                 color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.95) : Qt.rgba(mocha.base.r, mocha.base.g, mocha.base.b, 0.75)
-                radius: 17; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
+                radius: 24; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
                 Layout.preferredHeight: parent.moduleHeight; Layout.preferredWidth: 40
                 
                 scale: isHovered ? 1.05 : 1.0
@@ -293,7 +293,7 @@ PanelWindow {
             // Workspaces 
             Rectangle {
                 color: Qt.rgba(mocha.base.r, mocha.base.g, mocha.base.b, 0.75)
-                radius: 17; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, 0.05)
+                radius: 24; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, 0.05)
                 Layout.preferredHeight: parent.moduleHeight
                 clip: true
                 
@@ -518,7 +518,7 @@ PanelWindow {
             anchors.centerIn: parent
             property bool isHovered: centerMouse.containsMouse
             color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.95) : Qt.rgba(mocha.base.r, mocha.base.g, mocha.base.b, 0.75)
-            radius: 17; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
+            radius: 24; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
             height: 40
             
             width: centerLayout.implicitWidth + 36

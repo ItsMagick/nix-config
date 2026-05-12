@@ -92,7 +92,7 @@ handle_network_prep() {
 # -----------------------------------------------------------------------------
 # ENSURE MASTER WINDOW & TOP BAR ARE ALIVE (ZOMBIE WATCHDOG)
 # -----------------------------------------------------------------------------
- QS_PID=$(pgrep -f "quickshell.*Main\.qml" || true)
+QS_PID=$(pgrep -f "quickshell.*Main\.qml" || true)
 WIN_EXISTS=$(hyprctl clients -j | grep "qs-master" || true)
 
 BAR_PID=$(pgrep -f "quickshell.*TopBar\.qml" || true)

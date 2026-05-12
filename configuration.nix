@@ -138,7 +138,7 @@
    users.users.charon = {
     isNormalUser = true;
     description = "Charon";
-    extraGroups = [ "networkmanager" "wheel" "video" "lp" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "video" "lp" "docker" "bluetooth"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -174,15 +174,18 @@
     dates = "daily";
     options = "--delete-older-than 14d";
   };
-   hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Enable = "Source,Sink,Media,Socket";
-        Experimental = true; 
-        AutoConnect = true; 
-        FastConnectable = true;
+  hardware = {
+    enableAllFirmware = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+      settings = {
+        General = {
+          Enable = "Source,Sink,Media,Socket";
+          Experimental = true;
+          AutoConnect = true;
+          FastConnectable = true;
+        };
       };
     };
   };
