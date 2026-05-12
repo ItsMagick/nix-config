@@ -1,8 +1,4 @@
 { pkgs, config, ... }:
-
-let
-  nixosIcon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-in
 {
   programs.waybar = {
     enable = true;
@@ -128,29 +124,6 @@ in
               today = "<span color='#ff6699'><b><u>{}</u></b></span>";
             };
           };
-        };
-
-        # CPU monitoring
-        "cpu" = {
-          format = "󰻠 {usage}%";
-          interval = 3;
-          tooltip = true;
-        };
-
-        # Memory monitoring
-        "memory" = {
-          format = "󰍛 {percentage}%";
-          interval = 5;
-          tooltip = true;
-          tooltip-format = "{used:0.1f}G / {total:0.1f}G";
-        };
-
-        # Temperature monitoring
-        "temperature" = {
-          thermal-zone = 0;
-          format = " {temperatureC}°C";
-          interval = 5;
-          tooltip = true;
         };
 
         "pulseaudio" = {

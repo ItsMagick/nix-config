@@ -8,13 +8,10 @@
     brightnessctl
     acpi
     iw
-
     bluez
     libnotify
     networkmanager
     lm_sensors
-
-    socat
     bc
     pulseaudio
     ladspaPlugins
@@ -22,5 +19,5 @@
     imagemagick
   ];
 
-  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink (toString ../..);
+  xdg.configFile."awww".source = config.lib.file.mkOutOfStoreSymlink (toString ../..);
 }

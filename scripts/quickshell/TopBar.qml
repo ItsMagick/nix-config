@@ -16,7 +16,7 @@ PanelWindow {
     }
     
     // THICKER BAR, MINIMAL MARGINS
-    height: 48
+    height: 40
     margins { top: 8; bottom: 0; left: 4; right: 4 }
     
     // exclusiveZone = height (48) + top margin (4)
@@ -60,7 +60,7 @@ PanelWindow {
     property bool isMuted: false
     property string batPercent: "100%"
     property string batIcon: "󰁹"
-    property string kbLayout: "us"
+    property string kbLayout: "ge"
     
     property var workspacesData: []
     property var musicData: { "status": "Stopped", "title": "", "artUrl": "", "timeStr": "" }
@@ -233,14 +233,14 @@ PanelWindow {
 
             Behavior on opacity { NumberAnimation { duration: 600; easing.type: Easing.OutCubic } }
 
-            property int moduleHeight: 48
+            property int moduleHeight: 40
 
             // Search 
             Rectangle {
-                property bool isHovered: searchMouse.containsMouse
+                property b  ool isHovered: searchMouse.containsMouse
                 color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.95) : Qt.rgba(mocha.base.r, mocha.base.g, mocha.base.b, 0.75)
-                radius: 14; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
-                Layout.preferredHeight: parent.moduleHeight; Layout.preferredWidth: 48
+                radius: 17; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
+                Layout.preferredHeight: parent.moduleHeight; Layout.preferredWidth: 40
                 
                 scale: isHovered ? 1.05 : 1.0
                 Behavior on scale { NumberAnimation { duration: 250; easing.type: Easing.OutExpo } }
@@ -265,8 +265,8 @@ PanelWindow {
             Rectangle {
                 property bool isHovered: notifMouse.containsMouse
                 color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.95) : Qt.rgba(mocha.base.r, mocha.base.g, mocha.base.b, 0.75)
-                radius: 14; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
-                Layout.preferredHeight: parent.moduleHeight; Layout.preferredWidth: 48
+                radius: 17; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
+                Layout.preferredHeight: parent.moduleHeight; Layout.preferredWidth: 40
                 
                 scale: isHovered ? 1.05 : 1.0
                 Behavior on scale { NumberAnimation { duration: 250; easing.type: Easing.OutExpo } }
@@ -293,7 +293,7 @@ PanelWindow {
             // Workspaces 
             Rectangle {
                 color: Qt.rgba(mocha.base.r, mocha.base.g, mocha.base.b, 0.75)
-                radius: 14; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, 0.05)
+                radius: 17; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, 0.05)
                 Layout.preferredHeight: parent.moduleHeight
                 clip: true
                 
@@ -319,7 +319,7 @@ PanelWindow {
                             Layout.preferredWidth: targetWidth
                             Behavior on targetWidth { NumberAnimation { duration: 250; easing.type: Easing.OutBack } }
                             
-                            Layout.preferredHeight: 32; radius: 10
+                            Layout.preferredHeight: 24; radius: 17
                             
                             // IMPROVED WORKSPACE STATES - Clearer hierarchy for occupied vs empty
                             color: modelData.state === "active" 
@@ -390,7 +390,7 @@ PanelWindow {
             Rectangle {
                 id: mediaBox
                 color: Qt.rgba(mocha.base.r, mocha.base.g, mocha.base.b, 0.75)
-                radius: 14; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, 0.05)
+                radius: 24; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, 0.05)
                 Layout.preferredHeight: parent.moduleHeight
                 clip: true 
                 
@@ -518,8 +518,8 @@ PanelWindow {
             anchors.centerIn: parent
             property bool isHovered: centerMouse.containsMouse
             color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.95) : Qt.rgba(mocha.base.r, mocha.base.g, mocha.base.b, 0.75)
-            radius: 14; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
-            height: 48
+            radius: 17; border.width: 1; border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, isHovered ? 0.15 : 0.05)
+            height: 40
             
             width: centerLayout.implicitWidth + 36
             Behavior on width { NumberAnimation { duration: 400; easing.type: Easing.OutExpo } }
@@ -560,22 +560,22 @@ PanelWindow {
                 // Clockbox
                 ColumnLayout {
                     spacing: -2
-                    Text { text: barWindow.timeStr; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 16; font.weight: Font.Black; color: mocha.blue }
-                    Text { text: barWindow.dateStr; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 11; font.weight: Font.Bold; color: mocha.subtext0 }
+                    Text { text: barWindow.timeStr; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 12; font.weight: Font.Black; color: mocha.blue }
+                    Text { text: barWindow.dateStr; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 10; font.weight: Font.Bold; color: mocha.subtext0 }
                 }
 
                 // Weatherbox
-                RowLayout {
-                    spacing: 8
-                    Text { 
-                        text: barWindow.weatherIcon; 
-                        font.family: "FiraCode Nerd Font Mono"; 
-                        font.pixelSize: 24; 
-                        // Dimmed slightly by tinting the raw hex with the primary mauve accent
-                        color: Qt.tint(barWindow.weatherHex, Qt.rgba(mocha.mauve.r, mocha.mauve.g, mocha.mauve.b, 0.4)) 
-                    }
-                    Text { text: barWindow.weatherTemp; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 17; font.weight: Font.Black; color: mocha.peach }
-                }
+                // RowLayout {
+                //     spacing: 8
+                //     Text {
+                //         text: barWindow.weatherIcon;
+                //         font.family: "FiraCode Nerd Font Mono";
+                //         font.pixelSize: 24;
+                //         // Dimmed slightly by tinting the raw hex with the primary mauve accent
+                //         color: Qt.tint(barWindow.weatherHex, Qt.rgba(mocha.mauve.r, mocha.mauve.g, mocha.mauve.b, 0.4))
+                //     }
+                //     Text { text: barWindow.weatherTemp; font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 17; font.weight: Font.Black; color: mocha.peach }
+                // }
             }
         }
 
@@ -604,7 +604,7 @@ PanelWindow {
 
             // Dedicated System Tray Pill
             Rectangle {
-                height: 48
+                height: 40
                 radius: 24
                 border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, 0.08)
                 border.width: 1
@@ -690,7 +690,7 @@ PanelWindow {
 
             // System Elements Pill
             Rectangle {
-                height: 48
+                height: 40
                 radius: 24
                 border.color: Qt.rgba(mocha.text.r, mocha.text.g, mocha.text.b, 0.08)
                 border.width: 1
@@ -705,7 +705,7 @@ PanelWindow {
                     anchors.centerIn: parent
                     spacing: 8 
 
-                    property int pillHeight: 34
+                    property int pillHeight: 24
 
                     // KB
                     Rectangle {
@@ -732,7 +732,7 @@ PanelWindow {
                     Rectangle {
                         id: wifiPill
                         property bool isHovered: wifiMouse.containsMouse
-                        radius: 17; Layout.preferredHeight: sysLayout.pillHeight; 
+                        radius: 17; Layout.preferredHeight: sysLayout.pillHeight;
                         color: isHovered ? Qt.rgba(mocha.surface1.r, mocha.surface1.g, mocha.surface1.b, 0.6) : Qt.rgba(mocha.surface0.r, mocha.surface0.g, mocha.surface0.b, 0.4)
                         
                         // Vibrant, guaranteed gradient contrast

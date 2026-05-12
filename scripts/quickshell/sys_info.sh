@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-
+set -ex
 ## WIFI
 get_wifi_status() {
     nmcli -t -f WIFI g 2>/dev/null || echo "disabled"
@@ -25,10 +25,10 @@ get_kb_layout() {
 }
 
 get_wifi_icon() {
-    local status=$(get_wifi_status)
+    local wifi_status=$(get_wifi_status)
     local ssid=$(get_wifi_ssid)
     
-    if [ "$status" = "enabled" ]; then
+    if [ "$wifi_status" = "enabled" ]; then
         if [ -n "$ssid" ]; then
             # Get signal strength for better icon
             local signal=$(get_wifi_strength)
@@ -74,9 +74,9 @@ get_bt_status() {
 }
 
 get_bt_icon() {
-    local status=$(get_bt_status)
+    local bt_status=$(get_bt_status)
     
-    if [ "$status" = "on" ]; then
+    if [ "$bt_status" = "on" ]; then
         # Check if any device is connected
         if bluetoothctl devices Connected 2>/dev/null | grep -q "Device"; then
             echo "󰂱"  # Connected
@@ -103,9 +103,9 @@ get_bt_connected_device() {
 }
 
 toggle_bt() {
-    local status=$(get_bt_status)
+    local bt_status=$(get_bt_status)
     
-    if [ "$status" = "on" ]; then
+    if [ "$bt_status" = "on" ]; then
         bluetoothctl power off 2>/dev/null
         notify-send -u low -i bluetooth-disabled "Bluetooth" "Disabled"
     else
@@ -225,10 +225,10 @@ get_battery_status() {
 
 get_battery_icon() {
     local percent=$(get_battery_percent)
-    local status=$(get_battery_status)
+    local bat_status=$(get_battery_status)
     
     # Show charging icons when charging or full
-    if [ "$status" = "Charging" ] || [ "$status" = "Full" ]; then
+    if [ "$bat_status" = "Charging" ] || [ "$bat_status" = "Full" ]; then
         if [ "$percent" -ge 90 ]; then
             echo "󰂅"  # Charging full
         elif [ "$percent" -ge 80 ]; then
