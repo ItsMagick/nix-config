@@ -49,6 +49,7 @@
     quickshell
     tree
     matugen
+    libreoffice-qt
   ];
 
     gtk = {

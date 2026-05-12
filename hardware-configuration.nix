@@ -31,17 +31,5 @@
   hardware = {
     cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     graphics.enable = true;
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-      settings = {
-        General = {
-          Enable = "Source,Sink,Media,Socket";
-          Experimental = true; 
-	  AutoConnect = true; 
-          FastConnectable = true;
-        };
-      };
-    };
   };
 }
