@@ -80,11 +80,13 @@
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, V, togglefloating,"
-	      "$mainMod, UP, fullscreen"
-	      "$mainMod SHIFT, LEFT, movewindow, l"
+	    "$mainMod, UP, fullscreen"
+	    "$mainMod SHIFT, LEFT, movewindow, l"
         "$mainMod SHIFT, RIGHT, movewindow, r"
         "$mainMod SHIFT, UP, movewindow, u"
         "$mainMod SHIFT, DOWN, movewindow, d"
+        "$mainMod, Page_Up, movetoworkspace, +1"
+        "$mainMod, Page_Down, movetoworkspace, -1"
 
         "$mainMod, R, exec, rofi -show drun"
         "$mainMod, W, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle wallpaper"
@@ -114,7 +116,7 @@
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
         "ALT, TAB, exec, rofi -show window"
-	      "$mainMod, L, exec, lock-screen"
+	    "$mainMod, L, exec, lock-screen"
       ];
 
 

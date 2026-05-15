@@ -248,7 +248,7 @@ PanelWindow {
                 
                 Text {
                     anchors.centerIn: parent
-                    text: "󰍉"
+                    text: ""
                     font.family: "FiraCode Nerd Font Mono"; font.pixelSize: 24
                     color: parent.isHovered ? mocha.blue : mocha.text
                     Behavior on color { ColorAnimation { duration: 200 } }
