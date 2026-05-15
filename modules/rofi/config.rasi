@@ -1,9 +1,9 @@
 configuration {
     modi:                       "drun,filebrowser,window";
     show-icons:                 true;
-    display-drun:               "" Launcher;
-    display-window:             "" Active;
-    display-filebrowser:        "" Files;
+    display-drun:               " Launcher";
+    display-window:             " Active";
+    display-filebrowser:        " Files";
     drun-display-format:        "{name}";
     window-format:              "{w} · {c} · {t}";
 
