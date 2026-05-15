@@ -80,13 +80,13 @@
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, V, togglefloating,"
-	    "$mainMod, UP, fullscreen"
-	    "$mainMod SHIFT, LEFT, movewindow, l"
+	      "$mainMod, UP, fullscreen"
+	      "$mainMod SHIFT, LEFT, movewindow, l"
         "$mainMod SHIFT, RIGHT, movewindow, r"
         "$mainMod SHIFT, UP, movewindow, u"
         "$mainMod SHIFT, DOWN, movewindow, d"
 
-        "$mainMod, R, exec, ~/.config/hypr/scripts/rofi_show.sh drun"
+        "$mainMod, R, exec, rofi -show drun"
         "$mainMod, W, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle wallpaper"
         "$mainMod, N, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle network wifi"
         "$mainMod SHIFT, N, exec, zsh ~/.config/hypr/scripts/qs_manager.sh toggle network bt"
@@ -113,8 +113,8 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
-        "ALT, TAB, exec, zsh ~/.config/hypr/scripts/rofi_show.sh window"
-	    "$mainMod, L, exec, lock-screen"
+        "ALT, TAB, exec, rofi -show window"
+	      "$mainMod, L, exec, lock-screen"
       ];
 
 
@@ -136,7 +136,7 @@
       ];
       exec-once = [
       "zsh ~/.config/hypr/scripts/session_start.sh"
-	    "nm-applet --indicator"
+      "zsh jetbrains-toolbox"
       ];
       misc =  {
         disable_hyprland_logo = true;

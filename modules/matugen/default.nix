@@ -40,19 +40,5 @@ EOF
 EOF
     fi
 
-    if [ ! -f "$cfg_home/rofi/matugen.rasi" ]; then
-      cat > "$cfg_home/rofi/matugen.rasi" <<'EOF'
-* {
-  bg: rgba(30, 30, 46, 0.92);
-  bg-alt: rgba(49, 50, 68, 0.86);
-  fg: #cdd6f4;
-  fg-dim: #a6adc8;
-  accent: #cba6f7;
-  urgent: #f38ba8;
-  border: #45475a;
-  separator: #6c7086;
-}
-EOF
-    fi
   '';
 }
