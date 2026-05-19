@@ -9,3 +9,4 @@ result-*
 
 AGENTS.md
 waybar.nix.bak
+.luarc.json
