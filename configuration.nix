@@ -6,7 +6,7 @@
       ./hardware-configuration.nix
     ];
 
-  system.stateVersion = "25.11"; 
+  system.stateVersion = "25.11";
 
   boot = {
     loader = {
@@ -120,13 +120,6 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        xorg.libX11
-        xorg.libXext
-        xorg.libXrender
-        xorg.libXtst
-        xorg.libXi
-        glib
-        freetype
         SDL
         SDL2
         SDL2_image
@@ -156,7 +149,7 @@
         fuse
         fuse3
         gdk-pixbuf
-        glew110
+        glew_1_10
         glib
         gmp
         gst_all_1.gst-plugins-base
@@ -261,7 +254,6 @@
     wget
     git
     firefox
-    zathura
     rofi
     hyprpaper
     cryptsetup

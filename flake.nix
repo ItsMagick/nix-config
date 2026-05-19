@@ -16,9 +16,11 @@
 
     catppuccin.url = "github:catppuccin/nix";
 
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+
  
   };
-  outputs = { nixpkgs, home-manager, zen-browser, catppuccin, matugen, ... } @ inputs: {
+  outputs = { nixpkgs, home-manager, zen-browser, catppuccin, matugen, spicetify-nix, ... } @ inputs: {
     nixosConfigurations.TPS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
@@ -42,6 +44,7 @@
 	          imports = [
 	            ./home.nix
 		        catppuccin.homeModules.catppuccin
+		        spicetify-nix.homeManagerModules.default
 	          ];
             };
 	      };

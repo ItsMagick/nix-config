@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./spicetify.nix
     ./hyprland.nix
     ./kitty.nix
     ./zsh.nix

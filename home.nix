@@ -25,8 +25,6 @@
     maestral
     maestral-gui
     vesktop
-    spotify
-    spicetify-cli
     zotero
     keepassxc
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -50,6 +48,7 @@
     tree
     matugen
     libreoffice-qt
+    zathura
   ];
 
     gtk = {
@@ -57,13 +56,10 @@
       iconTheme = {
         name = "Papirus-Dark";
       };
-      # Global `theme` block has been entirely removed to protect GTK4 apps.
-      # Target GTK3 specifically
       gtk3.extraConfig = {
         gtk-application-prefer-dark-theme = 1;
         gtk-theme-name = "adw-gtk3-dark";
       };
-      # Keep GTK4 native but ensure it requests the dark preference
       gtk4.extraConfig = {
         gtk-application-prefer-dark-theme = 1;
       };

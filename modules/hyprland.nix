@@ -4,6 +4,7 @@
     enable = true;
     xwayland.enable = true;
     settings = {
+
       monitor = [
         # monitor = name, resolution@hz, position, scale
         "eDP-1, 1920x1080@59.98, 0x0, 1"
