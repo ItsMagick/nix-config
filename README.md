@@ -1,26 +1,3 @@
-Scanning the repo to generate a comprehensive, structured README with detailed explanations and hyperrefs.
-
-Let me start by listing the directory structure:
-
-Now let me read the core files systematically:
-
-Now let me explore the modules structure:
-
-Now let me read key module files:
-
-Now let me read key scripts:
-
-Let me list the quickshell directory:
-
-Now let me read the Main.qml and key module files:
-
-Let me read a few more key files:
-
-Perfect. Now I have enough context. Let me create a comprehensive README with hyperref structure:
-
-Now I'll generate a comprehensive README:
-
-```markdown
 # NixOS Hyprland Configuration
 
 A declarative, reproducible NixOS system configuration featuring **Hyprland** (Wayland compositor), **Quickshell** (QML-based widget framework), and **Matugen** (dynamic color theming). Optimized for laptop usage with power management, hibernation, and efficient resource utilization.
