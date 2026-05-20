@@ -22,5 +22,3 @@ hl.exec_once("zsh jetbrains-toolbox")
 require("displays")
 require("theme")
 require("keybinds")
-
-pcall(hl.load_config, os.getenv("HOME") .. "/.config/hypr/matugen-colors.conf")
