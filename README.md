@@ -767,8 +767,7 @@ update  # Alias for: sudo nixos-rebuild switch --flake ~/Documents/nix-config/#T
 ---
 
 **Last updated:** 2026-05-20 | **Maintainer:** Charon
-```
 
 ---
-Special thanks for the inspiration by [ilyamiro](https://github.com/ilyamiro).
+Special thanks for the inspiration by [`ilyamiro`](https://github.com/ilyamiro).
 I essentially cloned the quickshell stuff and tailored it mo my needs. Looking awesome! 
