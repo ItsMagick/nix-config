@@ -7,9 +7,9 @@ reload_apps = false
 input_path = "~/.config/hypr/scripts/quickshell/colors.json.template"
 output_path = "/tmp/qs_colors.json"
 
-[templates.firefox]
-input_path = "~/.config/matugen/templates/firefox.css"
-output_path = "~/.config/firefox/matugen.css"
+[templates.zen]
+input_path = "~/.config/matugen/templates/zen.css"
+output_path = "~/.config/zen/matugen.css"
 
 [templates.waybar]
 input_path = "~/.config/matugen/templates/waybar.css"

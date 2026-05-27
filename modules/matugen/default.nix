@@ -6,7 +6,7 @@
   home.activation.ensureMatugenRuntimeFiles = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     cfg_home="''${XDG_CONFIG_HOME:-$HOME/.config}"
 
-    mkdir -p "$cfg_home/hypr" "$cfg_home/waybar" "$cfg_home/rofi"
+    mkdir -p "$cfg_home/hypr" "$cfg_home/waybar" "$cfg_home/rofi" "$cfg_home/zen"
 
     if [ ! -f "$cfg_home/hypr/matugen-colors.conf" ]; then
       cat > "$cfg_home/hypr/matugen-colors.conf" <<'EOF'

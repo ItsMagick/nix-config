@@ -727,8 +727,6 @@ User picks wallpaper
 
 ---
 
-## Quick Start
-
 ### Prerequisites
 - NixOS 25.11 or later
 - Git, Flakes enabled (`nix.settings.experimental-features = ["nix-command" "flakes"]`)

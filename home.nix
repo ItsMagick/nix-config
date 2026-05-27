@@ -49,6 +49,9 @@
     matugen
     libreoffice-qt
     zathura
+    openvpn
+    openfortivpn
+    
   ];
 
     gtk = {
