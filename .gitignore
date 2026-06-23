@@ -8,5 +8,4 @@ result-*
 *.lock
 
 AGENTS.md
-waybar.nix.bak
 .luarc.json
