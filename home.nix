@@ -51,6 +51,7 @@
     zathura
     openvpn
     openfortivpn
+    devenv
     
   ];
 

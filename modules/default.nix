@@ -15,5 +15,6 @@
     ./eww/default.nix
     ./matugen/default.nix
     ./quickshell-symlinks.nix
+    ./direnv.nix
   ];
 }
