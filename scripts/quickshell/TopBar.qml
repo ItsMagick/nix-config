@@ -188,7 +188,7 @@ PanelWindow {
         onTriggered: {
             let d = new Date();
             barWindow.timeStr = Qt.formatDateTime(d, "hh:mm:ss");
-            barWindow.fullDateStr = Qt.formatDateTime(d, "dddd, MMMM dd");
+            barWindow.fullDateStr = Qt.formatDateTime(d, "ddd, MMMM dd");
             if (barWindow.typeInIndex >= barWindow.fullDateStr.length) {
                 barWindow.typeInIndex = barWindow.fullDateStr.length;
             }
