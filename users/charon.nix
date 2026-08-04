@@ -1,6 +1,10 @@
-{config, pkgs, inputs, ...}:
-
+{ inputs, pkgs, ... }:
 {
+  imports = [
+    ../home
+  ];
+# TODO: decouple home manager mods and nix mods, think of a good structure to where to put the scripts
+
   home.username = "charon";
   home.homeDirectory = "/home/charon";
   home.stateVersion = "25.11";
@@ -17,7 +21,7 @@
     size = 24;
   };
 
-  services.easyeffects.enable = true;
+  programs.kitty.enable = true;
 
   home.packages = with pkgs; [
     glib
@@ -52,38 +56,36 @@
     openvpn
     openfortivpn
     devenv
-    
-  ];
+    ];
 
-    gtk = {
-      enable = true;
-      iconTheme = {
-        name = "Papirus-Dark";
-      };
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-        gtk-theme-name = "adw-gtk3-dark";
-      };
-      gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
+  programs.home-manager.enable = true;
+
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Papirus-Dark";
     };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+      gtk-theme-name = "adw-gtk3-dark";
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+  };
 
-    qt = {
-        enable = true;
-        platformTheme.name = "qt6ct";
-        style.name = "kvantum";
-      };
-      xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gtk
-        ];
-        config.common.default = "*";
-      };
+  qt = {
+    enable = true;
+    platformTheme.name = "qt6ct";
+    style.name = "kvantum";
+  };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = "*";
+  };
+  services.easyeffects.enable = true;
 
-  imports = [
-    ./modules
-    ./scripts
-  ];
 }
