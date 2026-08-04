@@ -1,5 +1,5 @@
 {
-  description = "Hyprland on Nix";
+  description = "NixOS with clean home-home manager and multi user/host setup";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager = {
@@ -12,44 +12,50 @@
     };
     matugen = {
       url = "github:/InioX/Matugen";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-
- 
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = { nixpkgs, home-manager, zen-browser, catppuccin, matugen, spicetify-nix, ... } @ inputs: {
-    nixosConfigurations.TPS = nixpkgs.lib.nixosSystem {
+
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
+    let
       system = "x86_64-linux";
-      specialArgs = {
-        inherit inputs;
+      pkgs = nixpkgs.legacyPackages.${system};
+      mkHost = import ./lib/mkHost.nix { inherit inputs nixpkgs home-manager system; };
+    in {
+      nixosConfigurations = {
+        TPS = mkHost {
+          hostname = "TPS";
+          extraModules = [
+            ./hosts/laptop/power-management.nix
+          ];
+          users = {
+            charon = ./users/charon.nix;
+          };
+        };
+        desktop = mkHost {
+          hostname = "desktop";
+          extraModules = [];
+          users = {
+            charon = ./users/charon.nix;
+          };
+        };
       };
-      modules = [
-        ./configuration.nix
-        catppuccin.nixosModules.catppuccin
-	    home-manager.nixosModules.home-manager
-	    matugen.nixosModules.default
-	    {
-	      home-manager = {
-	        useGlobalPkgs = true;
-	        useUserPackages = true;
-            backupFileExtension = "backup";
-
-	        extraSpecialArgs = {
-	          inherit inputs;
-	        };
-	        users.charon = {
-	          imports = [
-	            ./home.nix
-		        catppuccin.homeModules.catppuccin
-		        spicetify-nix.homeManagerModules.default
-	          ];
-            };
-	      };
-	    }
-      ];
+      home.Configurations = {
+        "charon@TPS" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./users/charon.nix ];
+        };
+      };
     };
-  };
 }
