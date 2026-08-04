@@ -9,3 +9,4 @@ result-*
 
 AGENTS.md
 .luarc.json
+!**/.gitkeep/*
