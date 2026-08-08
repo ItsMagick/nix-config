@@ -4,6 +4,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ./power-management.nix
     ];
 
   system.stateVersion = "25.11";

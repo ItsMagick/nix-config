@@ -10,7 +10,6 @@
     ./rofi.nix
     ./swayidle.nix
     ./network-manager.nix
-#    ./catppuccin.nix
     ./nvim.nix
     ./eww/default.nix
     ./matugen/default.nix
