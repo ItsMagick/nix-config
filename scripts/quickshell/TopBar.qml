@@ -533,7 +533,6 @@ PanelWindow {
             }
 
             Timer {
-                anchors.centerIn: parent
                 running: barWindow.isStartupReady
                 interval: 10
                 onTriggered: centerBox.showLayout = true
