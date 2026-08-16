@@ -13,6 +13,10 @@
     matugen = {
       url = "github:/InioX/Matugen";
     };
+    clipvault-src = {
+      url = "github:rolv-apneseth/clipvault";
+      flake = false;
+    };
 
     catppuccin.url = "github:catppuccin/nix";
 
@@ -20,13 +24,22 @@
 
  
   };
-  outputs = { nixpkgs, home-manager, zen-browser, catppuccin, matugen, spicetify-nix, ... } @ inputs: {
+  outputs = { nixpkgs, home-manager, zen-browser, catppuccin, matugen, spicetify-nix, clipvault-src, ... } @ inputs: {
     nixosConfigurations.TPS = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = {
         inherit inputs;
       };
       modules = [
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [
+            (final: prev: {
+              clipvault = final.callPackage ./custom/clipvault.nix {
+                inherit clipvault-src;
+              };
+            })
+          ];
+        })
         ./configuration.nix
         catppuccin.nixosModules.catppuccin
 	    home-manager.nixosModules.home-manager

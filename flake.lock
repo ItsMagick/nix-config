@@ -18,6 +18,22 @@
         "type": "github"
       }
     },
+    "clipvault-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786645952,
+        "narHash": "sha256-OxQH60bwz+E4447B/+hNl37OCXUBEJ1RPRVYwMlTpms=",
+        "owner": "rolv-apneseth",
+        "repo": "clipvault",
+        "rev": "ecdf06e60ead62c2a0a0603a48c037b5c44abbc3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rolv-apneseth",
+        "repo": "clipvault",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -118,6 +134,7 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
+        "clipvault-src": "clipvault-src",
         "home-manager": "home-manager",
         "matugen": "matugen",
         "nixpkgs": "nixpkgs_3",

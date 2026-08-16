@@ -52,7 +52,7 @@
     openvpn
     openfortivpn
     devenv
-    
+    clipvault
   ];
 
     gtk = {

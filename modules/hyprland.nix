@@ -82,7 +82,8 @@
         "$mainMod, Q, exec, kitty"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
-        "$mainMod, V, togglefloating,"
+        "$mainMod, F, togglefloating,"
+        "$mainMod, V, exec, clipvault list | rofi -dmenu -display-columns 2 | clipvault get | wl-copy"
 	    "$mainMod, UP, fullscreen"
 	    "$mainMod SHIFT, LEFT, movewindow, l"
         "$mainMod SHIFT, RIGHT, movewindow, r"
@@ -111,7 +112,7 @@
         "$mainMod, 7, workspace, 7"
         "$mainMod, 8, workspace, 8"
         "$mainMod, 9, workspace, 9"
-        "$mainMod, 0, workspace, 0"
+        "$mainMod, 0, workspace, 10"
 
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
@@ -147,6 +148,9 @@
       exec-once = [
         "zsh ~/.config/hypr/scripts/session_start.sh"
         "zsh jetbrains-toolbox"
+        "zsh wl-paste --type text --watch clipvault store"
+        "zsh wl-paste --type image --watch clipvault store"
+        "zsh wl-paste --type text/uri-list --watch clipvault store"
       ];
       misc =  {
         disable_hyprland_logo = true;
