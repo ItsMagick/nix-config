@@ -83,7 +83,7 @@
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, F, togglefloating,"
-        "$mainMod, V, exec, clipvault list | rofi -dmenu -display-columns 2 | clipvault get | wl-copy"
+        "$mainMod, V, exec, rofi -modi clipboard:${config.xdg.configHome}/clipvault/clipvault.sh -show clipboard -show-icons"
 	    "$mainMod, UP, fullscreen"
 	    "$mainMod SHIFT, LEFT, movewindow, l"
         "$mainMod SHIFT, RIGHT, movewindow, r"
