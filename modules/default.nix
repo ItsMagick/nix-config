@@ -16,5 +16,6 @@
     ./matugen/default.nix
     ./quickshell-symlinks.nix
     ./direnv.nix
+    ./clipvault.nix
   ];
 }
