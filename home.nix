@@ -9,6 +9,8 @@
     COLORTERM = "truecolor";
     LANG = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
+    MOZ_ENABLE_WAYLAND = "1";
+    NIXOS_OZONE_WL = "1";
   };
   home.pointerCursor = {
     x11.enable = true;

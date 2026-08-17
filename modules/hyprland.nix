@@ -147,10 +147,10 @@
       ];
       exec-once = [
         "zsh ~/.config/hypr/scripts/session_start.sh"
-        "zsh jetbrains-toolbox"
-        "zsh wl-paste --type text --watch clipvault store"
-        "zsh wl-paste --type image --watch clipvault store"
-        "zsh wl-paste --type text/uri-list --watch clipvault store"
+        "jetbrains-toolbox"
+        "wl-paste --watch clipvault store"
+        "wl-paste --watch clipvault store --ignore-pattern '^<meta http-eqiv='"
+        "wl-paste --type image --watch clipvault store"
       ];
       misc =  {
         disable_hyprland_logo = true;
