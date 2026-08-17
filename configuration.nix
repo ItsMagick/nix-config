@@ -51,6 +51,8 @@
     upower.enable = true;
     dbus.enable = true;
     blueman.enable = true;
+
+    gvfs.enable = true;
  
     xserver.xkb = {
       layout = "de";
