@@ -126,15 +126,15 @@ Item {
 
                 const originalFile = window.srcDir + "/" + cleanName
                 const thumbFile = Quickshell.env("HOME") + "/.cache/wallpaper_picker/thumbs/" + fileName
-                const matugenCmd = "matugen image '" + originalFile + "' --source-color-index 0"
 
                 if (isVideo) {
-                    const finalCmd = window.mpvCommand.arg(originalFile)
-                    Quickshell.execDetached(["zsh", "-c", finalCmd + matugenCmd + "' &"])
+                     const finalCmd = window.mpvCommand.arg(originalFile)
+                     Quickshell.execDetached(["zsh", "-c", finalCmd + " & matugen image '" + thumbFile + "--source-color-index 0" + "' &"])
                 } else {
-                    const finalCmd = window.awwwCommand.arg(originalFile)
-                    Quickshell.execDetached(["zsh", "-c", "pkill mpvpaper; " + finalCmd + "&" + matugenCmd + "' &"])
+                     const finalCmd = window.awwwCommand.arg(originalFile)
+                     Quickshell.execDetached(["zsh", "-c", "pkill mpvpaper; " + finalCmd + " & matugen image '" + thumbFile + "--source-color-index 0" + "' &"])
                 }
+
                 Quickshell.execDetached(["zsh", "-c", "echo 'close' > /tmp/qs_widget_state"])
             }
 
