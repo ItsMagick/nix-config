@@ -19,5 +19,5 @@
     imagemagick
   ];
 
-  xdg.configFile."awww".source = config.lib.file.mkOutOfStoreSymlink (toString ../);
+  xdg.configFile."awww".source = config.lib.file.mkOutOfStoreSymlink (toString ../.);
 }
