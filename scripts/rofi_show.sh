@@ -2,7 +2,7 @@
 set -ex
 MODE=${1:-drun}
 CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-ROFI_THEME="$CONFIG_HOME/rofi/matugen.rasi"
+ROFI_THEME="$CONFIG_HOME/rofi.backup/matugen.rasi"
 
 if [[ ! -f "$ROFI_THEME" ]] && command -v matugen >/dev/null 2>&1; then
     WALLPAPER=""
