@@ -56,6 +56,7 @@
     devenv
     clipvault
     mpv
+    mpvpaper
   ];
 
     gtk = {
