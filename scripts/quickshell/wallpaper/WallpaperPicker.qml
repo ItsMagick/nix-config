@@ -129,10 +129,10 @@ Item {
 
                 if (isVideo) {
                      const finalCmd = window.mpvCommand.arg(originalFile)
-                     Quickshell.execDetached(["bash", "-c", finalCmd + " & matugen image '" + thumbFile + "--source-color-index 0" + "' &"])
+                     Quickshell.execDetached(["bash", "-c", finalCmd + " & matugen image " + thumbFile + "--source-color-index 0" + " &"])
                 } else {
                      const finalCmd = window.awwwCommand.arg(originalFile)
-                     Quickshell.execDetached(["bash", "-c", "pkill mpvpaper; " + finalCmd + " & matugen image '" + thumbFile + "--source-color-index 0" + "' &"])
+                     Quickshell.execDetached(["bash", "-c", "pkill mpvpaper; " + finalCmd + " & matugen image " + thumbFile + "--source-color-index 0" + " &"])
                 }
 
                 Quickshell.execDetached(["bash", "-c", "echo 'close' > /tmp/qs_widget_state"])
