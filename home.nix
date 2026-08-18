@@ -55,6 +55,7 @@
     openfortivpn
     devenv
     clipvault
+    mpv
   ];
 
     gtk = {
