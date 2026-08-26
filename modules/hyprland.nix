@@ -97,14 +97,14 @@
         "$mainMod, Page_Down, movetoworkspace, -1"
 
         "$mainMod, R, exec, rofi -show drun"
-        "$mainMod, W, exec, bash ~/.config/hypr/scripts/qs_manager.sh toggle wallpaper"
-        "$mainMod, N, exec, bash ~/.config/hypr/scripts/qs_manager.sh toggle network wifi"
-        "$mainMod SHIFT, N, exec, bash ~/.config/hypr/scripts/qs_manager.sh toggle network bt"
-        "$mainMod SHIFT, B, exec, bash ~/.config/hypr/scripts/quickshell/network/bluetooth_panel_logic.sh --toggle"
-        "$mainMod, D, exec, bash ~/.config/hypr/scripts/qs_manager.sh toggle calendar"
-        "$mainMod, Y, exec, bash ~/.config/hypr/scripts/qs_manager.sh toggle music"
-        "$mainMod, P, exec, bash ~/.config/hypr/scripts/qs_manager.sh toggle battery"
-        "$mainMod, Escape, exec, bash ~/.config/hypr/scripts/qs_manager.sh close"
+        "$mainMod, W, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle wallpaper"
+        "$mainMod, N, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle network wifi"
+        "$mainMod SHIFT, N, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle network bt"
+        "$mainMod SHIFT, B, exec, ${config.xdg.configHome}/hypr/scripts/quickshell/network/bluetooth_panel_logic.sh --toggle"
+        "$mainMod, D, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle calendar"
+        "$mainMod, Y, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle music"
+        "$mainMod, P, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle battery"
+        "$mainMod, Escape, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh close"
         ", Print, exec, grim -g \"$(slurp)\" - | wl-copy"
 
         "$mainMod, 1, workspace, 1"
@@ -149,7 +149,7 @@
         "$mainMod, mouse:272, movewindow"
       ];
       exec-once = [
-        "zsh ~/.config/hypr/scripts/session_start.sh"
+        "${config.xdg.configHome}/hypr/scripts/session_start.sh"
         "jetbrains-toolbox"
         "wl-paste --watch clipvault store"
         "wl-paste --watch clipvault store --ignore-pattern '^<meta http-eqiv='"

@@ -145,6 +145,7 @@ Item {
                 onClicked: {
                     view.currentIndex = index
                     delegateRoot.pickWallpaper()
+
                 }
             }
 
