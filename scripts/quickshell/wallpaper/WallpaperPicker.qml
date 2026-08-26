@@ -137,7 +137,7 @@ Item {
                     Quickshell.execDetached(["bash", "-c", "matugen image " + thumbFile + " --source-color-index 0"])
                 }
 
-                Quickshell.execDetached(["bash", "-c", "echo 'close' > /tmp/qs_widget_state"])
+                Quickshell.execDetached(["bash", "-c", "hyprctl dispatch killactive"])
             }
 
             MouseArea {
