@@ -151,6 +151,9 @@
         "wl-paste --watch clipvault store"
         "wl-paste --watch clipvault store --ignore-pattern '^<meta http-eqiv='"
         "wl-paste --type image --watch clipvault store"
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "systemctl --user restart xdg-desktop-portal-hyprland xdg-desktop-portal"
       ];
       misc =  {
         disable_hyprland_logo = true;

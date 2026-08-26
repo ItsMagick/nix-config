@@ -20,6 +20,7 @@
     ];
     resumeDevice = "/dev/disk/by-uuid/e8491619-1594-4fd3-9ae6-6e81ab1bb6c2";
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [ "uvcvideo" ];
   };
 
 
@@ -48,6 +49,7 @@
     };
   };
   services = {
+    fwupd.enable = true;
     upower.enable = true;
     dbus.enable = true;
     blueman.enable = true;
@@ -242,10 +244,10 @@
   };
   console.keyMap = "de";
  
-   users.users.charon = {
+  users.users.charon = {
     isNormalUser = true;
     description = "Charon";
-    extraGroups = [ "networkmanager" "wheel" "video" "lp" "docker" "bluetooth"];
+    extraGroups = [ "networkmanager" "wheel" "video" "camera" "lp" "docker" "bluetooth"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -282,6 +284,7 @@
   };
   hardware = {
     enableAllFirmware = true;
+    enableAllHardware = true;
     bluetooth = {
       enable = true;
       powerOnBoot = true;
@@ -300,4 +303,19 @@
     size = 32 * 1024; 
   }];
   powerManagement.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-gtk
+    ];
+    config = {
+        common = {
+          default = [ "hyprland" "gtk" ];
+        };
+        hyprland = {
+          default = [ "hyprland" "gtk" ];
+        };
+      };
+  };
 }

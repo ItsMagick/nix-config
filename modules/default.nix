@@ -17,5 +17,6 @@
     ./quickshell-symlinks.nix
     ./direnv.nix
     ./clipvault.nix
+    ./vesktop.nix
   ];
 }

@@ -26,7 +26,7 @@
     kitty
     maestral
     maestral-gui
-    vesktop
+#    vesktop
     zotero
     keepassxc
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -57,6 +57,7 @@
     clipvault
     mpv
     mpvpaper
+    ffmpeg
   ];
 
     gtk = {
