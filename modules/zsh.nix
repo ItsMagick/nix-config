@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -18,7 +18,7 @@
     shellAliases = {
       ll = "ls -l";
       la = "ls -A";
-      l  = "ls -CF";
+      l = "ls -CF";
       sl = "ls";
       update = "sudo nixos-rebuild switch --flake ~/Documents/nix-config/#TPS";
     };
@@ -26,7 +26,7 @@
     oh-my-zsh = {
       enable = true;
       theme = "agnoster";
-      plugins = ["git"];
+      plugins = [ "git" ];
     };
   };
 }

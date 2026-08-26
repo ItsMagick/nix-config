@@ -1,4 +1,9 @@
-{config, pkgs, inputs, ...}:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   home.username = "charon";
@@ -26,7 +31,7 @@
     kitty
     maestral
     maestral-gui
-#    vesktop
+    #    vesktop
     zotero
     keepassxc
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -60,32 +65,32 @@
     ffmpeg
   ];
 
-    gtk = {
-      enable = true;
-      iconTheme = {
-        name = "Papirus-Dark";
-      };
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-        gtk-theme-name = "adw-gtk3-dark";
-      };
-      gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
-      };
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Papirus-Dark";
     };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+      gtk-theme-name = "adw-gtk3-dark";
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+  };
 
-    qt = {
-        enable = true;
-        platformTheme.name = "qt6ct";
-        style.name = "kvantum";
-      };
-      xdg.portal = {
-        enable = true;
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gtk
-        ];
-        config.common.default = "*";
-      };
+  qt = {
+    enable = true;
+    platformTheme.name = "qt6ct";
+    style.name = "kvantum";
+  };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = "*";
+  };
 
   imports = [
     ./modules

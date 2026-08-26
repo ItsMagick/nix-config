@@ -1,10 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+  ];
 
   system.stateVersion = "25.11";
 
@@ -23,10 +22,8 @@
     kernelModules = [ "uvcvideo" ];
   };
 
-
-
   networking = {
-    hostName = "TPS"; 
+    hostName = "TPS";
     networkmanager.enable = true;
   };
 
@@ -55,12 +52,12 @@
     blueman.enable = true;
 
     gvfs.enable = true;
- 
+
     xserver.xkb = {
       layout = "de";
       variant = "";
     };
-     
+
     displayManager = {
       defaultSession = "hyprland";
 
@@ -68,13 +65,13 @@
         enable = true;
         wayland.enable = true;
       };
-    
+
       autoLogin = {
         enable = true;
         user = "charon";
       };
     };
-     
+
     pipewire = {
       enable = true;
       alsa = {
@@ -102,7 +99,7 @@
 
         # Optional helps save long term battery health
         START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
-        STOP_CHARGE_THRESH_BAT0 = 80;  # 80 and above it stops charging
+        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
       };
     };
     logind = {
@@ -116,10 +113,9 @@
     };
   };
 
-
   programs = {
     hyprland = {
-      enable = true; 
+      enable = true;
     };
     nix-ld = {
       enable = true;
@@ -243,15 +239,23 @@
     zsh.enable = true;
   };
   console.keyMap = "de";
- 
+
   users.users.charon = {
     isNormalUser = true;
     description = "Charon";
-    extraGroups = [ "networkmanager" "wheel" "video" "camera" "lp" "docker" "bluetooth"];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "camera"
+      "lp"
+      "docker"
+      "bluetooth"
+    ];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
- 
+
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
@@ -264,7 +268,10 @@
     bluez
   ];
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   fonts = {
     packages = with pkgs; [
@@ -274,9 +281,9 @@
   };
 
   virtualisation.docker.enable = true;
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
-### Remove all builds older than 14 days on a daily basis
+  ### Remove all builds older than 14 days on a daily basis
   nix.gc = {
     automatic = true;
     dates = "daily";
@@ -298,10 +305,12 @@
       };
     };
   };
-  swapDevices = [{
-    device = "/var/lib/swapfile";
-    size = 32 * 1024; 
-  }];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 32 * 1024;
+    }
+  ];
   powerManagement.enable = true;
   xdg.portal = {
     enable = true;
@@ -310,12 +319,18 @@
       pkgs.xdg-desktop-portal-gtk
     ];
     config = {
-        common = {
-          default = [ "hyprland" "gtk" ];
-        };
-        hyprland = {
-          default = [ "hyprland" "gtk" ];
-        };
+      common = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
       };
+      hyprland = {
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+      };
+    };
   };
 }

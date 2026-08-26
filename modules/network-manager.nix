@@ -4,7 +4,7 @@
 {
   home.packages = with pkgs; [
     networkmanager_dmenu
-    networkmanagerapplet 
+    networkmanagerapplet
   ];
 
   # This creates ~/.config/networkmanager-dmenu/config.ini automatically

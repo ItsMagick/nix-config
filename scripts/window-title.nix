@@ -2,7 +2,7 @@
 
 pkgs.writeShellScriptBin "window-title" ''
   active_json=$(${pkgs.hyprland}/bin/hyprctl activewindow -j 2>/dev/null)
-  
+
   if [ -z "$active_json" ] || [ "$active_json" = "{}" ]; then
       echo '{"text": "", "class": "empty"}'
       exit 0

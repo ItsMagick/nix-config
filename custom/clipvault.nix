@@ -1,4 +1,8 @@
-{ lib, rustPlatform, clipvault-src }:
+{
+  lib,
+  rustPlatform,
+  clipvault-src,
+}:
 
 rustPlatform.buildRustPackage {
   pname = "clipvault";

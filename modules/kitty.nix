@@ -1,4 +1,4 @@
-{pkgs, config, ...}:
+{ pkgs, config, ... }:
 {
   programs.kitty = {
     enable = true;
@@ -11,19 +11,16 @@
       italic_font = "auto";
       bold_italic_font = "auto";
 
-      
       background_opacity = "0.82";
       background = "#0e0a1a";
       background_image_layout = "scaled";
 
-     
       foreground = "#e1bee7";
       cursor = "#b388ff";
       cursor_text_color = "#0e0a1a";
       selection_foreground = "#0e0a1a";
       selection_background = "#b388ff";
 
-      
       color0 = "#0e0a1a";
       color8 = "#6a4488";
       color1 = "#ff5252";
@@ -60,6 +57,6 @@
       confirm_os_window_close = 0;
       enable_audio_bell = "no";
     };
-    extraConfig = ''include ${config.home.homeDirectory}/.cache/wal/colors.kitty.conf'';
+    extraConfig = "include ${config.home.homeDirectory}/.cache/wal/colors.kitty.conf";
   };
 }

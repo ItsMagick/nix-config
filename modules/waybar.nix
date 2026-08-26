@@ -17,12 +17,22 @@
         spacing = 0;
 
         modules-left = [ "group/left" ];
-        modules-center = [];
-        modules-right = [ "tray" "group/network" "group/status" "group/system" "battery" "clock" ];
+        modules-center = [ ];
+        modules-right = [
+          "tray"
+          "group/network"
+          "group/status"
+          "group/system"
+          "battery"
+          "clock"
+        ];
 
         "group/left" = {
           orientation = "horizontal";
-          modules = [ "hyprland/workspaces" "custom/separator" ];
+          modules = [
+            "hyprland/workspaces"
+            "custom/separator"
+          ];
         };
 
         "group/network" = {
@@ -32,12 +42,19 @@
 
         "group/status" = {
           orientation = "horizontal";
-          modules = [ "pulseaudio" "bluetooth" ];
+          modules = [
+            "pulseaudio"
+            "bluetooth"
+          ];
         };
 
         "group/system" = {
           orientation = "horizontal";
-          modules = [ "cpu" "memory" "temperature" ];
+          modules = [
+            "cpu"
+            "memory"
+            "temperature"
+          ];
         };
 
         # Workspaces module from migration
@@ -50,12 +67,12 @@
           on-scroll-up = "hyprctl dispatch workspace e+1";
           on-scroll-down = "hyprctl dispatch workspace e-1";
           persistent-workspaces = {
-            "1" = [];
-            "2" = [];
-            "3" = [];
-            "4" = [];
-            "5" = [];
-            "6" = [];
+            "1" = [ ];
+            "2" = [ ];
+            "3" = [ ];
+            "4" = [ ];
+            "5" = [ ];
+            "6" = [ ];
           };
           format-icons = {
             "1" = "I";
@@ -98,7 +115,17 @@
           format-full = "{icon} Full";
           format-alt = "{icon} {hour}h {M}min";
           format-icons = [
-            "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"
+            "󰂎"
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂁"
+            "󰂂"
+            "󰁹"
           ];
           format-time = "{H}h {M}min";
           tooltip = true;
@@ -129,7 +156,11 @@
         "pulseaudio" = {
           format = "{icon} {volume}%";
           format-muted = "󰝟 mute";
-          format-icons.default = ["󰕿" "󰖀" "󰕾"];
+          format-icons.default = [
+            "󰕿"
+            "󰖀"
+            "󰕾"
+          ];
           on-click = "pavucontrol";
           tooltip = true;
           tooltip-format = "{volume}% • {desc}";
@@ -405,4 +436,3 @@
     '';
   };
 }
-

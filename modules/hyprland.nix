@@ -1,4 +1,4 @@
-{pkgs, config, ...}:
+{ pkgs, config, ... }:
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -84,8 +84,8 @@
         "$mainMod, M, exit,"
         "$mainMod, F, togglefloating,"
         "$mainMod, V, exec, rofi -modi clipboard:${config.xdg.configHome}/clipvault/clipvault.sh -show clipboard -show-icons"
-	    "$mainMod, UP, fullscreen"
-	    "$mainMod SHIFT, LEFT, movewindow, l"
+        "$mainMod, UP, fullscreen"
+        "$mainMod SHIFT, LEFT, movewindow, l"
         "$mainMod SHIFT, RIGHT, movewindow, r"
         "$mainMod SHIFT, UP, movewindow, u"
         "$mainMod SHIFT, DOWN, movewindow, d"
@@ -125,9 +125,8 @@
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
         "ALT, TAB, exec, rofi -show window"
-	    "$mainMod, L, exec, lock-screen"
+        "$mainMod, L, exec, lock-screen"
       ];
-
 
       bindle = [
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
@@ -155,7 +154,7 @@
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         "systemctl --user restart xdg-desktop-portal-hyprland xdg-desktop-portal"
       ];
-      misc =  {
+      misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
       };
@@ -165,9 +164,9 @@
       source = ${config.xdg.configHome}/hypr/matugen-colors.conf
     '';
   };
- # xdg.configFile."hypr/hyprland.lua".source = ./hyprland/hyprland.lua;
- # xdg.configFile."hypr/displays.lua".source = ./hyprland/displays.lua;
- # xdg.configFile."hypr/keybinds.lua".source = ./hyprland/keybinds.lua;
-   # xdg.configFile."hypr/theme.lua".source = ./hyprland/theme.lua;
+  # xdg.configFile."hypr/hyprland.lua".source = ./hyprland/hyprland.lua;
+  # xdg.configFile."hypr/displays.lua".source = ./hyprland/displays.lua;
+  # xdg.configFile."hypr/keybinds.lua".source = ./hyprland/keybinds.lua;
+  # xdg.configFile."hypr/theme.lua".source = ./hyprland/theme.lua;
 
 }

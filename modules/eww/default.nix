@@ -1,10 +1,10 @@
 { pkgs, config, ... }:
 
 {
-  home.packages = with pkgs; [ 
+  home.packages = with pkgs; [
     jq
-    socat 
-    pamixer 
+    socat
+    pamixer
     brightnessctl
     acpi
     iw
