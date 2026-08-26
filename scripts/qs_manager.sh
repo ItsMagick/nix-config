@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-set -ex/
+#set -ex
 
 SCRIPT_DIR="${0:A:h}"
 QS_DIR="$SCRIPT_DIR/quickshell"
@@ -179,6 +179,7 @@ if [[ "$ACTION" == "open" || "$ACTION" == "toggle" ]]; then
         handle_wallpaper_prep
         # Passing the exact filename string to QML instead of an index
         echo "$TARGET:$WALLPAPER_THUMB" > "$IPC_FILE"
+        hyprctl --batch "dispatch focuswindow title:^(qs-master)$ ; dispatch fullscreen"
     else
         echo "$TARGET" > "$IPC_FILE"
     fi
