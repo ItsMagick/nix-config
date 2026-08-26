@@ -1,5 +1,5 @@
 #!/usr/bin/env zsh
-set -ex
+set -ex/
 
 SCRIPT_DIR="${0:A:h}"
 QS_DIR="$SCRIPT_DIR/quickshell"

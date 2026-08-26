@@ -22,7 +22,7 @@ FloatingWindow {
 
     property string currentActive: "hidden" 
     onCurrentActiveChanged: {
-        Quickshell.execDetached(["zsh", "-c", "echo '" + currentActive + "' > /tmp/qs_active_widget"]);
+        Quickshell.execDetached(["bash", "-c", "echo '" + currentActive + "' > /tmp/qs_active_widget"]);
     }
 
     property bool isVisible: false
