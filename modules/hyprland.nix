@@ -47,6 +47,10 @@
         };
       };
 
+      windowrule = [
+        "opacity 0.95 0.95, match:class ^(vesktop)$"
+      ];
+
       animations = {
         enabled = "yes";
         bezier = [

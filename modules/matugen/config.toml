@@ -24,3 +24,7 @@ output_path = "~/.config/rofi/colors.rasi"
 input_path = "~/.config/matugen/templates/hyprland-colors.conf"
 output_path = "~/.config/hypr/matugen-colors.conf"
 post_hook = "sleep 0.05 && hyprctl reload"
+
+[templates.vesktop]
+input_path = '~/.config/matugen/templates/vesktop.css'
+output_path = '~/.config/vesktop/themes/matugen.css'

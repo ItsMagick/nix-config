@@ -1,0 +1,67 @@
+/* ============================================================
+   Matugen-driven Vesktop theme — regenerates on every `matugen` run
+   ============================================================ */
+
+:root {
+    --my-primary: {{colors.primary.default.hex}};
+    --my-secondary: {{colors.secondary.default.hex}};
+    --my-tertiary: {{colors.tertiary.default.hex}};
+    --my-surface: {{colors.surface.default.hex}};
+    --my-on-primary: {{colors.on_primary.default.hex}};
+    --my-on-surface: {{colors.on_surface.default.hex}};
+}
+
+/* ---------- Override the SOURCE color scale so every derived token follows ---------- */
+html.theme-dark, html.theme-light {
+    --blurple-1: {{colors.primary.default.rgba | set_lightness: -45}} !important;
+    --blurple-8: {{colors.primary.default.rgba | set_lightness: -35}} !important;
+    --blurple-30: {{colors.primary.default.rgba | set_lightness: -15}} !important;
+    --blurple-40: {{colors.primary.default.rgba | set_lightness: -6}} !important;
+    --blurple-50: var(--my-primary) !important;
+    --blurple-60: {{colors.primary.default.rgba | set_lightness: 8}} !important;
+    --blurple-65: {{colors.primary.default.rgba | set_lightness: 12}} !important;
+    --blurple-70: {{colors.primary.default.rgba | set_lightness: 16}} !important;
+    --blurple-71: {{colors.primary.default.rgba | set_lightness: 16}} !important;
+    --blurple-75: {{colors.primary.default.rgba | set_lightness: 20}} !important;
+    --brand-500: var(--my-primary) !important;
+    --brand-560: {{colors.primary.default.rgba | set_lightness: -6}} !important;
+    --brand-360: {{colors.primary.default.rgba | set_lightness: 22}} !important;
+}
+
+/* ---------- DARK THEME surfaces ---------- */
+html.theme-dark {
+    --custom-theme-base-color: var(--my-primary) !important;
+    --custom-theme-base-color-amount: 55% !important;
+    --custom-theme-text-color: var(--my-on-primary) !important;
+    --custom-theme-text-color-amount: 10% !important;
+    --custom-theme-border-color-amount: 40% !important;
+
+    --panel-bg: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: -15}} 88%, transparent 12%) !important;
+--chat-background-default: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: -20}} 86%, transparent 14%) !important;
+--modal-background: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: -17}} 92%, transparent 8%) !important;
+--background-base-lower: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: -20}} 88%, transparent 12%) !important;
+--background-base-low: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: -15}} 88%, transparent 12%) !important;
+--background-surface-high: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: -10}} 90%, transparent 10%) !important;
+--channel-background-default: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: -20}} 86%, transparent 14%) !important;
+--channeltextarea-background: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: -25}} 85%, transparent 15%) !important;
+
+--text-normal: var(--my-on-primary) !important;
+--text-muted: {{colors.on_primary.default.rgba | set_alpha: 0.7}} !important;
+}
+
+/* ---------- LIGHT THEME surfaces ---------- */
+html.theme-light {
+    --panel-bg: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: 30}} 88%, transparent 12%) !important;
+--chat-background-default: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: 35}} 86%, transparent 14%) !important;
+--modal-background: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: 33}} 92%, transparent 8%) !important;
+--background-base-lower: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: 35}} 88%, transparent 12%) !important;
+--background-base-low: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: 30}} 88%, transparent 12%) !important;
+--channel-background-default: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: 35}} 86%, transparent 14%) !important;
+--channeltextarea-background: color-mix(in oklab, {{colors.primary.default.rgba | set_lightness: 38}} 85%, transparent 15%) !important;
+--text-default: {{colors.on_surface.default.hex}} !important;
+}
+
+/* ---------- Full-window gradient, painted behind every panel ---------- */
+html, body, #app-mount {
+    background: linear-gradient(135deg, var(--my-primary) 0%, var(--my-tertiary) 100%) !important;
+}
