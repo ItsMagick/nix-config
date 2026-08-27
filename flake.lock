@@ -54,9 +54,29 @@
         "type": "github"
       }
     },
-    "matugen": {
+    "hyprfm": {
       "inputs": {
         "nixpkgs": "nixpkgs_2",
+        "quill": "quill",
+        "quill-icons": "quill-icons"
+      },
+      "locked": {
+        "lastModified": 1787841480,
+        "narHash": "sha256-ErvZJgzCkWyjIE6mZBacNA3KR0Xnd3fGH1h8ZR2pNZc=",
+        "owner": "soyeb-jim285",
+        "repo": "hyprfm",
+        "rev": "84626f94073b9b07ae66d571216facaddd54b32c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soyeb-jim285",
+        "repo": "hyprfm",
+        "type": "github"
+      }
+    },
+    "matugen": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3",
         "systems": "systems"
       },
       "locked": {
@@ -88,6 +108,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1787498568,
+        "narHash": "sha256-9i/VTdusq/+NM/tz+J1Re+ojkMB8MBf0QshnYfzHz30=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "56c02bc00adcf003215cc4bd996d6efaf4cff188",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1771369470,
         "narHash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ=",
         "owner": "nixos",
@@ -102,7 +138,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1781577229,
         "narHash": "sha256-lrp67w8AulE9Ks53n27I45ADSzbOCn4H+CNW1Ck8B+8=",
@@ -118,7 +154,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1781577229,
         "narHash": "sha256-rcUHdUtJEvMdNEl2Wq+YpHraHKfcer3KsBscpZEF2Yg=",
@@ -131,20 +167,55 @@
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
       }
     },
+    "quill": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1787841127,
+        "narHash": "sha256-OhtKC8pL2tABEpvIo+DJUlXXz7wuVvxGA84FRW8aVaY=",
+        "owner": "soyeb-jim285",
+        "repo": "quill",
+        "rev": "ad1785f108ea47b8950cbebcd6dd557ce84e4879",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soyeb-jim285",
+        "repo": "quill",
+        "rev": "ad1785f108ea47b8950cbebcd6dd557ce84e4879",
+        "type": "github"
+      }
+    },
+    "quill-icons": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1776191081,
+        "narHash": "sha256-ezwie0hSHNT0m65dgTgwwh16vfb/vAshcNaccQChnzM=",
+        "owner": "soyeb-jim285",
+        "repo": "quill-icons",
+        "rev": "10db5facf6a560e60d2693ccd1909267ef436002",
+        "type": "github"
+      },
+      "original": {
+        "owner": "soyeb-jim285",
+        "repo": "quill-icons",
+        "rev": "10db5facf6a560e60d2693ccd1909267ef436002",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
         "clipvault-src": "clipvault-src",
         "home-manager": "home-manager",
+        "hyprfm": "hyprfm",
         "matugen": "matugen",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "spicetify-nix": "spicetify-nix",
         "zen-browser": "zen-browser"
       }
     },
     "spicetify-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "systems": "systems_2"
       },
       "locked": {

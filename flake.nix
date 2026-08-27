@@ -22,6 +22,8 @@
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
+    hyprfm.url = "github:soyeb-jim285/hyprfm";
+
   };
   outputs =
     {
@@ -32,6 +34,7 @@
       matugen,
       spicetify-nix,
       clipvault-src,
+      hyprfm,
       ...
     }@inputs:
     {

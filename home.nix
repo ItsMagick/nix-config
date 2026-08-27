@@ -63,6 +63,7 @@
     mpv
     mpvpaper
     ffmpeg
+    inputs.hyprfm.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   gtk = {
