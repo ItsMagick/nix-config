@@ -4,6 +4,7 @@
     enable = true;
     xwayland.enable = true;
     configType = "hyprlang";
+    systemd.variables = ["--all"];
 
     settings = {
 
