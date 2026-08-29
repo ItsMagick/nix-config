@@ -19,7 +19,7 @@
     ];
     resumeDevice = "/dev/disk/by-uuid/e8491619-1594-4fd3-9ae6-6e81ab1bb6c2";
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "uvcvideo" ];
+    kernelModules = [ "uvcvideo" "amdgpu" ];
   };
 
   networking = {
@@ -239,7 +239,6 @@
     zsh.enable = true;
   };
   console.keyMap = "de";
-
   users.users.charon = {
     isNormalUser = true;
     description = "Charon";
@@ -258,15 +257,20 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  environment.systemPackages = with pkgs; [
-    wget
-    git
-    firefox
-    rofi
-    hyprpaper
-    cryptsetup
-    bluez
-  ];
+  environment = {
+    systemPackages = with pkgs; [
+      wget
+      git
+      firefox
+      rofi
+      hyprpaper
+      cryptsetup
+      bluez
+    ];
+    sessionVariables = {
+      AMD_DEBUG = "nodcc";
+    };
+  };
 
   nix.settings.experimental-features = [
     "nix-command"
@@ -276,7 +280,6 @@
   fonts = {
     packages = with pkgs; [
       nerd-fonts.fira-code
-
     ];
   };
 
@@ -304,6 +307,14 @@
         };
       };
     };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        mesa
+        libva
+      ];
+    };
   };
   swapDevices = [
     {
@@ -330,6 +341,7 @@
           "hyprland"
           "gtk"
         ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
     };
   };

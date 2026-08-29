@@ -7,7 +7,10 @@
     systemd.variables = ["--all"];
 
     settings = {
-
+      env = [
+        "AMD_DEBUG,nodcc"
+        "WLR_DRM_NO_MODIFIERS,1"
+      ];
       monitor = [
         # monitor = name, resolution@hz, position, scale
         "eDP-1, 1920x1080@59.98, 0x0, 1"
@@ -156,8 +159,8 @@
         "wl-paste --watch clipvault store"
         "wl-paste --watch clipvault store --ignore-pattern '^<meta http-eqiv='"
         "wl-paste --type image --watch clipvault store"
-        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
-        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE XDG_DATA_DIRS PATH"
+        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE XDG_DATA_DIRS PATH"
         "systemctl --user restart xdg-desktop-portal-hyprland xdg-desktop-portal"
       ];
       misc = {
