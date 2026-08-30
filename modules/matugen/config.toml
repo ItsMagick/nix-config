@@ -28,3 +28,7 @@ post_hook = "sleep 0.05 && hyprctl reload"
 [templates.vesktop]
 input_path = '~/.config/matugen/templates/vesktop.css'
 output_path = '~/.config/vesktop/themes/matugen.css'
+
+[templates.hyprfm]
+input_path = "~/.config/matugen/templates/hyprfm.toml"
+output_path = "~/.config/hyprfm/themes/matugen.toml"

@@ -1,0 +1,13 @@
+[colors]
+base    = "{{colors.background.default.hex}}"
+mantle  = "{{colors.surface_container_low.default.hex}}"
+crust   = "{{colors.surface_container_lowest.default.hex}}"
+surface = "{{colors.surface_container.default.hex}}"
+overlay = "{{colors.outline_variant.default.hex}}"
+text    = "{{colors.on_background.default.hex}}"
+subtext = "{{colors.on_surface_variant.default.hex}}"
+muted   = "{{colors.outline.default.hex}}"
+accent  = "{{colors.primary.default.hex}}"
+success = "#a6e3a1"
+warning = "#f9e2af"
+error   = "{{colors.error.default.hex}}"
