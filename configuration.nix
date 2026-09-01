@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -7,9 +12,7 @@
   ];
 
   system.stateVersion = "25.11";
-  boot.kernelPackages = let
-      pkgs = import <nixpkgs> {};
-    in import ./security/linux-hardened.nix { inherit pkgs lib; };
+  boot.kernelPackages = import ./security/linux-hardened.nix { inherit pkgs lib; };
 
   boot = {
     loader = {
@@ -22,7 +25,7 @@
       "mem_sleep_default=deep"
     ];
     resumeDevice = "/dev/disk/by-uuid/e8491619-1594-4fd3-9ae6-6e81ab1bb6c2";
-    kernelPackages = pkgs.linuxPackages_latest;
+#    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "uvcvideo" "amdgpu" ];
   };
 

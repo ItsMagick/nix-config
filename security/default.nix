@@ -5,6 +5,5 @@
     ./kernel.nix
     ./modules.nix
     ./systemctl.nix
-    ./systemd.nix
   ];
 }
