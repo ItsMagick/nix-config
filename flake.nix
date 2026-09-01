@@ -18,6 +18,11 @@
       flake = false;
     };
 
+    frontend-sdl-rust-src = {
+      url = "github:projectM-visualizer/frontend-sdl-rust";
+      flake = false;
+    };
+
     catppuccin.url = "github:catppuccin/nix";
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
@@ -35,6 +40,7 @@
       spicetify-nix,
       clipvault-src,
       hyprfm,
+      frontend-sdl-rust-src,
       ...
     }@inputs:
     {
@@ -49,6 +55,9 @@
               (final: prev: {
                 clipvault = final.callPackage ./custom/clipvault.nix {
                   inherit clipvault-src;
+                };
+                projectm-sdl-rust = final.callPackage ./custom/projectm-rust.nix {
+                  inherit frontend-sdl-rust-src;
                 };
               })
             ];

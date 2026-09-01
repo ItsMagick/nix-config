@@ -34,6 +34,22 @@
         "type": "github"
       }
     },
+    "frontend-sdl-rust-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777012440,
+        "narHash": "sha256-SrlLL7/pjvLQxBEMF6AsTsOJJJiJKFe/OWT8J36WcLc=",
+        "owner": "projectM-visualizer",
+        "repo": "frontend-sdl-rust",
+        "rev": "44f00a3c55673677201664cb35b0ed6b0c51b935",
+        "type": "github"
+      },
+      "original": {
+        "owner": "projectM-visualizer",
+        "repo": "frontend-sdl-rust",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -205,6 +221,7 @@
       "inputs": {
         "catppuccin": "catppuccin",
         "clipvault-src": "clipvault-src",
+        "frontend-sdl-rust-src": "frontend-sdl-rust-src",
         "home-manager": "home-manager",
         "hyprfm": "hyprfm",
         "matugen": "matugen",
