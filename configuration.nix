@@ -3,9 +3,13 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./security
   ];
 
   system.stateVersion = "25.11";
+  boot.kernelPackages = let
+      pkgs = import <nixpkgs> {};
+    in import ./security/linux-hardened.nix { inherit pkgs lib; };
 
   boot = {
     loader = {
