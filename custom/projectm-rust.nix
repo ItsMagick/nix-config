@@ -1,29 +1,111 @@
-{
-  lib,
-  rustPlatform,
-  pkg-config,
-  cmake,
-  makeWrapper,
-  sdl3,
-  libGL,
-  pulseaudio,
-  libxkbcommon,
-  wayland,
-  xorg,
-  frontend-sdl-rust-src
+{ lib
+, rustPlatform
+, pkg-config
+, cmake
+, makeWrapper
+, libGL
+, mesa
+, pulseaudio
+, alsa-lib
+, dbus
+, libxkbcommon
+, libdecor
+, wayland
+, wayland-protocols
+, wayland-scanner
+, libx11
+, libxext
+, libxcursor
+, libxi
+, libxrandr
+, libxrender
+, libxfixes
+, libxinerama
+, libxscrnsaver
+, libxtst
+, libxxf86vm
+, libdrm
+, libGLU
+, libpthreadstubs
+, ibus
+, libxcb
+, vulkan-headers
+, vulkan-loader
+, xcbutil
+, xcbutilwm
+, xcbutilkeysyms
+, writeShellScriptBin
+, frontend-sdl-rust-src
 }:
 
 let
+  buildInputsList = [
+    libGL
+    mesa
+    pulseaudio
+    alsa-lib
+    dbus
+    libxkbcommon
+    libdecor
+    wayland
+    wayland-protocols
+    libx11
+    libxext
+    libxcursor
+    libxi
+    libxrandr
+    libxrender
+    libxfixes
+    libxinerama
+    libxscrnsaver
+    libxtst
+    libxxf86vm
+    libdrm
+    libGLU
+    libpthreadstubs
+    ibus
+    libxcb
+    vulkan-headers
+    vulkan-loader
+    xcbutil
+    xcbutilwm
+    xcbutilkeysyms
+  ];
+
   rpathLibs = [
     libGL
-    sdl3
     libxkbcommon
+    libdecor
     wayland
-    xorg.libX11
-    xorg.libXcursor
-    xorg.libXi
-    xorg.libXrandr
+    libx11
+    libxext
+    libxcursor
+    libxi
+    libxrandr
+    libxrender
+    libxfixes
+    libxinerama
+    libxscrnsaver
+    libxtst
+    alsa-lib
+    pulseaudio
+    dbus
+    libdrm
+    libxxf86vm
+    libxcb
+    vulkan-loader
+    xcbutil
+    xcbutilwm
+    xcbutilkeysyms
   ];
+
+  cmakeInstallLibFix = writeShellScriptBin "cmake" ''
+    if [ "$1" = "--build" ] || [ "$1" = "--install" ] || [ "$1" = "--open" ]; then
+      exec ${cmake}/bin/cmake "$@"
+    else
+      exec ${cmake}/bin/cmake -DCMAKE_INSTALL_LIBDIR=lib "$@"
+    fi
+  '';
 in
 rustPlatform.buildRustPackage {
   pname = "projectm-sdl-rust";
@@ -35,18 +117,19 @@ rustPlatform.buildRustPackage {
     lockFile = "${frontend-sdl-rust-src}/Cargo.lock";
   };
 
-
   nativeBuildInputs = [
     pkg-config
-    cmake
+    cmakeInstallLibFix
     makeWrapper
+    wayland-scanner
+    rustPlatform.bindgenHook
   ];
 
-  buildInputs = [
-    sdl3
-    libGL
-    pulseaudio
-  ];
+  buildInputs = buildInputsList;
+
+ CMAKE_PREFIX_PATH = lib.concatStringsSep ":" (
+    lib.concatMap (p: [ "${lib.getDev p}" "${lib.getLib p}" ]) buildInputsList
+  );
 
   postInstall = ''
     for bin in $out/bin/*; do
@@ -56,7 +139,7 @@ rustPlatform.buildRustPackage {
   '';
 
   meta = with lib; {
-    description = "projectM visualizer frontend written in Rust using SDL3";
+    description = "projectM visualizer frontend written in Rust using SDL3, statically linked";
     homepage = "https://github.com/projectM-visualizer/frontend-sdl-rust";
     mainProgram = "frontend-sdl-rust";
   };
