@@ -18,5 +18,6 @@
     ./direnv.nix
     ./clipvault.nix
     ./vesktop.nix
+    ./cream-of-the-crop.nix
   ];
 }

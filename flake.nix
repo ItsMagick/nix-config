@@ -22,6 +22,14 @@
       url = "github:projectM-visualizer/frontend-sdl-rust";
       flake = false;
     };
+    projectm-cream-of-the-crop = {
+      url = "github:projectM-visualizer/presets-cream-of-the-crop";
+      flake = false;
+    };
+    projectm-milkdrop-texture-pack = {
+      url = "github:projectM-visualizer/presets-milkdrop-texture-pack";
+      flake = false;
+    };
 
     catppuccin.url = "github:catppuccin/nix";
 
@@ -41,6 +49,8 @@
       clipvault-src,
       hyprfm,
       frontend-sdl-rust-src,
+      projectm-cream-of-the-crop,
+      projectm-milkdrop-texture-pack,
       ...
     }@inputs:
     {
