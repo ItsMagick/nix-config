@@ -199,6 +199,22 @@
         "type": "github"
       }
     },
+    "projectm-milkdrop-texture-pack": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786402148,
+        "narHash": "sha256-Ayqx0jq4Lb/3gOPosWYgC8tZMeKquibw85fDNMaczeI=",
+        "owner": "projectM-visualizer",
+        "repo": "presets-milkdrop-texture-pack",
+        "rev": "b6e461010ffbb78939d5b3c2248bb98af77411c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "projectM-visualizer",
+        "repo": "presets-milkdrop-texture-pack",
+        "type": "github"
+      }
+    },
     "quill": {
       "flake": false,
       "locked": {
@@ -243,6 +259,7 @@
         "matugen": "matugen",
         "nixpkgs": "nixpkgs_4",
         "projectm-cream-of-the-crop": "projectm-cream-of-the-crop",
+        "projectm-milkdrop-texture-pack": "projectm-milkdrop-texture-pack",
         "spicetify-nix": "spicetify-nix",
         "zen-browser": "zen-browser"
       }
