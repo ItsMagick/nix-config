@@ -35,8 +35,7 @@
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
-    hyprfm.url = "github:soyeb-jim285/hyprfm";
-
+    hyprfm.url = "github:soyeb-jim285/hyprfm/84626f94073b9b07ae66d571216facaddd54b32c";
   };
   outputs =
     {

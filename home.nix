@@ -65,7 +65,7 @@
     ffmpeg
     inputs.hyprfm.packages.${pkgs.stdenv.hostPlatform.system}.default
     projectm-sdl-rust
-
+    nmap
   ];
 
   gtk = {

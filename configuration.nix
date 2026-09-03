@@ -1,11 +1,18 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   imports = [
     ./hardware-configuration.nix
+    ./security
   ];
 
   system.stateVersion = "25.11";
+  boot.kernelPackages = import ./security/linux-hardened.nix { inherit pkgs lib; };
 
   boot = {
     loader = {
@@ -18,7 +25,7 @@
       "mem_sleep_default=deep"
     ];
     resumeDevice = "/dev/disk/by-uuid/e8491619-1594-4fd3-9ae6-6e81ab1bb6c2";
-    kernelPackages = pkgs.linuxPackages_latest;
+#    kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "uvcvideo" "amdgpu" ];
   };
 
@@ -161,7 +168,7 @@
         keyutils.lib
         libGL
         libGLU
-        libappindicator-gtk2
+        libappindicator-gtk3
         libcaca
         libcanberra
         libcap
