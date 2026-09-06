@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 # File to store the latest seek request
 SEEK_FILE="/tmp/quickshell_music_seek_data"

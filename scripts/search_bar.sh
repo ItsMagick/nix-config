@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -ex
 EWW=$(which eww)
 CFG="$HOME/.config/eww/popups/search-bar"

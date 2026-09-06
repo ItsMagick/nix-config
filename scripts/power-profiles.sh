@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -ex
 # --- 1. Toggle Logic ---
 if pgrep -x "rofi" > /dev/null; then

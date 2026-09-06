@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -ex
 # --- CONFIGURATION ---
 EWW_CFG="$HOME/.config/eww/popups/volume"

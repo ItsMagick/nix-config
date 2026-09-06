@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -ex
 ## WIFI
 get_wifi_status() {

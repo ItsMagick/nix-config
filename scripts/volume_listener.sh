@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -ex
 # Helper functions to get current state
 get_sink() { pactl get-default-sink; }

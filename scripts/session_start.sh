@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -eu
 
 CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"

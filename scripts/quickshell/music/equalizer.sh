@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 STATE_FILE="/tmp/eww_eq_state.json"
 PRESET_DIR="$HOME/.config/easyeffects/output"

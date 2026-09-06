@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 set -ex
 # Directory to save screenshots
 SAVE_DIR="$HOME/Images/Screenshots"

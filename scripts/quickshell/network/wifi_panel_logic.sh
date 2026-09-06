@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 
 # Check if WiFi is enabled
 POWER=$(nmcli radio wifi)
