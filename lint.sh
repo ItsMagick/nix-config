@@ -22,7 +22,7 @@ nix-shell -p fd qt6.qtdeclarative prettier taplo stylua nixfmt shfmt shellcheck 
   fd -e lua -x stylua
 
   stage "5/6: Formatting Nix"
-  fd -e nix -x nixfmt
+  find . -name "*.nix" -not -path "*/.git/*" -not -path "*/result*" -not -path "*/.idea/*" -exec nixfmt {} +
 
   stage "6/6: Formatting & Linting Shell Scripts"
   fd -e sh -x shfmt -w -i 2 -sr
