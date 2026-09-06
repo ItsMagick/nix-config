@@ -4,10 +4,10 @@ EWW_BIN=$(which eww)
 EWW_CFG="$HOME/.config/eww/bar"
 
 # 1. List of Eww windows to force close
-WINDOWS="battery_win music_win network_win calendar_win search_bar" 
+WINDOWS="battery_win music_win network_win calendar_win search_bar"
 
 # 2. Close the windows
-${EWW_BIN} --config ${EWW_CFG} close $WINDOWS 2>/dev/null
+${EWW_BIN} --config ${EWW_CFG} close $WINDOWS 2> /dev/null
 
 # 3. Clean up the toggle state files
 
@@ -16,8 +16,8 @@ ${EWW_BIN} --config ${EWW_CFG} close $WINDOWS 2>/dev/null
 BT_PID_FILE="$HOME/.cache/bt_scan_pid"
 
 if [ -f "$BT_PID_FILE" ]; then
-    kill $(cat "$BT_PID_FILE") 2>/dev/null
-    rm "$BT_PID_FILE"
+  kill $(cat "$BT_PID_FILE") 2> /dev/null
+  rm "$BT_PID_FILE"
 fi
 
 # Ensure bluetooth scan is explicitly turned off
@@ -31,17 +31,16 @@ rm -f "$HOME/.cache/eww_launch.network"
 rm -f "$HOME/.cache/eww_launch.calendar"
 rm -f "$HOME/.cache/eww_launch.searchbar"
 
-
 # Configuration: How many workspaces do you want to show?
 SEQ_END=8
 
 print_workspaces() {
-    # Get raw data
-    spaces=$(hyprctl workspaces -j)
-    active=$(hyprctl activeworkspace -j | jq '.id')
+  # Get raw data
+  spaces=$(hyprctl workspaces -j)
+  active=$(hyprctl activeworkspace -j | jq '.id')
 
-    # Generate the JSON
-    echo "$spaces" | jq --argjson a "$active" --arg end "$SEQ_END" -c '
+  # Generate the JSON
+  echo "$spaces" | jq --argjson a "$active" --arg end "$SEQ_END" -c '
         # Create a map of workspace ID -> workspace data for easy lookup
         (map( { (.id|tostring): . } ) | add) as $s
         |
@@ -70,9 +69,9 @@ print_workspaces
 
 # Listen to Hyprland socket
 socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
-    case "$line" in
-        workspace*|createwindow*|closewindow*|movewindow*)
-            print_workspaces
-            ;;
-    esac
+  case "$line" in
+  workspace* | createwindow* | closewindow* | movewindow*)
+    print_workspaces
+    ;;
+  esac
 done

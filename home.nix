@@ -4,7 +4,6 @@
   inputs,
   ...
 }:
-
 {
   home.username = "charon";
   home.homeDirectory = "/home/charon";
@@ -87,7 +86,6 @@
     platformTheme.name = "qt6ct";
     style.name = "kvantum";
   };
-
 
   imports = [
     ./modules

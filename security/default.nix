@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   imports = [
     ./apparmor.nix
     ./kernel.nix

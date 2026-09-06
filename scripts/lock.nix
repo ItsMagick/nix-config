@@ -1,5 +1,4 @@
 { pkgs }:
-
 pkgs.writeShellScriptBin "lock-screen" ''
   ${pkgs.swaylock-effects}/bin/swaylock \
     --image "$HOME/Pictures/wallpapers/lockscreen.jpg" \

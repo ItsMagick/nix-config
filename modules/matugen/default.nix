@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 {
   xdg.configFile."matugen".source = config.lib.file.mkOutOfStoreSymlink (toString ./.);
 
@@ -46,33 +45,33 @@
         fi
 
   '';
-    home.activation.ensureHyprfmTheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          cfg_home="''${XDG_CONFIG_HOME:-$HOME/.config}"
+  home.activation.ensureHyprfmTheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        cfg_home="''${XDG_CONFIG_HOME:-$HOME/.config}"
 
-          mkdir -p "$cfg_home/hyprfm" "$cfg_home/hyprfm/themes"
+        mkdir -p "$cfg_home/hyprfm" "$cfg_home/hyprfm/themes"
 
-          if [ ! -f "$cfg_home/hyprfm/config.toml" ]; then
-            cat > "$cfg_home/hyprfm/config.toml" <<'EOF'
-      [general]
-      theme = "matugen"
-      icon_theme = "Adwaita"
-      default_view = "grid"
-      show_hidden = false
-      sort_by = "name"
-      sort_ascending = true
+        if [ ! -f "$cfg_home/hyprfm/config.toml" ]; then
+          cat > "$cfg_home/hyprfm/config.toml" <<'EOF'
+    [general]
+    theme = "matugen"
+    icon_theme = "Adwaita"
+    default_view = "grid"
+    show_hidden = false
+    sort_by = "name"
+    sort_ascending = true
 
-      [sidebar]
-      position = "left"
-      width = 200
-      visible = true
+    [sidebar]
+    position = "left"
+    width = 200
+    visible = true
 
-      [appearance]
-      radius_small = 4
-      radius_medium = 8
-      radius_large = 12
-      EOF
-          else
-            sed -i 's/^theme[[:space:]]*=.*/theme = "matugen"/' "$cfg_home/hyprfm/config.toml"
-          fi
-    '';
+    [appearance]
+    radius_small = 4
+    radius_medium = 8
+    radius_large = 12
+    EOF
+        else
+          sed -i 's/^theme[[:space:]]*=.*/theme = "matugen"/' "$cfg_home/hyprfm/config.toml"
+        fi
+  '';
 }

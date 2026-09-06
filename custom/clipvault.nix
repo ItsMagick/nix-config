@@ -3,7 +3,6 @@
   rustPlatform,
   clipvault-src,
 }:
-
 rustPlatform.buildRustPackage {
   pname = "clipvault";
   version = "unstable";

@@ -1,6 +1,4 @@
-{ inputs, ... }:
-
-{
+{ inputs, ... }: {
   xdg.configFile = {
     "projectM/presets/cream-of-the-crop" = {
       source = inputs.projectm-cream-of-the-crop;

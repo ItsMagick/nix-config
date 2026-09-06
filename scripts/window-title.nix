@@ -1,5 +1,4 @@
 { pkgs }:
-
 pkgs.writeShellScriptBin "window-title" ''
   active_json=$(${pkgs.hyprland}/bin/hyprctl activewindow -j 2>/dev/null)
 

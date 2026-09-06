@@ -1,43 +1,43 @@
-{ lib
-, rustPlatform
-, pkg-config
-, cmake
-, makeWrapper
-, libGL
-, mesa
-, pulseaudio
-, alsa-lib
-, dbus
-, libxkbcommon
-, libdecor
-, wayland
-, wayland-protocols
-, wayland-scanner
-, libx11
-, libxext
-, libxcursor
-, libxi
-, libxrandr
-, libxrender
-, libxfixes
-, libxinerama
-, libxscrnsaver
-, libxtst
-, libxxf86vm
-, libdrm
-, libGLU
-, libpthreadstubs
-, ibus
-, libxcb
-, vulkan-headers
-, vulkan-loader
-, xcbutil
-, xcbutilwm
-, xcbutilkeysyms
-, writeShellScriptBin
-, frontend-sdl-rust-src
+{
+  lib,
+  rustPlatform,
+  pkg-config,
+  cmake,
+  makeWrapper,
+  libGL,
+  mesa,
+  pulseaudio,
+  alsa-lib,
+  dbus,
+  libxkbcommon,
+  libdecor,
+  wayland,
+  wayland-protocols,
+  wayland-scanner,
+  libx11,
+  libxext,
+  libxcursor,
+  libxi,
+  libxrandr,
+  libxrender,
+  libxfixes,
+  libxinerama,
+  libxscrnsaver,
+  libxtst,
+  libxxf86vm,
+  libdrm,
+  libGLU,
+  libpthreadstubs,
+  ibus,
+  libxcb,
+  vulkan-headers,
+  vulkan-loader,
+  xcbutil,
+  xcbutilwm,
+  xcbutilkeysyms,
+  writeShellScriptBin,
+  frontend-sdl-rust-src,
 }:
-
 let
   buildInputsList = [
     libGL
@@ -127,8 +127,11 @@ rustPlatform.buildRustPackage {
 
   buildInputs = buildInputsList;
 
- CMAKE_PREFIX_PATH = lib.concatStringsSep ":" (
-    lib.concatMap (p: [ "${lib.getDev p}" "${lib.getLib p}" ]) buildInputsList
+  CMAKE_PREFIX_PATH = lib.concatStringsSep ":" (
+    lib.concatMap (p: [
+      "${lib.getDev p}"
+      "${lib.getLib p}"
+    ]) buildInputsList
   );
 
   postInstall = ''

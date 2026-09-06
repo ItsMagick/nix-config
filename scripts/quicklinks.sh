@@ -7,64 +7,64 @@ ROFI_THEME="$CONFIG_HOME/rofi/matugen.rasi"
 CONFIG_FILE="${QUICKLINKS_CONFIG:-$SCRIPT_DIR/quicklink.yaml}"
 ICON_DIR="${QUICKLINKS_ICON_DIR:-$SCRIPT_DIR/quick-icons}"
 
-if [[ ! -f "$ROFI_THEME" ]] && command -v matugen >/dev/null 2>&1; then
-    WALLPAPER=""
+if [[ ! -f "$ROFI_THEME" ]] && command -v matugen > /dev/null 2>&1; then
+  WALLPAPER=""
 
-    if command -v awww >/dev/null 2>&1; then
-        WALLPAPER=$(awww query 2>/dev/null | grep -o "$HOME/[^ ]*\(jpg\|jpeg\|png\|webp\|gif\|mp4\|mkv\|mov\|webm\)" | head -n1)
-    fi
+  if command -v awww > /dev/null 2>&1; then
+    WALLPAPER=$(awww query 2> /dev/null | grep -o "$HOME/[^ ]*\(jpg\|jpeg\|png\|webp\|gif\|mp4\|mkv\|mov\|webm\)" | head -n1)
+  fi
 
-    if [[ -z "$WALLPAPER" ]] && command -v pgrep >/dev/null 2>&1; then
-        WALLPAPER=$(pgrep -a mpvpaper 2>/dev/null | sed -n "s/.* '\([^']*\)'.*/\1/p" | head -n1)
-    fi
+  if [[ -z "$WALLPAPER" ]] && command -v pgrep > /dev/null 2>&1; then
+    WALLPAPER=$(pgrep -a mpvpaper 2> /dev/null | sed -n "s/.* '\([^']*\)'.*/\1/p" | head -n1)
+  fi
 
-    if [[ -n "$WALLPAPER" && -f "$WALLPAPER" ]]; then
-        matugen image "$WALLPAPER" >/dev/null 2>&1
-    fi
+  if [[ -n "$WALLPAPER" && -f "$WALLPAPER" ]]; then
+    matugen image "$WALLPAPER" > /dev/null 2>&1
+  fi
 fi
 
 # --- 2. Toggle Logic ---
 if pgrep -x "rofi" > /dev/null; then
-    pkill rofi
-    exit 0
+  pkill rofi
+  exit 0
 fi
 
 # --- 3. Generator Function ---
 generate_menu() {
-    if [ ! -f "$CONFIG_FILE" ]; then
-        notify-send "Error" "Quicklinks config file not found!"
-        exit 1
+  if [ ! -f "$CONFIG_FILE" ]; then
+    notify-send "Error" "Quicklinks config file not found!"
+    exit 1
+  fi
+
+  # Loop through yaml entries
+  # We pipe directly to rofi later, so null bytes (\0) are preserved
+  yq -r '.[] | .name + "|" + .icon + "|" + .command' "$CONFIG_FILE" | while IFS='|' read -r name icon _cmd; do
+    # Resolve Icon Path
+    if [[ -f "$ICON_DIR/$icon" ]]; then
+      icon_path="$ICON_DIR/$icon"
+    else
+      icon_path="$icon"
     fi
 
-    # Loop through yaml entries
-    # We pipe directly to rofi later, so null bytes (\0) are preserved
-    yq -r '.[] | .name + "|" + .icon + "|" + .command' "$CONFIG_FILE" | while IFS='|' read -r name icon _cmd; do
-        # Resolve Icon Path
-        if [[ -f "$ICON_DIR/$icon" ]]; then
-            icon_path="$ICON_DIR/$icon"
-        else
-            icon_path="$icon"
-        fi
-
-        # Format: Name \0 icon \x1f IconPath
-        # usage of printf is critical here
-        printf "%s\0icon\x1f%s\n" "$name" "$icon_path"
-    done
+    # Format: Name \0 icon \x1f IconPath
+    # usage of printf is critical here
+    printf "%s\0icon\x1f%s\n" "$name" "$icon_path"
+  done
 }
 
 # --- 4. Rofi Logic ---
 # PIPING DIRECTLY avoids Bash stripping the null bytes
 SELECTED=$(generate_menu | rofi -dmenu \
-    -p "Quick Links" \
-    -show-icons \
-    -i \
-    -theme "$ROFI_THEME" \
-    -theme-str 'window { width: 800px; }' \
-    -theme-str 'listview { columns: 4; lines: 3; }')
+  -p "Quick Links" \
+  -show-icons \
+  -i \
+  -theme "$ROFI_THEME" \
+  -theme-str 'window { width: 800px; }' \
+  -theme-str 'listview { columns: 4; lines: 3; }')
 
 # Exit if nothing selected
 if [ -z "$SELECTED" ]; then
-    exit 0
+  exit 0
 fi
 
 # --- 5. Execution ---
@@ -72,8 +72,8 @@ fi
 COMMAND=$(yq -r ".[] | select(.name == \"$SELECTED\") | .command" "$CONFIG_FILE")
 
 if [ -z "$COMMAND" ]; then
-    notify-send "Error" "Command not found for: $SELECTED"
-    exit 1
+  notify-send "Error" "Command not found for: $SELECTED"
+  exit 1
 fi
 
 eval "$COMMAND"

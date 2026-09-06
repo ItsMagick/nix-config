@@ -14,26 +14,26 @@ first=true
 
 # Find images (jpg, jpeg, png, webp)
 find "$WALL_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) | sort | while read -r img; do
-    filename=$(basename "$img")
-    thumb="$CACHE_DIR/$filename"
+  filename=$(basename "$img")
+  thumb="$CACHE_DIR/$filename"
 
-    # Generate thumb if missing (Requires ImageMagick)
-    if [ ! -f "$thumb" ]; then
-        convert "$img" -thumbnail "$THUMB_SIZE" -gravity center -extent "$THUMB_SIZE" "$thumb"
-    fi
+  # Generate thumb if missing (Requires ImageMagick)
+  if [ ! -f "$thumb" ]; then
+    convert "$img" -thumbnail "$THUMB_SIZE" -gravity center -extent "$THUMB_SIZE" "$thumb"
+  fi
 
-    if [ "$first" = true ]; then
-        first=false
-    else
-        echo -n ","
-    fi
+  if [ "$first" = true ]; then
+    first=false
+  else
+    echo -n ","
+  fi
 
-    # Escape quotes for JSON safety
-    clean_path=$(echo "$img" | sed 's/"/\\"/g')
-    clean_thumb=$(echo "$thumb" | sed 's/"/\\"/g')
-    clean_name=$(echo "$filename" | sed 's/\.[^.]*$//') # Remove extension for display name
+  # Escape quotes for JSON safety
+  clean_path=$(echo "$img" | sed 's/"/\\"/g')
+  clean_thumb=$(echo "$thumb" | sed 's/"/\\"/g')
+  clean_name=$(echo "$filename" | sed 's/\.[^.]*$//') # Remove extension for display name
 
-    echo -n "{\"path\": \"$clean_path\", \"thumb\": \"$clean_thumb\", \"name\": \"$clean_name\"}"
+  echo -n "{\"path\": \"$clean_path\", \"thumb\": \"$clean_thumb\", \"name\": \"$clean_name\"}"
 done
 
 echo "]"

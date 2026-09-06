@@ -1,13 +1,13 @@
 #!/usr/bin/env zsh
 
 QUERY="$1"
-EWW=`which eww`
+EWW=$(which eww)
 CFG="$HOME/.config/eww/popups/search-bar"
 FILE="$HOME/.cache/eww_launch.searchbar"
 
 # 1. Check if query is empty
 if [[ -z "$QUERY" ]]; then
-    exit 0
+  exit 0
 fi
 
 # 2. Open the browser
@@ -22,7 +22,7 @@ WINDOW_ADDRESS=$(hyprctl clients -j | jq -r ".[] | select(.class | test(\"$BROWS
 
 # If a browser window was found, switch focus to it
 if [[ -n "$WINDOW_ADDRESS" ]]; then
-    hyprctl dispatch focuswindow address:$WINDOW_ADDRESS
+  hyprctl dispatch focuswindow address:$WINDOW_ADDRESS
 fi
 
 ${EWW} --config ${CFG} close search_bar

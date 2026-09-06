@@ -4,7 +4,6 @@
   lib,
   ...
 }:
-
 {
   imports = [
     ./hardware-configuration.nix
@@ -18,15 +17,17 @@
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
-
     };
     kernelParams = [
       "resume_offset=72464384"
       "mem_sleep_default=deep"
     ];
     resumeDevice = "/dev/disk/by-uuid/e8491619-1594-4fd3-9ae6-6e81ab1bb6c2";
-#    kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "uvcvideo" "amdgpu" ];
+    #    kernelPackages = pkgs.linuxPackages_latest;
+    kernelModules = [
+      "uvcvideo"
+      "amdgpu"
+    ];
   };
 
   networking = {
@@ -37,7 +38,6 @@
   time.timeZone = "Europe/Berlin";
 
   i18n = {
-
     defaultLocale = "en_US.UTF-8";
 
     extraLocaleSettings = {

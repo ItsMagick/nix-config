@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs.vesktop = {
     enable = true;
     package = pkgs.vesktop.overrideAttrs (old: {

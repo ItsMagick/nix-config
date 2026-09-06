@@ -24,7 +24,11 @@ hl.bind("ALT", "TAB", hl.dsp.exec_cmd("rofi -show window"))
 hl.bind(mainMod, "W", hl.dsp.exec_cmd("zsh ~/.config/hypr/scripts/qs_manager.sh toggle wallpaper"))
 hl.bind(mainMod, "N", hl.dsp.exec_cmd("zsh ~/.config/hypr/scripts/qs_manager.sh toggle network wifi"))
 hl.bind(mainMod .. " SHIFT", "N", hl.dsp.exec_cmd("zsh ~/.config/hypr/scripts/qs_manager.sh toggle network bt"))
-hl.bind(mainMod .. " SHIFT", "B", hl.dsp.exec_cmd("zsh ~/.config/hypr/scripts/quickshell/network/bluetooth_panel_logic.sh --toggle"))
+hl.bind(
+	mainMod .. " SHIFT",
+	"B",
+	hl.dsp.exec_cmd("zsh ~/.config/hypr/scripts/quickshell/network/bluetooth_panel_logic.sh --toggle")
+)
 hl.bind(mainMod, "D", hl.dsp.exec_cmd("zsh ~/.config/hypr/scripts/qs_manager.sh toggle calendar"))
 hl.bind(mainMod, "Y", hl.dsp.exec_cmd("zsh ~/.config/hypr/scripts/qs_manager.sh toggle music"))
 hl.bind(mainMod, "P", hl.dsp.exec_cmd("zsh ~/.config/hypr/scripts/qs_manager.sh toggle battery"))
@@ -33,12 +37,12 @@ hl.bind("", "Print", hl.dsp.exec_cmd('grim -g "$(slurp)" - | wl-copy'))
 
 -- Loops for absolute switching & shifting workspaces
 for i = 1, 5 do
-  hl.bind(mainMod, tostring(i), hl.dsp.workspace.switch_to(i))
+	hl.bind(mainMod, tostring(i), hl.dsp.workspace.switch_to(i))
 end
 
 for i = 1, 10 do
-  local key = i == 10 and "0" or tostring(i)
-  hl.bind(mainMod .. " SHIFT", key, hl.dsp.window.move_to_workspace(i))
+	local key = i == 10 and "0" or tostring(i)
+	hl.bind(mainMod .. " SHIFT", key, hl.dsp.window.move_to_workspace(i))
 end
 
 -- Media Control Flags (bindle)

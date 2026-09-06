@@ -1,7 +1,5 @@
 # /etc/nixos/modules/network-manager.nix
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     networkmanager_dmenu
     networkmanagerapplet

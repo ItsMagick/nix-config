@@ -1,6 +1,4 @@
-{ config, ... }:
-
-{
+{ config, ... }: {
   home.file = {
     ".config/hypr/scripts/quickshell".source = config.lib.file.mkOutOfStoreSymlink (
       toString ./../scripts/quickshell

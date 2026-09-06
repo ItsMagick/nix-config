@@ -1,10 +1,14 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  ...
+}:
 {
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
     configType = "hyprlang";
-    systemd.variables = ["--all"];
+    systemd.variables = [ "--all" ];
 
     settings = {
       env = [
@@ -177,5 +181,4 @@
   # xdg.configFile."hypr/displays.lua".source = ./hyprland/displays.lua;
   # xdg.configFile."hypr/keybinds.lua".source = ./hyprland/keybinds.lua;
   # xdg.configFile."hypr/theme.lua".source = ./hyprland/theme.lua;
-
 }

@@ -12,26 +12,26 @@ SHELL_NIX="$HOME/.config/hypr/scripts/quickshell/calendar/schedule/shell.nix"
 mkdir -p "$CACHE_DIR"
 
 trigger_update() {
-    # PREVENT OVERLAP: Check if the python script is already running
-    if pgrep -f "python3.*get_schedule.py" > /dev/null; then
-        return # Silently exit if an update is already in progress
-    fi
-    
-    nix-shell "$SHELL_NIX" --run "python3 '$UPDATER_SCRIPT'" >/dev/null 2>&1 &
+  # PREVENT OVERLAP: Check if the python script is already running
+  if pgrep -f "python3.*get_schedule.py" > /dev/null; then
+    return # Silently exit if an update is already in progress
+  fi
+
+  nix-shell "$SHELL_NIX" --run "python3 '$UPDATER_SCRIPT'" > /dev/null 2>&1 &
 }
 
 if [ -f "$CACHE_FILE" ]; then
-    cat "$CACHE_FILE"
-    
-    current_time=$(date +%s)
-    file_time=$(stat -c %Y "$CACHE_FILE")
-    age=$((current_time - file_time))
-    
-    if [ "$age" -gt "$CACHE_LIMIT" ]; then
-        trigger_update
-    fi
-else
-    # Valid placeholder with "link"
-    echo '{ "header": "Loading...", "lessons": [], "link": "" }'
+  cat "$CACHE_FILE"
+
+  current_time=$(date +%s)
+  file_time=$(stat -c %Y "$CACHE_FILE")
+  age=$((current_time - file_time))
+
+  if [ "$age" -gt "$CACHE_LIMIT" ]; then
     trigger_update
+  fi
+else
+  # Valid placeholder with "link"
+  echo '{ "header": "Loading...", "lessons": [], "link": "" }'
+  trigger_update
 fi

@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   # Hide kptrs even for processes with CAP_SYSLOG
   boot.kernel.sysctl."kernel.kptr_restrict" = "2";
 

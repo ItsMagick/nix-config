@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 
 # 1. Safely close Eww windows only if eww is actually installed
-if command -v eww >/dev/null 2>&1; then
-    EWW_BIN=$(which eww)
-    EWW_CFG="$HOME/.config/eww/bar"
-    WINDOWS="battery_win music_win network_win calendar_win search_bar" 
-    ${EWW_BIN} --config "${EWW_CFG}" close $WINDOWS 2>/dev/null
+if command -v eww > /dev/null 2>&1; then
+  EWW_BIN=$(which eww)
+  EWW_CFG="$HOME/.config/eww/bar"
+  WINDOWS="battery_win music_win network_win calendar_win search_bar"
+  ${EWW_BIN} --config "${EWW_CFG}" close $WINDOWS 2> /dev/null
 fi
 
 # 2. Clean up the toggle state files
@@ -14,8 +14,8 @@ fi
 BT_PID_FILE="$HOME/.cache/bt_scan_pid"
 
 if [ -f "$BT_PID_FILE" ]; then
-    kill $(cat "$BT_PID_FILE") 2>/dev/null
-    rm -f "$BT_PID_FILE"
+  kill $(cat "$BT_PID_FILE") 2> /dev/null
+  rm -f "$BT_PID_FILE"
 fi
 
 # Ensure bluetooth scan is explicitly turned off
@@ -26,13 +26,13 @@ bluetoothctl scan off > /dev/null 2>&1
 SEQ_END=8
 
 print_workspaces() {
-    # Get raw data
-    spaces=$(hyprctl workspaces -j)
-    active=$(hyprctl activeworkspace -j | jq '.id')
+  # Get raw data
+  spaces=$(hyprctl workspaces -j)
+  active=$(hyprctl activeworkspace -j | jq '.id')
 
-    # Generate the JSON
-    # ADDED: --unbuffered so the file updates instantly for TopBar.qml
-    echo "$spaces" | jq --unbuffered --argjson a "$active" --arg end "$SEQ_END" -c '
+  # Generate the JSON
+  # ADDED: --unbuffered so the file updates instantly for TopBar.qml
+  echo "$spaces" | jq --unbuffered --argjson a "$active" --arg end "$SEQ_END" -c '
         # Create a map of workspace ID -> workspace data for easy lookup
         (map( { (.id|tostring): . } ) | add) as $s
         |
@@ -62,9 +62,9 @@ print_workspaces
 # Listen to Hyprland socket
 # ADDED: focusedmon, activewindow, and destroyworkspace to perfectly sync all UI shifts
 socat -u UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - | while read -r line; do
-    case "$line" in
-        workspace*|focusedmon*|activewindow*|createwindow*|closewindow*|movewindow*|destroyworkspace*)
-            print_workspaces
-            ;;
-    esac
+  case "$line" in
+  workspace* | focusedmon* | activewindow* | createwindow* | closewindow* | movewindow* | destroyworkspace*)
+    print_workspaces
+    ;;
+  esac
 done

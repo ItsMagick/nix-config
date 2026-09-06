@@ -7,22 +7,27 @@ import Quickshell.Io
 Item {
     id: window
 
+    readonly property string awwwCommand: "awww img '%1'"
+    readonly property int borderWidth: 3
+    readonly property string homeDir: "file://" + Quickshell.env("HOME")
+    property bool initialFocusSet: false
+    readonly property int itemHeight: 420
+    readonly property int itemWidth: 300
+    readonly property string mpvCommand: "pkill mpvpaper; mpvpaper -o 'loop --no-audio --hwdec=auto --profile=high-quality --video-sync=display-resample --interpolation --tscale=oversample' '*' '%1'"
+    readonly property real skewFactor: -0.35
+    readonly property int spacing: 0
+    readonly property string srcDir: Quickshell.env("QS_WALLPAPER_DIR") || (Quickshell.env("HOME") + "/Pictures/wallpapers")
+    property string targetWallName: ""
+    readonly property string thumbDir: homeDir + "/.cache/wallpaper_picker/thumbs"
+
     // -------------------------------------------------------------------------
     // PROPERTIES & IPC RECEIVER
     // -------------------------------------------------------------------------
     property string widgetArg: ""
-    property string targetWallName: ""
-    property bool initialFocusSet: false
-
-    onWidgetArgChanged: {
-        if (widgetArg !== "") {
-            targetWallName = widgetArg;
-            tryFocus();
-        }
-    }
 
     function tryFocus() {
-        if (initialFocusSet) return;
+        if (initialFocusSet)
+            return;
 
         if (view.count > 0) {
             let foundIndex = -1;
@@ -53,177 +58,181 @@ Item {
         }
     }
 
-    readonly property string homeDir: "file://" + Quickshell.env("HOME")
-    readonly property string thumbDir: homeDir + "/.cache/wallpaper_picker/thumbs"
-    readonly property string srcDir: Quickshell.env("QS_WALLPAPER_DIR") || (Quickshell.env("HOME") + "/Pictures/wallpapers")
+    Component.onCompleted: {
+        view.forceActiveFocus();
+    }
+    onWidgetArgChanged: {
+        if (widgetArg !== "") {
+            targetWallName = widgetArg;
+            tryFocus();
+        }
+    }
 
-    readonly property string awwwCommand: "awww img '%1'"
-    readonly property string mpvCommand: "pkill mpvpaper; mpvpaper -o 'loop --no-audio --hwdec=auto --profile=high-quality --video-sync=display-resample --interpolation --tscale=oversample' '*' '%1'"
+    Shortcut {
+        sequence: "Left"
 
-    readonly property int itemWidth: 300
-    readonly property int itemHeight: 420
-    readonly property int borderWidth: 3
-    readonly property int spacing: 0 
-    readonly property real skewFactor: -0.35
+        onActivated: view.decrementCurrentIndex()
+    }
+    Shortcut {
+        sequence: "Right"
 
-    Shortcut { sequence: "Left"; onActivated: view.decrementCurrentIndex() }
-    Shortcut { sequence: "Right"; onActivated: view.incrementCurrentIndex() }
-    Shortcut { sequence: "Return"; onActivated: { if (view.currentItem) view.currentItem.pickWallpaper() } }
+        onActivated: view.incrementCurrentIndex()
+    }
+    Shortcut {
+        sequence: "Return"
+
+        onActivated: {
+            if (view.currentItem)
+                view.currentItem.pickWallpaper();
+        }
+    }
 
     // -------------------------------------------------------------------------
     // CONTENT
     // -------------------------------------------------------------------------
     ListView {
         id: view
+
         anchors.fill: parent
-        anchors.margins: 0 
-        
-        spacing: window.spacing
-        orientation: ListView.Horizontal
-        clip: false 
+        anchors.margins: 0
 
         // Pre-load items off-screen so they don't block the thread as they enter the view
         cacheBuffer: 2000
+        clip: false
+        focus: true
 
-        highlightRangeMode: ListView.StrictlyEnforceRange
-        preferredHighlightBegin: (width / 2) - (window.itemWidth / 2)
-        preferredHighlightEnd: (width / 2) + (window.itemWidth / 2)
-        
         // Reset back to standard speed for snappy manual keyboard navigation
         highlightMoveDuration: window.initialFocusSet ? 300 : 0
-
-        focus: true
-        
-        onCountChanged: window.tryFocus()
-
-        model: FolderListModel {
-            id: folderModel
-            folder: window.thumbDir
-            nameFilters: ["*.jpg", "*.jpeg", "*.png", "*.webp", "*.gif", "*.mp4", "*.mkv", "*.mov", "*.webm"]
-            showDirs: false
-            sortField: FolderListModel.Name 
-            
-            // Re-check focus when the model's loading status updates
-            onStatusChanged: window.tryFocus()
-        }
+        highlightRangeMode: ListView.StrictlyEnforceRange
+        orientation: ListView.Horizontal
+        preferredHighlightBegin: (width / 2) - (window.itemWidth / 2)
+        preferredHighlightEnd: (width / 2) + (window.itemWidth / 2)
+        spacing: window.spacing
 
         delegate: Item {
             id: delegateRoot
-            width: window.itemWidth
-            height: window.itemHeight
-            anchors.verticalCenter: parent.verticalCenter
 
             readonly property bool isCurrent: ListView.isCurrentItem
             readonly property bool isVideo: fileName.startsWith("000_")
 
-            z: isCurrent ? 10 : 1
-
             function pickWallpaper() {
-                let cleanName = fileName
+                let cleanName = fileName;
                 if (cleanName.startsWith("000_")) {
-                    cleanName = cleanName.substring(4)
+                    cleanName = cleanName.substring(4);
                 }
 
-                const originalFile = window.srcDir + "/" + cleanName
-                const thumbFile = Quickshell.env("HOME") + "/.cache/wallpaper_picker/thumbs/" + fileName
+                const originalFile = window.srcDir + "/" + cleanName;
+                const thumbFile = Quickshell.env("HOME") + "/.cache/wallpaper_picker/thumbs/" + fileName;
 
                 if (isVideo) {
-                    const finalCmd = window.mpvCommand.arg(originalFile)
-                    Quickshell.execDetached(["bash", "-c", finalCmd + " & matugen image " + thumbFile + "--source-color-index 0" + " &"])
+                    const finalCmd = window.mpvCommand.arg(originalFile);
+                    Quickshell.execDetached(["bash", "-c", finalCmd + " & matugen image " + thumbFile + "--source-color-index 0" + " &"]);
                 } else {
-                    const finalCmd = window.awwwCommand.arg(originalFile)
-                    Quickshell.execDetached(["bash", "-c", "pkill mpvpaper"])
-                    Quickshell.execDetached(["bash", "-c", finalCmd])
-                    Quickshell.execDetached(["bash", "-c", "matugen image " + thumbFile + " --source-color-index 0"])
+                    const finalCmd = window.awwwCommand.arg(originalFile);
+                    Quickshell.execDetached(["bash", "-c", "pkill mpvpaper"]);
+                    Quickshell.execDetached(["bash", "-c", finalCmd]);
+                    Quickshell.execDetached(["bash", "-c", "matugen image " + thumbFile + " --source-color-index 0"]);
                 }
 
-                Quickshell.execDetached(["bash", "-c", "hyprctl dispatch killactive"])
+                Quickshell.execDetached(["bash", "-c", "hyprctl dispatch killactive"]);
             }
+
+            anchors.verticalCenter: parent.verticalCenter
+            height: window.itemHeight
+            width: window.itemWidth
+            z: isCurrent ? 10 : 1
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: {
-                    view.currentIndex = index
-                    delegateRoot.pickWallpaper()
 
+                onClicked: {
+                    view.currentIndex = index;
+                    delegateRoot.pickWallpaper();
                 }
             }
-
             Item {
                 anchors.centerIn: parent
-                width: parent.width
                 height: parent.height
-
-                scale: delegateRoot.isCurrent ? 1.15 : 0.95
                 opacity: delegateRoot.isCurrent ? 1.0 : 0.6
+                scale: delegateRoot.isCurrent ? 1.15 : 0.95
+                width: parent.width
 
-                Behavior on scale { NumberAnimation { duration: 500; easing.type: Easing.OutBack } }
-                Behavior on opacity { NumberAnimation { duration: 500 } }
-
+                Behavior on opacity {
+                    NumberAnimation {
+                        duration: 500
+                    }
+                }
+                Behavior on scale {
+                    NumberAnimation {
+                        duration: 500
+                        easing.type: Easing.OutBack
+                    }
+                }
                 transform: Matrix4x4 {
                     property real s: window.skewFactor
+
                     matrix: Qt.matrix4x4(1, s, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
                 }
 
                 Image {
                     anchors.fill: parent
-                    source: fileUrl
-                    sourceSize: Qt.size(1, 1)
-                    fillMode: Image.Stretch
-                    visible: true 
-                    
+
                     // Load from disk on a background thread to prevent UI freezing
                     asynchronous: true
+                    fillMode: Image.Stretch
+                    source: fileUrl
+                    sourceSize: Qt.size(1, 1)
+                    visible: true
                 }
-
                 Item {
                     anchors.fill: parent
-                    anchors.margins: window.borderWidth 
-                    
-                    Rectangle { anchors.fill: parent; color: "black" }
+                    anchors.margins: window.borderWidth
                     clip: true
 
+                    Rectangle {
+                        anchors.fill: parent
+                        color: "black"
+                    }
                     Image {
                         anchors.centerIn: parent
-                        anchors.horizontalCenterOffset: -50 
-                        
-                        width: parent.width + (parent.height * Math.abs(window.skewFactor)) + 50
-                        height: parent.height
-                        
-                        fillMode: Image.PreserveAspectCrop
-                        source: fileUrl
-                        
+                        anchors.horizontalCenterOffset: -50
+
                         // Load from disk on a background thread to prevent UI freezing
                         asynchronous: true
+                        fillMode: Image.PreserveAspectCrop
+                        height: parent.height
+                        source: fileUrl
+                        width: parent.width + (parent.height * Math.abs(window.skewFactor)) + 50
 
                         transform: Matrix4x4 {
                             property real s: -window.skewFactor
+
                             matrix: Qt.matrix4x4(1, s, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
                         }
                     }
-                    
                     Rectangle {
-                        visible: delegateRoot.isVideo
-                        anchors.top: parent.top
-                        anchors.right: parent.right
                         anchors.margins: 10
-                        
-                        width: 32
+                        anchors.right: parent.right
+                        anchors.top: parent.top
+                        color: "#60000000"
                         height: 32
                         radius: 6
-                        color: "#60000000" 
-                        
+                        visible: delegateRoot.isVideo
+                        width: 32
+
                         transform: Matrix4x4 {
                             property real s: -window.skewFactor
+
                             matrix: Qt.matrix4x4(1, s, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
                         }
-                        
+
                         Canvas {
                             anchors.fill: parent
-                            anchors.margins: 8 
+                            anchors.margins: 8
+
                             onPaint: {
                                 var ctx = getContext("2d");
-                                ctx.fillStyle = "#EEFFFFFF"; 
+                                ctx.fillStyle = "#EEFFFFFF";
                                 ctx.beginPath();
                                 ctx.moveTo(4, 0);
                                 ctx.lineTo(14, 8);
@@ -236,9 +245,18 @@ Item {
                 }
             }
         }
-    }
+        model: FolderListModel {
+            id: folderModel
 
-    Component.onCompleted: {
-        view.forceActiveFocus();
+            folder: window.thumbDir
+            nameFilters: ["*.jpg", "*.jpeg", "*.png", "*.webp", "*.gif", "*.mp4", "*.mkv", "*.mov", "*.webm"]
+            showDirs: false
+            sortField: FolderListModel.Name
+
+            // Re-check focus when the model's loading status updates
+            onStatusChanged: window.tryFocus()
+        }
+
+        onCountChanged: window.tryFocus()
     }
 }
