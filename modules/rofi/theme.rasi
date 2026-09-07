@@ -1,23 +1,6 @@
 @import "colors.rasi" * {
-  /* Catppuccin Mocha Palette — static, ignored by matugen */
-  bg-col: #1e1e2e;
-  bg-col-light: #1e1e2e;
-  border-col: #1e1e2e;
-  selected-col: #1e1e2e;
-  blue: #89b4fa;
-  fg-col: #cdd6f4;
-  fg-col2: #f38ba8;
-  grey: #6c7086;
-  surface0: #313244;
-  surface1: #45475a;
   mauve: #cba6f7;
-  rosewater: #f5e0dc;
-
-  bg-alpha: #1e1e2ef2;
-  surface-alpha: #31324480;
-
   active-grad: linear-gradient(to bottom, #45475a, #313244);
-  /* tab-grad removed — replaced by @mtg-button-grad from colors.rasi */
 
   width: 1200px;
   font: "JetBrainsMono Nerd Font 11";
@@ -32,9 +15,9 @@ mode-switcher {
 
 window {
   height: 600px;
-  background-color: @bg-alpha;
+  background-color: @mtg-bg-alpha;
   border: 2px;
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: @mtg-outline;
   border-radius: 20px;
   transparency: "real";
 }
@@ -61,10 +44,9 @@ input-area {
   spacing: 15px;
 }
 
-/* --- Search bar: border tints with matugen accent --- */
 inputbar {
   children: [ entry];
-  background-color: @surface-alpha;
+  background-color: @mtg-surface-1-alpha;
   border-radius: 12px;
   padding: 10px;
   orientation: horizontal;
@@ -73,10 +55,10 @@ inputbar {
 }
 entry {
   padding: 4px;
-  text-color: @fg-col;
+  text-color: @mtg-on-surface;
   background-color: transparent;
   placeholder: "Search";
-  placeholder-color: @grey;
+  placeholder-color: @mtg-on-surface-var;
   font: "JetBrainsMono Nerd Font Bold 11";
   horizontal-align: 0;
 }
@@ -89,14 +71,13 @@ mode-switcher {
 
 button {
   padding: 12px;
-  background-color: @surface-alpha;
-  text-color: @grey;
+  background-color: @mtg-surface-1;
+  text-color: @mtg-on-surface-var;
   vertical-align: 0.5;
   horizontal-align: 0;
   border-radius: 10px;
   cursor: pointer;
 }
-/* --- Buttons: gradient + text tint with matugen accent --- */
 button selected {
   background-image: @mtg-button-grad;
   text-color: @mtg-on-accent;
@@ -130,12 +111,12 @@ element {
   spacing: 6px;
   background-color: transparent;
   border-radius: 14px;
-  text-color: @fg-col;
+  text-color: @mtg-on-surface;
   cursor: pointer;
   border: 1px;
   border-color: transparent;
 }
-/* Grid item hover stays static Catppuccin mauve, per your request */
+
 element selected {
   background-image: @active-grad;
   text-color: @mauve;
@@ -158,10 +139,10 @@ element-text {
 }
 
 error-message {
-  background-color: @bg-col;
+  background-color: @mtg-bg;
   border: 1px;
-  border-color: @fg-col2;
+  border-color: @mtg-error;
   border-radius: 12px;
   padding: 20px;
-  text-color: @fg-col2;
+  text-color: @mtg-error;
 }

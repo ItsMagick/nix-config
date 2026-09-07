@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{
   imports = [
     ./spicetify.nix
     ./hyprland.nix

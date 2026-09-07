@@ -35,4 +35,7 @@
   # Ignore outgoing ICMP redirects (this is ipv4 only)
   boot.kernel.sysctl."net.ipv4.conf.all.send_redirects" = false;
   boot.kernel.sysctl."net.ipv4.conf.default.send_redirects" = false;
+
+  boot.kernel.sysctl."kernel.unprivileged_userns_clone" = 1;
+  boot.kernel.sysctl."kernel.apparmor_restrict_unprivileged_userns" = 0;
 }
