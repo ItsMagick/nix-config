@@ -8,6 +8,7 @@
   home.username = "charon";
   home.homeDirectory = "/home/charon";
   home.stateVersion = "25.11";
+
   home.sessionVariables = {
     GTK_THEME = "catppuccin-macchiato-lavender-standard";
     COLORTERM = "truecolor";
@@ -15,7 +16,13 @@
     LC_ALL = "en_US.UTF-8";
     MOZ_ENABLE_WAYLAND = "1";
     NIXOS_OZONE_WL = "1";
+    ANDROID_HOME = "${config.home.homeDirectory}/Android/Sdk";
+    ANDROID_SDK_ROOT = "${config.home.homeDirectory}/Android/Sdk";
   };
+  home.sessionPath = [
+    "${config.home.homeDirectory}/Android/Sdk/platform-tools"
+    "${config.home.homeDirectory}/Android/Sdk/cmdline-tools/latest/bin"
+  ];
   home.pointerCursor = {
     x11.enable = true;
     package = pkgs.catppuccin-cursors.macchiatoLavender;
