@@ -289,7 +289,12 @@
     ];
   };
 
-  virtualisation.podman.enable = true;
+  virtualisation.podman = {
+  enable = true;
+  dockerCompat = true;
+  defaultNetwork.settings.dns_enabled = true;
+  };
+
   security.pam.services.swaylock = { };
 
   ### Remove all builds older than 14 days on a daily basis

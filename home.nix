@@ -96,18 +96,6 @@
     platformTheme.name = "qt6ct";
     style.name = "kvantum";
   };
-  systemd.user.services.podman-socket = {
-    Unit = {
-      Description = "Podman API Socket";
-      Documentation = "man:podman-system-service(1)";
-    };
-    Service = {
-      ExecStart = "${pkgs.podman}/bin/podman system service --time=0";
-    };
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-  };
 
   imports = [
     ./modules
