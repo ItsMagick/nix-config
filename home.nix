@@ -18,6 +18,7 @@
     NIXOS_OZONE_WL = "1";
     ANDROID_HOME = "${config.home.homeDirectory}/Android/Sdk";
     ANDROID_SDK_ROOT = "${config.home.homeDirectory}/Android/Sdk";
+    DOCKER_HOST = "unix://\${XDG_RUNTIME_DIR}/podman/podman.sock";
   };
   home.sessionPath = [
     "${config.home.homeDirectory}/Android/Sdk/platform-tools"
@@ -72,6 +73,8 @@
     inputs.hyprfm.packages.${pkgs.stdenv.hostPlatform.system}.default
     projectm-sdl-rust
     nmap
+    podman-compose
+    podman-tui
   ];
 
   gtk = {
@@ -92,6 +95,18 @@
     enable = true;
     platformTheme.name = "qt6ct";
     style.name = "kvantum";
+  };
+  systemd.user.services.podman-socket = {
+    Unit = {
+      Description = "Podman API Socket";
+      Documentation = "man:podman-system-service(1)";
+    };
+    Service = {
+      ExecStart = "${pkgs.podman}/bin/podman system service --time=0";
+    };
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
   };
 
   imports = [

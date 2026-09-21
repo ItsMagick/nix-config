@@ -20,6 +20,7 @@
       l = "ls -CF";
       sl = "ls";
       update = "sudo nixos-rebuild switch --flake ~/Documents/nix-config/#TPS";
+      docker = "podman";
     };
 
     oh-my-zsh = {

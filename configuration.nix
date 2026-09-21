@@ -255,7 +255,6 @@
       "video"
       "camera"
       "lp"
-      "docker"
       "bluetooth"
     ];
     packages = with pkgs; [ ];
@@ -290,7 +289,7 @@
     ];
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
   security.pam.services.swaylock = { };
 
   ### Remove all builds older than 14 days on a daily basis

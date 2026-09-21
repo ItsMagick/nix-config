@@ -111,6 +111,8 @@ Item {
 
         delegate: Item {
             id: delegateRoot
+            width: window.itemWidth
+            height: view.height
 
             readonly property bool isCurrent: ListView.isCurrentItem
             readonly property bool isVideo: fileName.startsWith("000_")
@@ -137,9 +139,6 @@ Item {
                 Quickshell.execDetached(["bash", "-c", "hyprctl dispatch killactive"]);
             }
 
-            anchors.verticalCenter: parent.verticalCenter
-            height: window.itemHeight
-            width: window.itemWidth
             z: isCurrent ? 10 : 1
 
             MouseArea {
@@ -152,7 +151,7 @@ Item {
             }
             Item {
                 anchors.centerIn: parent
-                height: parent.height
+                height: window.itemHeight
                 opacity: delegateRoot.isCurrent ? 1.0 : 0.6
                 scale: delegateRoot.isCurrent ? 1.15 : 0.95
                 width: parent.width
