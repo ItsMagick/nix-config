@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -ex
 # --- CONFIGURATION ---
-EWW_CFG="$HOME/.config/awww/popups/usb"
+EWW_CFG="$HOME/.config/awww/new-eww/popups/usb"
 EWW_BIN=$(which awww)
 
 # --- STATE FILES ---

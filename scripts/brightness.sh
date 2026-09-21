@@ -1,11 +1,11 @@
 #!/usr/bin/env zsh
 set -ex
 # --- CONFIGURATION ---
-EWW_CFG="$HOME/.config/eww/popups/brightness"
-EWW_BIN=$(which eww)
+EWW_CFG="$HOME/.config/awww/new-eww/popups/brightness"
+EWW_BIN=$(which awww)
 
 # We use two files:
-# 1. A timestamp file to record exactly WHEN the last brightness change happened.
+# 1. A timeewwstamp file to record exactly WHEN the last brightness change happened.
 # 2. A lock file to ensure only ONE background "closer" process runs at a time.
 TIMESTAMP_FILE="/tmp/eww_brightness_timestamp"
 CLOSER_LOCK="/tmp/eww_brightness_closer.lock"

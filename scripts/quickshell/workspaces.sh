@@ -1,9 +1,9 @@
 #!/usr/bin/env zsh
 
 # 1. Safely close Eww windows only if eww is actually installed
-if command -v eww > /dev/null 2>&1; then
+if command -v awww > /dev/null 2>&1; then
   EWW_BIN=$(which eww)
-  EWW_CFG="$HOME/.config/eww/bar"
+  EWW_CFG="$HOME/.config/awww/new-eww/bar"
   WINDOWS="battery_win music_win network_win calendar_win search_bar"
   ${EWW_BIN} --config "${EWW_CFG}" close $WINDOWS 2> /dev/null
 fi

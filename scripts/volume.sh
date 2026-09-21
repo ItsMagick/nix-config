@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -ex
 # --- CONFIGURATION ---
-EWW_CFG="$HOME/.config/eww/popups/volume"
+EWW_CFG="$HOME/.config/awww/new-eww/popups/volume"
 EWW_BIN=$(which eww)
 
 # PID file to track the current "sleep" process.
