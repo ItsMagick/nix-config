@@ -1,7 +1,7 @@
 { pkgs }:
 pkgs.writeShellScriptBin "lock-screen" ''
   ${pkgs.swaylock-effects}/bin/swaylock \
-    --image "$HOME/Pictures/wallpapers/lockscreen.jpg" \
+    --image "$HOME/Pictures/wallpapers/aperture.jpg" \
     --clock \
     --indicator \
     --indicator-radius 100 \
