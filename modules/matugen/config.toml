@@ -32,3 +32,8 @@ output_path = '~/.config/vesktop/themes/matugen.css'
 [templates.hyprfm]
 input_path = "~/.config/matugen/templates/hyprfm.toml"
 output_path = "~/.config/hyprfm/themes/matugen.toml"
+
+[templates.eww]
+input_path = "~/.config/matugen/templates/eww.scss"
+output_path = "~/.config/eww/colors.scss"
+post_hook = "eww reload"

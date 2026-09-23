@@ -1,0 +1,4 @@
+(include "./popups/brightness/eww.yuck")
+(include "./popups/volume/eww.yuck")
+(include "./popups/usb/eww.yuck")
+(include "./popups/bluetooth/eww.yuck")

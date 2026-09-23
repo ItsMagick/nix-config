@@ -1,0 +1,21 @@
+/* Matugen generated Material Design tokens for Eww */
+$base:       {{colors.surface.default.hex}};
+$mantle:     {{colors.surface_container_lowest.default.hex}};
+$surface0:   {{colors.surface_container.default.hex}};
+$surface1:   {{colors.surface_container_high.default.hex}};
+$text:       {{colors.on_surface.default.hex}};
+$subtext0:   {{colors.on_surface_variant.default.hex}};
+
+/* Accents mapped from Material Palette */
+$blue:       {{colors.primary.default.hex}};
+$mauve:      {{colors.secondary.default.hex}};
+$lavender:   {{colors.tertiary.default.hex}};
+$green:      {{colors.primary_container.default.hex}};
+$yellow:     {{colors.tertiary_container.default.hex}};
+$red:        {{colors.error.default.hex}};
+
+/* Translucent Alpha Variants for Glassmorphism */
+$base_alpha:   {{colors.surface.default.hex}}D9;   /* ~85% opacity */
+$blue_alpha:   {{colors.primary.default.hex}}4D;   /* ~30% opacity */
+$yellow_alpha: {{colors.tertiary.default.hex}}4D;  /* ~30% opacity */
+$mauve_alpha:  {{colors.secondary.default.hex}}4D; /* ~30% opacity */
