@@ -1,12 +1,12 @@
 #!/usr/bin/env zsh
 set -ex
 # --- CONFIGURATION ---
-EWW_CFG="$HOME/.config/awww/new-eww/popups/usb"
-EWW_BIN=$(which awww)
+EWW_CFG="$HOME/.config/eww/new-eww/popups/usb"
+EWW_BIN=$(which eww)
 
 # --- STATE FILES ---
-CLOSER_PID_FILE="/tmp/awww_usb_closer.pid"
-LAST_EVENT_FILE="/tmp/awww_usb_last_event"
+CLOSER_PID_FILE="/tmp/eww_usb_closer.pid"
+LAST_EVENT_FILE="/tmp/eww_usb_last_event"
 
 # --- IN-MEMORY STATE ---
 # We track connected Model Names to prevent "Ghost" popups when drivers reload

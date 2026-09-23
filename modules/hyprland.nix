@@ -141,18 +141,17 @@
       ];
 
       bindle = [
-        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
-        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ", XF86MonBrightnessUp, exec, brightnessctl set 5%+"
-        ", XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+        ", XF86AudioRaiseVolume, exec, ${config.xdg.configHome}/hypr/scripts/volume.sh --inc"
+        ", XF86AudioLowerVolume, exec, ${config.xdg.configHome}/hypr/scripts/volume.sh --dec"
+        ", XF86MonBrightnessUp, exec, ${config.xdg.configHome}/hypr/scripts/brightness.sh --inc"
+        ", XF86MonBrightnessDown, exec, ${config.xdg.configHome}/hypr/scripts/brightness.sh --dec"
       ];
 
       bindl = [
-        ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioMute, exec, ${config.xdg.configHome}/hypr/scripts/volume.sh --toggle"
+        ", XF86AudioMicMute, exec, ${config.xdg.configHome}/hypr/scripts/volume.sh --toggle-mic"
         ", XF86Bluetooth, exec, rfkill toggle bluetooth"
       ];
-
       bindm = [
         "$mainMod, mouse:272, movewindow"
       ];
@@ -165,6 +164,7 @@
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE XDG_DATA_DIRS PATH"
         "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE XDG_DATA_DIRS PATH"
         "systemctl --user restart xdg-desktop-portal-hyprland xdg-desktop-portal"
+        "eww daemon"
       ];
       misc = {
         disable_hyprland_logo = true;

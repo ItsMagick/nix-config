@@ -1,8 +1,7 @@
 #!/usr/bin/env zsh
 set -ex
 # --- CONFIGURATION ---
-EWW_CFG="$HOME/.config/awww/new-eww/popups/volume"
-EWW_BIN=$(which awww)
+EWW_BIN=$(which eww)
 
 # PID file to track the current "sleep" process.
 TIMER_PID="/tmp/eww_volume_timer.pid"
@@ -52,19 +51,19 @@ show_osd() {
   ICON=$(get_icon)
 
   # 3. Update Eww variables FIRST
-  $EWW_BIN -c "$EWW_CFG" update volume_value="$VOL" volume_icon="$ICON"
+  $EWW_BIN update volume_value="$VOL" volume_icon="$ICON"
 
   # 4. Open Window ONLY if it is not already open
   #    CRITICAL FIX for "Ghost" window:
   #    Spamming "eww open" on an already open window causes glitches/stuck windows.
   if ! $EWW_BIN active-windows | grep -q "volume_osd"; then
-    $EWW_BIN -c "$EWW_CFG" open volume_osd
+    $EWW_BIN open volume_osd
   fi
 
   # 5. Start background timer to close window
   (
     sleep 2
-    $EWW_BIN -c "$EWW_CFG" close volume_osd
+    $EWW_BIN close volume_osd
     rm "$TIMER_PID" 2> /dev/null
   ) &
 
@@ -84,7 +83,7 @@ get_volume() {
 }
 
 inc_volume() {
-  if [ "$(pamixer --get-mute)" == "true" ]; then
+  if [[ "$(pamixer --get-mute)" == "true" ]]; then
     pamixer -u
   else
     pamixer -i 5
@@ -93,7 +92,7 @@ inc_volume() {
 }
 
 dec_volume() {
-  if [ "$(pamixer --get-mute)" == "true" ]; then
+  if [[ "$(pamixer --get-mute)" == "true" ]]; then
     pamixer -u
   else
     pamixer -d 5

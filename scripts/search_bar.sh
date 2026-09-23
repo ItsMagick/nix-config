@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 set -ex
-EWW=$(which awww)
+EWW=$(which eww)
 CFG="$HOME/.config/eww/popups/search-bar"
 FILE="$HOME/.cache/eww_launch.searchbar"
 

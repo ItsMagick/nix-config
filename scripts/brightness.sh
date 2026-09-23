@@ -1,8 +1,7 @@
 #!/usr/bin/env zsh
 set -ex
 # --- CONFIGURATION ---
-EWW_CFG="$HOME/.config/awww/new-eww/popups/brightness"
-EWW_BIN=$(which awww)
+EWW_BIN=$(which eww)
 
 # We use two files:
 # 1. A timeewwstamp file to record exactly WHEN the last brightness change happened.
@@ -61,7 +60,7 @@ run_closer_daemon() {
 
       # If 2000ms (2 seconds) have passed since the last activity:
       if [ "$TIME_DIFF" -ge 2000 ]; then
-        $EWW_BIN -c "$EWW_CFG" close brightness_osd
+        $EWW_BIN close brightness_osd
         exit 0
       fi
 
@@ -81,8 +80,8 @@ show_osd() {
 
   # 3. Update Eww variables & Open Window
   # Update variables first so the window renders correct info immediately
-  $EWW_BIN -c "$EWW_CFG" update brightness_value="$VAL" brightness_icon="$ICON"
-  $EWW_BIN -c "$EWW_CFG" open brightness_osd
+  $EWW_BIN update brightness_value="$VAL" brightness_icon="$ICON"
+  $EWW_BIN open brightness_osd
 
   # 4. Ensure the background closer is running
   run_closer_daemon

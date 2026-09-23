@@ -38,6 +38,7 @@
     kitty
     maestral
     maestral-gui
+    eww
     #    vesktop
     zotero
     keepassxc
