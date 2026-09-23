@@ -2,7 +2,7 @@
 set -ex
 # --- CONFIGURATION ---
 EWW_CFG="$HOME/.config/awww/new-eww/popups/volume"
-EWW_BIN=$(which eww)
+EWW_BIN=$(which awww)
 
 # PID file to track the current "sleep" process.
 TIMER_PID="/tmp/eww_volume_timer.pid"

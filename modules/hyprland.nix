@@ -109,7 +109,7 @@
         "$mainMod, N, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle network wifi"
         "$mainMod SHIFT, N, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle network bt"
         "$mainMod SHIFT, B, exec, ${config.xdg.configHome}/hypr/scripts/quickshell/network/bluetooth_panel_logic.sh --toggle"
-        "$mainMod, D, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle calendar"
+        "$mainMod, D, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle monitors"
         "$mainMod, Y, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle music"
         "$mainMod, P, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle battery"
         "$mainMod, Escape, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh close"
