@@ -105,6 +105,7 @@
         "$mainMod, Page_Down, movetoworkspace, -1"
 
         "$mainMod, R, exec, rofi -show drun"
+        "$mainMod, A, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle audio"
         "$mainMod, W, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle wallpaper"
         "$mainMod, N, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle network wifi"
         "$mainMod SHIFT, N, exec, ${config.xdg.configHome}/hypr/scripts/qs_manager.sh toggle network bt"

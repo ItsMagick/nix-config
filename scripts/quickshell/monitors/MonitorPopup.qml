@@ -14,6 +14,31 @@ Item {
     property int activeEditIndex: 0
     property bool applyHovered: false
     property bool applyPressed: false
+
+    // Real, per-monitor capability data (parsed by display_info.sh from
+    // hyprctl's availableModes / the display's actual EDID) for whichever
+    // monitor is currently selected for editing. These stay reactive because
+    // they read ListModel roles via .get(), which Qt notifies bindings on.
+    property var activeMonResolutions: {
+        if (monitorsModel.count === 0)
+            return [];
+        try {
+            return JSON.parse(monitorsModel.get(window.activeEditIndex).modesJson || "[]");
+        } catch (e) {
+            return [];
+        }
+    }
+    property real activeMonResW: monitorsModel.count > 0 ? monitorsModel.get(window.activeEditIndex).resW : 1920
+    property real activeMonResH: monitorsModel.count > 0 ? monitorsModel.get(window.activeEditIndex).resH : 1080
+    property var activeMonRates: {
+        let modes = window.activeMonResolutions;
+        for (let i = 0; i < modes.length; i++) {
+            if (modes[i].w === window.activeMonResW && modes[i].h === window.activeMonResH)
+                return modes[i].rates;
+        }
+        return [60];
+    }
+    property bool rescanSpinning: false
     readonly property color base: _theme.base
     readonly property color blue: _theme.blue
     readonly property color crust: _theme.crust
@@ -179,10 +204,15 @@ Item {
     // -------------------------------------------------------------------------
     // NATIVE SYSTEM PROCESSES
     // -------------------------------------------------------------------------
+    // Lazy, on-demand detection: runs once when the popup is created (see
+    // running: true below) and again only if the user hits Rescan. No
+    // persistent daemon is required for the popup itself — see
+    // monitors/display_info.sh for the optional --watch mode if a live
+    // topbar indicator is ever wanted outside this popup.
     Process {
         id: displayPoller
 
-        command: ["hyprctl", "monitors", "-j"]
+        command: ["zsh", "-c", "~/.config/hypr/scripts/display_info.sh"]
         running: true
 
         stdout: StdioCollector {
@@ -208,6 +238,10 @@ Item {
                         let normalizedX = (data[i].x - minX) * window.uiScale;
                         let normalizedY = (data[i].y - minY) * window.uiScale;
 
+                        // resolutions (per-monitor real modes from the EDID, as
+                        // reported by hyprctl's availableModes) is stashed as a
+                        // JSON string role since ListModel roles can't hold
+                        // nested arrays directly; callers JSON.parse() it.
                         monitorsModel.append({
                             name: data[i].name,
                             resW: data[i].width,
@@ -215,7 +249,8 @@ Item {
                             sysScale: scl,
                             rate: Math.round(data[i].refreshRate).toString(),
                             uiX: normalizedX,
-                            uiY: normalizedY
+                            uiY: normalizedY,
+                            modesJson: JSON.stringify(data[i].resolutions || [])
                         });
 
                         if (data[i].focused)
@@ -271,6 +306,63 @@ Item {
                 Behavior on color {
                     ColorAnimation {
                         duration: 1000
+                    }
+                }
+            }
+
+            // ==========================================
+            // RESCAN (manual, lazy re-detection — no daemon)
+            // ==========================================
+            Item {
+                id: rescanBtn
+
+                anchors.right: parent.right
+                anchors.rightMargin: 16
+                anchors.top: parent.top
+                anchors.topMargin: 16
+                height: 30
+                width: 30
+                z: 20
+
+                Rectangle {
+                    anchors.fill: parent
+                    border.color: rescanMa.containsMouse ? window.selectedResAccent : window.surface1
+                    border.width: 1
+                    color: rescanMa.containsMouse ? window.surface0 : "transparent"
+                    radius: 15
+
+                    Behavior on border.color {
+                        ColorAnimation {
+                            duration: 200
+                        }
+                    }
+
+                    Text {
+                        anchors.centerIn: parent
+                        color: rescanMa.containsMouse ? window.selectedResAccent : window.subtext0
+                        font.family: "FiraCode Nerd Font Mono"
+                        font.pixelSize: 15
+                        rotation: window.rescanSpinning ? 360 : 0
+                        text: "󰑐"
+
+                        Behavior on rotation {
+                            NumberAnimation {
+                                duration: 500
+                                easing.type: Easing.OutCubic
+                            }
+                        }
+                    }
+                }
+                MouseArea {
+                    id: rescanMa
+
+                    anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
+                    hoverEnabled: true
+
+                    onClicked: {
+                        window.rescanSpinning = !window.rescanSpinning;
+                        displayPoller.running = true;
                     }
                 }
             }
@@ -819,56 +911,36 @@ Item {
                         rowSpacing: 10
 
                         Repeater {
-                            model: [
-                                {
-                                    resW: 3840,
-                                    resH: 2160,
-                                    label: "4K",
-                                    accent: window.pink
-                                },
-                                {
-                                    resW: 2560,
-                                    resH: 1440,
-                                    label: "QHD",
-                                    accent: window.mauve
-                                },
-                                {
-                                    resW: 1920,
-                                    resH: 1080,
-                                    label: "FHD",
-                                    accent: window.blue
-                                },
-                                {
-                                    resW: 1600,
-                                    resH: 900,
-                                    label: "HD+",
-                                    accent: window.teal
-                                },
-                                {
-                                    resW: 1366,
-                                    resH: 768,
-                                    label: "WXGA",
-                                    accent: window.yellow
-                                },
-                                {
-                                    resW: 1280,
-                                    resH: 720,
-                                    label: "HD",
-                                    accent: window.peach
-                                },
-                                {
-                                    resW: 1024,
-                                    resH: 768,
-                                    label: "XGA",
-                                    accent: window.green
-                                },
-                                {
-                                    resW: 800,
-                                    resH: 600,
-                                    label: "SVGA",
-                                    accent: window.red
+                            // Built from display_info.sh's parse of this exact
+                            // monitor's advertised modes — only resolutions the
+                            // panel can actually drive are ever shown.
+                            model: {
+                                let modes = window.activeMonResolutions;
+                                let palette = [window.pink, window.mauve, window.blue, window.teal, window.yellow, window.peach, window.green, window.sapphire, window.red];
+                                let knownLabels = {
+                                    "7680x2160": "8K UW",
+                                    "3840x2160": "4K",
+                                    "3440x1440": "UWQHD",
+                                    "2560x1440": "QHD",
+                                    "2560x1080": "UWFHD",
+                                    "1920x1080": "FHD",
+                                    "1600x900": "HD+",
+                                    "1366x768": "WXGA",
+                                    "1280x720": "HD"
+                                };
+                                let out = [];
+                                for (let i = 0; i < modes.length; i++) {
+                                    let m = modes[i];
+                                    let key = m.w + "x" + m.h;
+                                    out.push({
+                                        resW: m.w,
+                                        resH: m.h,
+                                        label: knownLabels[key] || (m.h + "p"),
+                                        accent: palette[i % palette.length]
+                                    });
                                 }
-                            ]
+                                return out;
+                            }
 
                             delegate: Rectangle {
                                 property color accentColor: modelData.accent
@@ -950,6 +1022,18 @@ Item {
                                             window.selectedResAccent = accentColor;
                                             monitorsModel.setProperty(window.activeEditIndex, "resW", modelData.resW);
                                             monitorsModel.setProperty(window.activeEditIndex, "resH", modelData.resH);
+
+                                            // The old rate may not exist at the new
+                                            // resolution (e.g. 240Hz only exists at
+                                            // 1080p) — snap to the highest rate this
+                                            // monitor actually supports at the new res.
+                                            let modes = window.activeMonResolutions;
+                                            for (let mi = 0; mi < modes.length; mi++) {
+                                                if (modes[mi].w === modelData.resW && modes[mi].h === modelData.resH && modes[mi].rates.length > 0) {
+                                                    monitorsModel.setProperty(window.activeEditIndex, "rate", modes[mi].rates[0].toString());
+                                                    break;
+                                                }
+                                            }
                                             delayedLayoutUpdate.restart();
                                         }
                                     }
@@ -966,9 +1050,9 @@ Item {
                         id: sliderContainer
 
                         property int currentIndex: {
-                            if (monitorsModel.count === 0)
+                            if (monitorsModel.count === 0 || rates.length === 0)
                                 return 0;
-                            let currentVal = parseInt(monitorsModel.get(window.activeEditIndex).rate) || 60;
+                            let currentVal = parseFloat(monitorsModel.get(window.activeEditIndex).rate) || 60;
                             let closestIdx = 0;
                             let minDiff = 9999;
                             for (let i = 0; i < rates.length; i++) {
@@ -980,9 +1064,17 @@ Item {
                             }
                             return closestIdx;
                         }
-                        property var rateColors: [window.red, window.mauve, window.blue, window.sapphire, window.teal, window.green]
-                        property var rates: [60, 75, 100, 120, 144, 240]
-                        property real visualPct: currentIndex / (rates.length - 1)
+                        property var ratePalette: [window.red, window.peach, window.mauve, window.blue, window.sapphire, window.teal, window.green]
+                        property var rateColors: {
+                            let out = [];
+                            for (let i = 0; i < rates.length; i++)
+                                out.push(ratePalette[i % ratePalette.length]);
+                            return out;
+                        }
+                        // Only the refresh rates this monitor's current
+                        // resolution actually supports — never an invented one.
+                        property var rates: window.activeMonRates.length > 0 ? window.activeMonRates : [60]
+                        property real visualPct: rates.length > 1 ? currentIndex / (rates.length - 1) : 0
 
                         Layout.fillWidth: true
                         Layout.leftMargin: 10
@@ -991,7 +1083,7 @@ Item {
 
                         onCurrentIndexChanged: {
                             if (!sliderMa.pressed)
-                                visualPct = currentIndex / (rates.length - 1);
+                                visualPct = rates.length > 1 ? currentIndex / (rates.length - 1) : 0;
                         }
 
                         Rectangle {
@@ -1033,7 +1125,7 @@ Item {
                                     font.family: "FiraCode Nerd Font Mono"
                                     font.pixelSize: 13
                                     font.weight: sliderContainer.currentIndex === index ? Font.Bold : Font.Normal
-                                    text: sliderContainer.rates[index]
+                                    text: Math.round(sliderContainer.rates[index])
 
                                     Behavior on color {
                                         ColorAnimation {
@@ -1078,8 +1170,13 @@ Item {
                             id: sliderMa
 
                             function updateSelection(mouseX, snapToGrid) {
-                                if (monitorsModel.count === 0)
+                                if (monitorsModel.count === 0 || sliderContainer.rates.length === 0)
                                     return;
+                                if (sliderContainer.rates.length === 1) {
+                                    monitorsModel.setProperty(window.activeEditIndex, "rate", sliderContainer.rates[0].toString());
+                                    window.selectedRateAccent = sliderContainer.rateColors[0];
+                                    return;
+                                }
                                 let pct = (mouseX - track.x) / track.width;
                                 pct = Math.max(0, Math.min(1, pct));
                                 let idx = Math.round(pct * (sliderContainer.rates.length - 1));
@@ -1099,7 +1196,7 @@ Item {
                             cursorShape: Qt.PointingHandCursor
                             hoverEnabled: true
 
-                            onCanceled: () => sliderContainer.visualPct = sliderContainer.currentIndex / (sliderContainer.rates.length - 1)
+                            onCanceled: () => sliderContainer.visualPct = sliderContainer.rates.length > 1 ? sliderContainer.currentIndex / (sliderContainer.rates.length - 1) : 0
                             onPositionChanged: mouse => {
                                 if (pressed)
                                     updateSelection(mouse.x, false);
