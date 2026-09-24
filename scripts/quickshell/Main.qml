@@ -19,6 +19,13 @@ FloatingWindow {
     property bool isVisible: false
     property bool isWallpaperTransition: false
     property var layouts: {
+        "audio": {
+            w: 700,
+            h: 480,
+            x: Math.floor((screenW / 2) - (700 / 2)),
+            y: Math.floor((screenH / 2) - (480 / 2)),
+            comp: "audio/AudioPopup.qml"
+        },
         "battery": {
             w: 480,
             h: 760,
