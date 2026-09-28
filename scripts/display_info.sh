@@ -28,28 +28,27 @@ emit() {
 }
 
 case "${1:-}" in
-  --watch)
-    if ! command -v socat > /dev/null 2>&1; then
-      echo "display_info.sh --watch: socat is required but not found" >&2
-      exit 1
-    fi
-    SOCK="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
-    mkdir -p "$(dirname "$CACHE")"
-    emit > "$CACHE"
+--watch)
+  if ! command -v socat > /dev/null 2>&1; then
+    echo "display_info.sh --watch: socat is required but not found" >&2
+    exit 1
+  fi
+  SOCK="$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock"
+  mkdir -p "$(dirname "$CACHE")"
+  emit > "$CACHE"
 
-    socat -u UNIX-CONNECT:"$SOCK" - | while read -r line; do
-      case "$line" in
-        monitoradded* | monitorremoved* | monitoraddedv2* | monitorremovedv2*)
-          # Small debounce: give Hyprland a beat to finish (re)negotiating the
-          # newly (dis)connected monitor's modes before we re-query them.
-          sleep 0.25
-          emit > "${CACHE}.tmp" && mv "${CACHE}.tmp" "$CACHE"
-          ;;
-      esac
-    done
-    ;;
-  *)
-    emit
-    ;;
+  socat -u UNIX-CONNECT:"$SOCK" - | while read -r line; do
+    case "$line" in
+    monitoradded* | monitorremoved* | monitoraddedv2* | monitorremovedv2*)
+      # Small debounce: give Hyprland a beat to finish (re)negotiating the
+      # newly (dis)connected monitor's modes before we re-query them.
+      sleep 0.25
+      emit > "${CACHE}.tmp" && mv "${CACHE}.tmp" "$CACHE"
+      ;;
+    esac
+  done
+  ;;
+*)
+  emit
+  ;;
 esac
-

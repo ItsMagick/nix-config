@@ -12,8 +12,16 @@ Item {
     // STATE & MATH
     // -------------------------------------------------------------------------
     property int activeEditIndex: 0
-    property bool applyHovered: false
-    property bool applyPressed: false
+    property var activeMonRates: {
+        let modes = window.activeMonResolutions;
+        for (let i = 0; i < modes.length; i++) {
+            if (modes[i].w === window.activeMonResW && modes[i].h === window.activeMonResH)
+                return modes[i].rates;
+        }
+        return [60];
+    }
+    property real activeMonResH: monitorsModel.count > 0 ? monitorsModel.get(window.activeEditIndex).resH : 1080
+    property real activeMonResW: monitorsModel.count > 0 ? monitorsModel.get(window.activeEditIndex).resW : 1920
 
     // Real, per-monitor capability data (parsed by display_info.sh from
     // hyprctl's availableModes / the display's actual EDID) for whichever
@@ -28,17 +36,8 @@ Item {
             return [];
         }
     }
-    property real activeMonResW: monitorsModel.count > 0 ? monitorsModel.get(window.activeEditIndex).resW : 1920
-    property real activeMonResH: monitorsModel.count > 0 ? monitorsModel.get(window.activeEditIndex).resH : 1080
-    property var activeMonRates: {
-        let modes = window.activeMonResolutions;
-        for (let i = 0; i < modes.length; i++) {
-            if (modes[i].w === window.activeMonResW && modes[i].h === window.activeMonResH)
-                return modes[i].rates;
-        }
-        return [60];
-    }
-    property bool rescanSpinning: false
+    property bool applyHovered: false
+    property bool applyPressed: false
     readonly property color base: _theme.base
     readonly property color blue: _theme.blue
     readonly property color crust: _theme.crust
@@ -57,6 +56,7 @@ Item {
     readonly property color peach: _theme.peach
     readonly property color pink: _theme.pink
     readonly property color red: _theme.red
+    property bool rescanSpinning: false
     readonly property color sapphire: _theme.sapphire
     property color selectedRateAccent: window.blue
 
@@ -1064,13 +1064,13 @@ Item {
                             }
                             return closestIdx;
                         }
-                        property var ratePalette: [window.red, window.peach, window.mauve, window.blue, window.sapphire, window.teal, window.green]
                         property var rateColors: {
                             let out = [];
                             for (let i = 0; i < rates.length; i++)
                                 out.push(ratePalette[i % ratePalette.length]);
                             return out;
                         }
+                        property var ratePalette: [window.red, window.peach, window.mauve, window.blue, window.sapphire, window.teal, window.green]
                         // Only the refresh rates this monitor's current
                         // resolution actually supports — never an invented one.
                         property var rates: window.activeMonRates.length > 0 ? window.activeMonRates : [60]

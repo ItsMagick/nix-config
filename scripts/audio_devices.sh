@@ -30,7 +30,7 @@ CACHE="${XDG_RUNTIME_DIR:-/tmp}/qs_audio_devices.json"
 # turn that into properly-escaped JSON (device names can contain almost
 # anything, so we don't hand-build JSON strings ourselves).
 list_devices() {
-  wpctl status 2>/dev/null | awk '
+  wpctl status 2> /dev/null | awk '
     BEGIN { mode="" }
     {
       line = $0
@@ -89,32 +89,32 @@ set_default() {
 }
 
 case "${1:-}" in
-  --set-sink | --set-source)
-    if [[ -z "${2:-}" ]]; then
-      echo "usage: audio_devices.sh $1 <id>" >&2
-      exit 1
-    fi
-    set_default "$2"
-    list_devices
-    ;;
-  --watch)
-    if ! command -v pactl > /dev/null 2>&1; then
-      echo "audio_devices.sh --watch: pactl not found" >&2
-      exit 1
-    fi
-    mkdir -p "$(dirname "$CACHE")"
-    list_devices > "$CACHE"
+--set-sink | --set-source)
+  if [[ -z "${2:-}" ]]; then
+    echo "usage: audio_devices.sh $1 <id>" >&2
+    exit 1
+  fi
+  set_default "$2"
+  list_devices
+  ;;
+--watch)
+  if ! command -v pactl > /dev/null 2>&1; then
+    echo "audio_devices.sh --watch: pactl not found" >&2
+    exit 1
+  fi
+  mkdir -p "$(dirname "$CACHE")"
+  list_devices > "$CACHE"
 
-    pactl subscribe | while read -r line; do
-      case "$line" in
-        *"on sink"* | *"on source"* | *"on server"*)
-          sleep 0.2
-          list_devices > "${CACHE}.tmp" && mv "${CACHE}.tmp" "$CACHE"
-          ;;
-      esac
-    done
-    ;;
-  *)
-    list_devices
-    ;;
+  pactl subscribe | while read -r line; do
+    case "$line" in
+    *"on sink"* | *"on source"* | *"on server"*)
+      sleep 0.2
+      list_devices > "${CACHE}.tmp" && mv "${CACHE}.tmp" "$CACHE"
+      ;;
+    esac
+  done
+  ;;
+*)
+  list_devices
+  ;;
 esac

@@ -27,6 +27,7 @@
     kernelModules = [
       "uvcvideo"
       "amdgpu"
+      "fuse"
     ];
   };
 
@@ -53,6 +54,12 @@
     };
   };
   services = {
+    k3s = {
+      enable = true;
+      role = "server";
+      extraFlags = toString [ "--write-kubeconfig-mode=644" ];
+    };
+
     fwupd.enable = true;
     upower.enable = true;
     dbus.enable = true;
@@ -259,6 +266,19 @@
     ];
     packages = with pkgs; [ ];
     shell = pkgs.zsh;
+    #    For rootless podman in kubernetes
+    subUidRanges = [
+      {
+        startUid = 100000;
+        count = 65536;
+      }
+    ];
+    subGidRanges = [
+      {
+        startGid = 100000;
+        count = 65536;
+      }
+    ];
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -290,9 +310,9 @@
   };
 
   virtualisation.podman = {
-  enable = true;
-  dockerCompat = true;
-  defaultNetwork.settings.dns_enabled = true;
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
   };
 
   security.pam.services.swaylock = { };

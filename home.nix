@@ -19,6 +19,7 @@
     ANDROID_HOME = "${config.home.homeDirectory}/Android/Sdk";
     ANDROID_SDK_ROOT = "${config.home.homeDirectory}/Android/Sdk";
     DOCKER_HOST = "unix://\${XDG_RUNTIME_DIR}/podman/podman.sock";
+    KUBECONFIG = "/etc/rancher/k3s/k3s.yaml";
   };
   home.sessionPath = [
     "${config.home.homeDirectory}/Android/Sdk/platform-tools"
@@ -76,6 +77,9 @@
     nmap
     podman-compose
     podman-tui
+    kubectl
+    k9s
+    kubernetes-helm
   ];
 
   gtk = {
