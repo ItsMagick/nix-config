@@ -14,4 +14,4 @@ configuration {
 }
 
 /* This points to your separate theme file */
-@theme "theme.rasi";
+@theme "theme.rasi"

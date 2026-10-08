@@ -17,5 +17,6 @@
     ./clipvault.nix
     ./vesktop.nix
     ./cream-of-the-crop.nix
+    ./davmail.nix
   ];
 }

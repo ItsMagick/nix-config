@@ -40,7 +40,6 @@
     maestral
     maestral-gui
     eww
-    #    vesktop
     zotero
     keepassxc
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -80,6 +79,7 @@
     kubectl
     k9s
     kubernetes-helm
+    thunderbird
   ];
 
   gtk = {

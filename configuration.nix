@@ -27,7 +27,6 @@
     kernelModules = [
       "uvcvideo"
       "amdgpu"
-      "fuse"
     ];
   };
 
@@ -57,7 +56,10 @@
     k3s = {
       enable = true;
       role = "server";
-      extraFlags = toString [ "--write-kubeconfig-mode=644" ];
+      extraFlags = toString [ 
+        "--write-kubeconfig-mode=644" 
+        "--container-runtime-endpoint=unix:///run/crio/crio.sock"
+      ];
     };
 
     fwupd.enable = true;
@@ -314,6 +316,7 @@
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
   };
+  virtualisation.cri-o.enable = true;
 
   security.pam.services.swaylock = { };
 
